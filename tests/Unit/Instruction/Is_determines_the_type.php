@@ -51,4 +51,40 @@ class Is_determines_the_type extends TestCase
             Is::bool()->followFor('foo')
         );
     }
+
+    /** @scenario */
+    function producing_a_string_mapping_using_a_different_key()
+    {
+        self::assertEquals(
+            StringValue::inPropertyWithDifferentKey('foo', 'bar'),
+            Is::stringInKey('bar')->followFor('foo')
+        );
+    }
+
+    /** @scenario */
+    function producing_an_integer_mapping_using_a_different_key()
+    {
+        self::assertEquals(
+            IntegerValue::inPropertyWithDifferentKey('foo', 'bar'),
+            Is::intInKey('bar')->followFor('foo')
+        );
+    }
+
+    /** @scenario */
+    function producing_a_floating_point_mapping_using_a_different_key()
+    {
+        self::assertEquals(
+            FloatValue::inPropertyWithDifferentKey('foo', 'bar'),
+            Is::floatInKey('bar')->followFor('foo')
+        );
+    }
+
+    /** @scenario */
+    function producing_a_boolean_mapping_using_a_different_key()
+    {
+        self::assertEquals(
+            BooleanValue::inPropertyWithDifferentKey('foo', 'bar'),
+            Is::boolInKey('bar')->followFor('foo')
+        );
+    }
 }
