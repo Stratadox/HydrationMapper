@@ -25,4 +25,13 @@ class In_changes_the_key extends TestCase
             In::key('baz')->followFor('bar')
         );
     }
+
+    /** @scenario */
+    function finding_the_key()
+    {
+        self::assertEquals(
+            'foo',
+            In::key('foo')->find()
+        );
+    }
 }
