@@ -6,6 +6,7 @@ namespace Stratadox\Hydration\Mapper\Test\Unit\Instruction;
 
 use PHPUnit\Framework\TestCase;
 use Stratadox\Hydration\Hydrator\MappedHydrator;
+use Stratadox\Hydration\Mapper\Instruction\In;
 use Stratadox\Hydration\Mapper\Instruction\Relation\HasOne;
 use Stratadox\Hydration\Mapper\Test\Stub\Book\Isbn;
 use Stratadox\Hydration\Mapper\Test\Stub\Book\Title;
@@ -53,5 +54,21 @@ class HasOne_indicates_a_monogamous_relationship extends TestCase
         );
     }
 
-
+    /** @scenario */
+    function producing_a_nested_hasOne_with_different_key()
+    {
+        self::assertEquals(
+            HasOneNested::inPropertyWithDifferentKey('isbn', 'id',
+                MappedHydrator::fromThis(Mapping::ofThe(Isbn::class,
+                    StringValue::inProperty('code'),
+                    IntegerValue::inProperty('version')
+                ))
+            ),
+            HasOne::ofThe(Isbn::class, In::key('id'))
+                ->nested()
+                ->with('code')
+                ->with('version', ItsANumber::allRight())
+                ->followFor('isbn')
+        );
+    }
 }
