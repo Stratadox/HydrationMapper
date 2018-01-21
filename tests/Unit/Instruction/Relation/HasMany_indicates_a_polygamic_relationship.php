@@ -12,6 +12,7 @@ use Stratadox\Hydration\Hydrator\SimpleHydrator;
 use Stratadox\Hydration\Hydrator\VariadicConstructor;
 use Stratadox\Hydration\Mapper\Instruction\In;
 use Stratadox\Hydration\Mapper\Instruction\Relation\HasMany;
+use Stratadox\Hydration\Mapper\InvalidMapperConfiguration;
 use Stratadox\Hydration\Mapper\Test\Stub\Book\Chapter;
 use Stratadox\Hydration\Mapper\Test\Stub\Book\ChapterLoaderFactory;
 use Stratadox\Hydration\Mapper\Test\Stub\Book\ChapterProxy;
@@ -31,6 +32,7 @@ use Stratadox\Hydration\Proxying\ProxyFactory;
 /**
  * @covers \Stratadox\Hydration\Mapper\Instruction\Relation\HasMany
  * @covers \Stratadox\Hydration\Mapper\Instruction\Relation\Relationship
+ * @covers \Stratadox\Hydration\Mapper\NoLoaderAvailable
  */
 class HasMany_indicates_a_polygamic_relationship extends TestCase
 {
@@ -142,5 +144,12 @@ class HasMany_indicates_a_polygamic_relationship extends TestCase
                 ->loadedBy(new ChapterLoaderFactory)
                 ->followFor('chapter')
         );
+    }
+
+    /** @scenario */
+    function lazy_collections_need_to_get_a_loader()
+    {
+        $this->expectException(InvalidMapperConfiguration::class);
+        HasMany::ofThe(ChapterProxy::class)->followFor('chapter');
     }
 }
