@@ -16,8 +16,8 @@ use Stratadox\Hydration\Mapper\InvalidMapperConfiguration;
 use Stratadox\Hydration\Mapper\Test\Stub\Book\Chapter;
 use Stratadox\Hydration\Mapper\Test\Stub\Book\ChapterLoaderFactory;
 use Stratadox\Hydration\Mapper\Test\Stub\Book\ChapterProxy;
-use Stratadox\Hydration\Mapper\Test\Stub\Book\Contents;
-use Stratadox\Hydration\Mapper\Test\Stub\Book\ContentsProxy;
+use Stratadox\Hydration\Mapper\Test\Stub\Book\Chapters;
+use Stratadox\Hydration\Mapper\Test\Stub\Book\ChaptersProxy;
 use Stratadox\Hydration\Mapper\Test\Stub\Book\Text;
 use Stratadox\Hydration\Mapping\Mapping;
 use Stratadox\Hydration\Mapping\Property\Relationship\HasManyNested;
@@ -42,7 +42,7 @@ class HasMany_indicates_a_polygamic_relationship extends TestCase
     {
         self::assertEquals(
             HasManyNested::inProperty('contents',
-                VariadicConstructor::forThe(Contents::class),
+                VariadicConstructor::forThe(Chapters::class),
                 MappedHydrator::fromThis(Mapping::ofThe(Chapter::class,
                     StringValue::inProperty('title')
                 ))
@@ -50,7 +50,7 @@ class HasMany_indicates_a_polygamic_relationship extends TestCase
             HasMany::ofThe(Chapter::class)
                 ->nested()
                 ->with('title')
-                ->containedInA(Contents::class)
+                ->containedInA(Chapters::class)
                 ->followFor('contents')
         );
     }
@@ -79,13 +79,13 @@ class HasMany_indicates_a_polygamic_relationship extends TestCase
         self::assertEquals(
             HasOneProxy::inProperty('contents',
                 ProxyFactory::fromThis(
-                    SimpleHydrator::forThe(ContentsProxy::class),
+                    SimpleHydrator::forThe(ChaptersProxy::class),
                     new ChapterLoaderFactory,
                     new PropertyUpdaterFactory
                 )
             ),
             HasMany::ofThe(Chapter::class)
-                ->containedInA(ContentsProxy::class)
+                ->containedInA(ChaptersProxy::class)
                 ->loadedBy(new ChapterLoaderFactory())
                 ->followFor('contents')
         );
@@ -96,7 +96,7 @@ class HasMany_indicates_a_polygamic_relationship extends TestCase
     {
         self::assertEquals(
             HasManyProxies::inProperty('contents',
-                VariadicConstructor::forThe(Contents::class),
+                VariadicConstructor::forThe(Chapters::class),
                 ProxyFactory::fromThis(
                     SimpleHydrator::forThe(ChapterProxy::class),
                     new ChapterLoaderFactory,
@@ -104,7 +104,7 @@ class HasMany_indicates_a_polygamic_relationship extends TestCase
                 )
             ),
             HasMany::ofThe(ChapterProxy::class)
-                ->containedInA(Contents::class)
+                ->containedInA(Chapters::class)
                 ->loadedBy(new ChapterLoaderFactory)
                 ->followFor('contents')
         );

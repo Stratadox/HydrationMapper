@@ -16,7 +16,7 @@ use Stratadox\Hydration\Mapper\Test\Stub\Book\Author;
 use Stratadox\Hydration\Mapper\Test\Stub\Book\Book;
 use Stratadox\Hydration\Mapper\Test\Stub\Book\ChapterLoaderFactory;
 use Stratadox\Hydration\Mapper\Test\Stub\Book\ChapterProxy;
-use Stratadox\Hydration\Mapper\Test\Stub\Book\Contents;
+use Stratadox\Hydration\Mapper\Test\Stub\Book\Chapters;
 use Stratadox\Hydration\Mapper\Test\Stub\Book\Isbn;
 use Stratadox\Hydration\Mapper\Test\Stub\Book\Title;
 use Stratadox\Hydration\Mapping\Mapping;
@@ -57,7 +57,7 @@ class HydrationMapper_produces_fully_mapped_hydrators extends TestCase
                 ))
             ),
             HasManyProxies::inPropertyWithDifferentKey('contents', 'chapters',
-                VariadicConstructor::forThe(Contents::class),
+                VariadicConstructor::forThe(Chapters::class),
                 ProxyFactory::fromThis(
                     SimpleHydrator::forThe(ChapterProxy::class),
                     new ChapterLoaderFactory,
@@ -80,7 +80,7 @@ class HydrationMapper_produces_fully_mapped_hydrators extends TestCase
                 ->with('lastName', In::key('author_last_name'))
             )
             ->property('contents', Has::many(ChapterProxy::class, In::key('chapters'))
-                ->containedInA(Contents::class)
+                ->containedInA(Chapters::class)
                 ->loadedBy(new ChapterLoaderFactory)
             )
             ->property('format')

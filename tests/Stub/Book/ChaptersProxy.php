@@ -8,7 +8,7 @@ use Stratadox\Collection\Alterable;
 use Stratadox\Hydration\Proxy;
 use Stratadox\Hydration\Proxying\Proxying;
 
-class ContentsProxy extends Contents implements Proxy
+class ChaptersProxy extends Chapters implements Proxy
 {
     use Proxying;
 
@@ -26,7 +26,7 @@ class ContentsProxy extends Contents implements Proxy
         return $this->__load()->change($index, $newItem);
     }
 
-    public function current()
+    public function current() : Chapter
     {
         return $this->__load()->current();
     }
