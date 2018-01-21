@@ -6,10 +6,12 @@ namespace Stratadox\Hydration\Mapper\Instruction\Relation;
 
 use Stratadox\Hydration\Hydrates;
 use Stratadox\Hydration\Hydrator\MappedHydrator;
+use Stratadox\Hydration\Hydrator\OneOfTheseHydrators;
 use Stratadox\Hydration\Mapper\DefinesRelationships;
 use Stratadox\Hydration\Mapper\FindsKeys;
 use Stratadox\Hydration\Mapper\InstructsHowToMap;
 use Stratadox\Hydration\Mapper\Mapper;
+use Stratadox\Hydration\Mapper\RepresentsChoice;
 use Stratadox\Hydration\ProducesProxyLoaders;
 
 /**
@@ -24,6 +26,8 @@ abstract class Relationship implements DefinesRelationships
     protected $loader;
     protected $shouldNest;
     protected $properties;
+    protected $decisionKey;
+    protected $choices;
 
     final protected function __construct(
         string $class,
@@ -31,7 +35,9 @@ abstract class Relationship implements DefinesRelationships
         string $container = null,
         ProducesProxyLoaders $loader = null,
         bool $nested = false,
-        array $properties = []
+        array $properties = [],
+        string $decisionKey = null,
+        array $choices = []
     ) {
         $this->class = $class;
         $this->key = $key;
@@ -39,6 +45,8 @@ abstract class Relationship implements DefinesRelationships
         $this->loader = $loader;
         $this->shouldNest = $nested;
         $this->properties = $properties;
+        $this->decisionKey = $decisionKey;
+        $this->choices = $choices;
     }
 
     public static function ofThe(
@@ -59,7 +67,9 @@ abstract class Relationship implements DefinesRelationships
             $container,
             $this->loader,
             $this->shouldNest,
-            $this->properties
+            $this->properties,
+            $this->decisionKey,
+            $this->choices
         );
     }
 
@@ -73,7 +83,9 @@ abstract class Relationship implements DefinesRelationships
             $this->container,
             $loader,
             $this->shouldNest,
-            $this->properties
+            $this->properties,
+            $this->decisionKey,
+            $this->choices
         );
     }
 
@@ -85,7 +97,9 @@ abstract class Relationship implements DefinesRelationships
             $this->container,
             $this->loader,
             true,
-            $this->properties
+            $this->properties,
+            $this->decisionKey,
+            $this->choices
         );
     }
 
@@ -100,12 +114,39 @@ abstract class Relationship implements DefinesRelationships
             $this->container,
             $this->loader,
             $this->shouldNest,
-            $this->properties + [$property => $instruction]
+            $this->properties + [$property => $instruction],
+            $this->decisionKey,
+            $this->choices
         );
+    }
+
+    public function selectBy(
+        string $decisionKey,
+        array $choices
+    ) : DefinesRelationships
+    {
+        return new static(
+            $this->class,
+            $this->key,
+            $this->container,
+            $this->loader,
+            $this->shouldNest,
+            $this->properties,
+            $decisionKey,
+            $choices
+        );
+    }
+
+    protected function keyOr(string $property) : string
+    {
+        return $this->key ? $this->key->find() : $property;
     }
 
     protected function hydrator() : Hydrates
     {
+        if (isset($this->decisionKey)) {
+            return $this->choiceHydrator();
+        }
         $mapped = Mapper::forThe($this->class);
         foreach ($this->properties as $property => $instruction) {
             $mapped = $mapped->property($property, $instruction);
@@ -113,8 +154,13 @@ abstract class Relationship implements DefinesRelationships
         return MappedHydrator::fromThis($mapped->map());
     }
 
-    protected function keyOr(string $property) : string
+    private function choiceHydrator() : Hydrates
     {
-        return $this->key ? $this->key->find() : $property;
+        return OneOfTheseHydrators::decideBasedOnThe(
+            $this->decisionKey,
+            array_map(function (RepresentsChoice $choice) {
+                return $choice->hydrator();
+            }, $this->choices)
+        );
     }
 }
