@@ -79,7 +79,7 @@ class HydrationMapper_produces_fully_mapped_hydrators extends TestCase
                 ->with('firstName', In::key('author_first_name'))
                 ->with('lastName', In::key('author_last_name'))
             )
-            ->property('contents', Has::many(ChapterProxy::class)
+            ->property('contents', Has::many(ChapterProxy::class, In::key('chapters'))
                 ->containedInA(Contents::class)
                 ->loadedBy(new ChapterLoaderFactory)
             )
