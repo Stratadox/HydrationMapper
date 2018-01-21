@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace Stratadox\Hydration\Mapper\Instruction\Relation;
 
+use Stratadox\Hydration\Hydrates;
+use Stratadox\Hydration\Hydrator\MappedHydrator;
 use Stratadox\Hydration\Mapper\DefinesRelationships;
 use Stratadox\Hydration\Mapper\InstructsHowToMap;
+use Stratadox\Hydration\Mapper\Mapper;
 use Stratadox\Hydration\ProducesProxyLoaders;
 
 abstract class Relationship implements DefinesRelationships
@@ -16,7 +19,7 @@ abstract class Relationship implements DefinesRelationships
     protected $shouldNest;
     protected $properties;
 
-    final public function __construct(
+    final protected function __construct(
         string $class,
         string $container = null,
         ProducesProxyLoaders $loader = null,
@@ -36,12 +39,12 @@ abstract class Relationship implements DefinesRelationships
     }
 
     public function containedInA(
-        string $class
+        string $container
     ) : DefinesRelationships
     {
         return new static(
-            $class,
-            $this->container,
+            $this->class,
+            $container,
             $this->loader,
             $this->shouldNest,
             $this->properties
@@ -84,5 +87,14 @@ abstract class Relationship implements DefinesRelationships
             $this->shouldNest,
             $this->properties + [$property => $instruction]
         );
+    }
+
+    protected function hydrator() : Hydrates
+    {
+        $mapped = Mapper::forThe($this->class);
+        foreach ($this->properties as $property => $instruction) {
+            $mapped = $mapped->property($property, $instruction);
+        }
+        return MappedHydrator::fromThis($mapped->map());
     }
 }
