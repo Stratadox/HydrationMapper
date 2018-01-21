@@ -24,6 +24,7 @@ use Stratadox\Hydration\Proxying\ProxyFactory;
 
 /**
  * @covers \Stratadox\Hydration\Mapper\Instruction\Relation\HasMany
+ * @covers \Stratadox\Hydration\Mapper\Instruction\Relation\Relationship
  */
 class HasMany_indicates_a_polygamic_relationship extends TestCase
 {

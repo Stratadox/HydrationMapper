@@ -18,6 +18,7 @@ use Stratadox\Hydration\Mapping\Property\Scalar\StringValue;
 
 /**
  * @covers \Stratadox\Hydration\Mapper\Instruction\Relation\HasOne
+ * @covers \Stratadox\Hydration\Mapper\Instruction\Relation\Relationship
  */
 class HasOne_indicates_a_monogamous_relationship extends TestCase
 {
