@@ -13,6 +13,7 @@ use Stratadox\Hydration\Mapping\Property\Relationship\HasManyNested;
 use Stratadox\Hydration\Mapping\Property\Relationship\HasManyProxies;
 use Stratadox\Hydration\Mapping\Property\Relationship\HasOneProxy;
 use Stratadox\Hydration\MapsProperty;
+use Stratadox\Hydration\ProducesOwnerUpdaters;
 use Stratadox\Hydration\Proxy;
 use Stratadox\Hydration\Proxying\AlterableCollectionEntryUpdaterFactory;
 use Stratadox\Hydration\Proxying\ArrayEntryUpdaterFactory;
@@ -37,9 +38,7 @@ final class HasMany extends Relationship
                 ProxyFactory::fromThis(
                     SimpleHydrator::forThe($this->class),
                     $this->loader,
-                    $this->implements(Alterable::class, $this->container)
-                        ? new AlterableCollectionEntryUpdaterFactory
-                        : new ArrayEntryUpdaterFactory
+                    $this->updaterFactory()
                 )
             );
         }
@@ -63,5 +62,13 @@ final class HasMany extends Relationship
     private function implements(string $interface, $class)
     {
         return isset($class) && in_array($interface, class_implements($class));
+    }
+
+    private function updaterFactory() : ProducesOwnerUpdaters
+    {
+        if ($this->implements(Alterable::class, $this->container)) {
+            return new AlterableCollectionEntryUpdaterFactory;
+        }
+        return new ArrayEntryUpdaterFactory;
     }
 }
