@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Stratadox\Hydration\Mapper\Test\Unit;
 
 use PHPUnit\Framework\TestCase;
+use Stratadox\Hydration\Hydrator\MappedHydrator;
 use Stratadox\Hydration\Mapper\Mapper;
 use Stratadox\Hydration\Mapper\Test\Stub\Book\Author;
 use Stratadox\Hydration\Mapper\Test\Stub\Foo\Foo;
@@ -45,6 +46,21 @@ class Mapper_collects_and_maps_properties extends TestCase
                 ->property('name')
                 ->property('number', ItsANumber::allRight())
                 ->map()
+        );
+    }
+
+    /** @scenario */
+    function producing_a_hydrator()
+    {
+        self::assertEquals(
+            MappedHydrator::fromThis(Mapping::ofThe(Foo::class,
+                StringValue::inProperty('name'),
+                IntegerValue::inProperty('number')
+            )),
+            Mapper::forThe(Foo::class)
+                ->property('name')
+                ->property('number', ItsANumber::allRight())
+                ->hydrator()
         );
     }
 }
