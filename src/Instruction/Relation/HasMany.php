@@ -6,6 +6,7 @@ namespace Stratadox\Hydration\Mapper\Instruction\Relation;
 
 use Exception;
 use Stratadox\Collection\Alterable;
+use Stratadox\Hydration\Hydrates;
 use Stratadox\Hydration\Hydrator\SimpleHydrator;
 use Stratadox\Hydration\Hydrator\VariadicConstructor;
 use Stratadox\Hydration\Mapping\Property\Relationship\HasManyNested;
@@ -23,14 +24,14 @@ final class HasMany extends Relationship
         if ($this->shouldNest) {
             return HasManyNested::inPropertyWithDifferentKey($property,
                 $this->keyOr($property),
-                VariadicConstructor::forThe($this->container),
+                $this->container(),
                 $this->hydrator()
             );
         }
         if ($this->implements(Proxy::class, $this->class)) {
             return HasManyProxies::inPropertyWithDifferentKey($property,
                 $this->keyOr($property),
-                VariadicConstructor::forThe($this->container),
+                $this->container(),
                 ProxyFactory::fromThis(
                     SimpleHydrator::forThe($this->class),
                     $this->loader,
@@ -40,7 +41,12 @@ final class HasMany extends Relationship
                 )
             );
         }
-        throw new Exception('Not implementable yet '.$this->class);
+        // @todo HasOneProxy
+    }
+
+    private function container() : Hydrates
+    {
+        return VariadicConstructor::forThe($this->container);
     }
 
     private function implements($interface, $class)
