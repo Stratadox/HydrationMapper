@@ -6,6 +6,7 @@ namespace Stratadox\Hydration\Mapper\Test\Unit\Instruction;
 
 use PHPUnit\Framework\TestCase;
 use Stratadox\Hydration\Mapper\Instruction\Has;
+use Stratadox\Hydration\Mapper\Instruction\In;
 use Stratadox\Hydration\Mapper\Instruction\Relation\HasMany;
 use Stratadox\Hydration\Mapper\Instruction\Relation\HasOne;
 use Stratadox\Hydration\Mapper\Test\Stub\Book\Title;
@@ -30,6 +31,24 @@ class Has_indicates_a_relationship extends TestCase
         self::assertEquals(
             HasMany::ofThe(Title::class),
             Has::many(Title::class)
+        );
+    }
+
+    /** @scenario */
+    function producing_a_hasOne_with_different_key()
+    {
+        self::assertEquals(
+            HasOne::ofThe(Title::class, In::key('foo')),
+            Has::one(Title::class, In::key('foo'))
+        );
+    }
+
+    /** @scenario */
+    function producing_a_hasMany_with_different_key()
+    {
+        self::assertEquals(
+            HasMany::ofThe(Title::class, In::key('foo')),
+            Has::many(Title::class, In::key('foo'))
         );
     }
 }
