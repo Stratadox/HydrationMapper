@@ -36,7 +36,7 @@ class HydrationMapper_produces_fully_mapped_hydrators extends TestCase
     /** @scenario */
     function building_a_mapped_hydrator_for_Books()
     {
-        $expectedMapping = Mapping::ofThe(Book::class,
+        $expected = MappedHydrator::fromThis(Mapping::ofThe(Book::class,
             HasOneEmbedded::inProperty('title',
                 MappedHydrator::fromThis(Mapping::ofThe(Title::class,
                     StringValue::inProperty('title')
@@ -65,9 +65,9 @@ class HydrationMapper_produces_fully_mapped_hydrators extends TestCase
                 )
             ),
             StringValue::inProperty('format')
-        );
+        ));
 
-        $actualMapping = Mapper::forThe(Book::class)
+        $actual = Mapper::forThe(Book::class)
             ->property('title', Has::one(Title::class)->with('title'))
             ->property('isbn', Has::one(Isbn::class)
                 ->with('code', In::key('id'))
@@ -84,8 +84,8 @@ class HydrationMapper_produces_fully_mapped_hydrators extends TestCase
                 ->loadedBy(new ChapterLoaderFactory)
             )
             ->property('format')
-            ->map();
+            ->hydrator();
 
-        self::assertEquals($expectedMapping, $actualMapping);
+        self::assertEquals($expected, $actual);
     }
 }
