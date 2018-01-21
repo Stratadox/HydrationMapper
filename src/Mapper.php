@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Stratadox\Hydration\Mapper;
 
+use Stratadox\Hydration\Mapper\Instruction\Is;
 use Stratadox\Hydration\Mapping\Mapping;
-use Stratadox\Hydration\Mapping\Property\Scalar\StringValue;
 use Stratadox\Hydration\MapsObject;
 
 /**
@@ -43,15 +43,16 @@ final class Mapper implements MakesMap
         $class = $this->name;
         $properties = [];
         foreach ($this->properties as $name => $instruction) {
-            $properties[] = $instruction
-                ? $instruction->followFor($name)
-                : StringValue::inProperty($name);
+            $properties[] = $instruction->followFor($name);
         }
         return Mapping::ofThe($class, ...$properties);
     }
 
-    private function add(string $property, InstructsHowToMap $instruction = null) : array
+    private function add(
+        string $property,
+        InstructsHowToMap $instruction = null
+    ) : array
     {
-        return $this->properties + [$property => $instruction];
+        return $this->properties + [$property => $instruction ?: Is::string()];
     }
 }
