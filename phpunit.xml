@@ -6,12 +6,14 @@
     colors="true"
     convertErrorsToExceptions="true"
     convertNoticesToExceptions="true"
-    convertWarningsToExceptions="true"
-    printerClass="rpkamp\FancyTestdoxPrinter">
+    convertWarningsToExceptions="true">
 
     <testsuites>
-        <testsuite name="unit">
-            <directory suffix=".php">tests</directory>
+        <testsuite name="Unit">
+            <directory suffix=".php">tests/Unit</directory>
+        </testsuite>
+        <testsuite name="Integration">
+            <directory suffix=".php">tests/Integration</directory>
         </testsuite>
     </testsuites>
 
