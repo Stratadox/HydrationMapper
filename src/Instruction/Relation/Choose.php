@@ -10,6 +10,12 @@ use Stratadox\Hydration\Mapper\MakesMap;
 use Stratadox\Hydration\Mapper\Mapper;
 use Stratadox\Hydration\Mapper\RepresentsChoice;
 
+/**
+ * Indicates a choice for one of several concrete types.
+ *
+ * @package Stratadox\Hydrate
+ * @author Stratadox
+ */
 final class Choose implements RepresentsChoice
 {
     private $class;
