@@ -22,17 +22,14 @@ class Mapper_collects_and_maps_properties extends TestCase
     function mapping_an_author()
     {
         self::assertEquals(
-
             Mapping::ofThe(Author::class,
                 StringValue::inProperty('firstName'),
                 StringValue::inProperty('lastName')
             ),
-
             Mapper::forThe(Author::class)
                 ->property('firstName')
                 ->property('lastName')
                 ->map()
-
         );
     }
 
@@ -40,17 +37,14 @@ class Mapper_collects_and_maps_properties extends TestCase
     function mapping_with_instructions()
     {
         self::assertEquals(
-
             Mapping::ofThe(Foo::class,
                 StringValue::inProperty('name'),
                 IntegerValue::inProperty('number')
             ),
-
             Mapper::forThe(Foo::class)
                 ->property('name')
                 ->property('number', ItsANumber::allRight())
                 ->map()
-
         );
     }
 }
