@@ -150,6 +150,10 @@ class HasMany_indicates_a_polygamic_relationship extends TestCase
     function lazy_collections_need_to_get_a_loader()
     {
         $this->expectException(InvalidMapperConfiguration::class);
+        $this->expectExceptionMessage(sprintf(
+            'Could not produce mapping due to a missing loader for class `%s`',
+            ChapterProxy::class
+        ));
         HasMany::ofThe(ChapterProxy::class)->followFor('chapter');
     }
 }
