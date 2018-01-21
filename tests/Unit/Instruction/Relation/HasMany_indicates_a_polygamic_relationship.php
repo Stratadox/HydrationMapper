@@ -68,7 +68,7 @@ class HasMany_indicates_a_polygamic_relationship extends TestCase
     function producing_an_extra_lazy_hasMany()
     {
         self::assertEquals(
-            HasManyProxies::inPropertyWithDifferentKey('contents', 'chapters',
+            HasManyProxies::inProperty('contents',
                 VariadicConstructor::forThe(Contents::class),
                 ProxyFactory::fromThis(
                     SimpleHydrator::forThe(ChapterProxy::class),
