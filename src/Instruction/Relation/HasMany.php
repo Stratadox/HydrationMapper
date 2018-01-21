@@ -6,6 +6,7 @@ namespace Stratadox\Hydration\Mapper\Instruction\Relation;
 
 use Stratadox\Collection\Alterable;
 use Stratadox\Hydration\Hydrates;
+use Stratadox\Hydration\Hydrator\ArrayHydrator;
 use Stratadox\Hydration\Hydrator\SimpleHydrator;
 use Stratadox\Hydration\Hydrator\VariadicConstructor;
 use Stratadox\Hydration\Mapping\Property\Relationship\HasManyNested;
@@ -53,11 +54,14 @@ final class HasMany extends Relationship
 
     private function container() : Hydrates
     {
-        return VariadicConstructor::forThe($this->container);
+        if (isset($this->container)) {
+            return VariadicConstructor::forThe($this->container);
+        }
+        return ArrayHydrator::create();
     }
 
-    private function implements($interface, $class)
+    private function implements(string $interface, $class)
     {
-        return (in_array($interface, class_implements($class)));
+        return isset($class) && in_array($interface, class_implements($class));
     }
 }
