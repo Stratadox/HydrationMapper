@@ -64,7 +64,7 @@ class HasMany_indicates_a_polygamic_relationship extends TestCase
                 ->nested()
                 ->with('text')
                 ->containedInA(Chapter::class)
-                ->followFor('contents')
+                ->followFor('chapter')
         );
     }
 
@@ -121,7 +121,7 @@ class HasMany_indicates_a_polygamic_relationship extends TestCase
             HasMany::ofThe(ChapterProxy::class, In::key('data'))
                 ->containedInA(ArrayObject::class)
                 ->loadedBy(new ChapterLoaderFactory)
-                ->followFor('contents')
+                ->followFor('chapter')
         );
     }
 }
