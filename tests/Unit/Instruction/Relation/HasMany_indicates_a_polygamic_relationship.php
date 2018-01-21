@@ -8,9 +8,11 @@ use ArrayObject;
 use PHPUnit\Framework\TestCase;
 use Stratadox\Hydration\Hydrator\ArrayHydrator;
 use Stratadox\Hydration\Hydrator\MappedHydrator;
+use Stratadox\Hydration\Hydrator\OneOfTheseHydrators;
 use Stratadox\Hydration\Hydrator\SimpleHydrator;
 use Stratadox\Hydration\Hydrator\VariadicConstructor;
 use Stratadox\Hydration\Mapper\Instruction\In;
+use Stratadox\Hydration\Mapper\Instruction\Relation\Choose;
 use Stratadox\Hydration\Mapper\Instruction\Relation\HasMany;
 use Stratadox\Hydration\Mapper\InvalidMapperConfiguration;
 use Stratadox\Hydration\Mapper\Test\Stub\Book\Chapter;
@@ -18,6 +20,9 @@ use Stratadox\Hydration\Mapper\Test\Stub\Book\ChapterLoaderFactory;
 use Stratadox\Hydration\Mapper\Test\Stub\Book\ChapterProxy;
 use Stratadox\Hydration\Mapper\Test\Stub\Book\Chapters;
 use Stratadox\Hydration\Mapper\Test\Stub\Book\ChaptersProxy;
+use Stratadox\Hydration\Mapper\Test\Stub\Book\Element;
+use Stratadox\Hydration\Mapper\Test\Stub\Book\Elements;
+use Stratadox\Hydration\Mapper\Test\Stub\Book\Image;
 use Stratadox\Hydration\Mapper\Test\Stub\Book\Text;
 use Stratadox\Hydration\Mapping\Mapping;
 use Stratadox\Hydration\Mapping\Property\Relationship\HasManyNested;
@@ -70,6 +75,34 @@ class HasMany_indicates_a_polygamic_relationship extends TestCase
                 ->with('text')
                 ->containedInA(Chapter::class)
                 ->followFor('chapter')
+        );
+    }
+
+    /** @scenario */
+    function producing_a_nested_hasMany_with_polymorphism()
+    {
+        self::assertEquals(
+            HasManyNested::inProperty('elements',
+                VariadicConstructor::forThe(Elements::class),
+                OneOfTheseHydrators::decideBasedOnThe('type', [
+                    'text' => MappedHydrator::fromThis(Mapping::ofThe(Text::class,
+                        StringValue::inProperty('text')
+                    )),
+                    'image' => MappedHydrator::fromThis(Mapping::ofThe(Image::class,
+                        StringValue::inProperty('src'),
+                        StringValue::inProperty('alt')
+                    )),
+                ])
+            ),
+            HasMany::ofThe(Element::class)
+                ->selectBy('type', [
+                    'text' => Choose::the(Text::class)->with('text'),
+                    'image' => Choose::the(Image::class)->with('src')->with('alt'),
+                ])
+                ->nested()
+                ->with('title')
+                ->containedInA(Elements::class)
+                ->followFor('elements')
         );
     }
 
