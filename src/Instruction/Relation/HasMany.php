@@ -11,6 +11,7 @@ use Stratadox\Hydration\Hydrates;
 use Stratadox\Hydration\Hydrator\ArrayHydrator;
 use Stratadox\Hydration\Hydrator\SimpleHydrator;
 use Stratadox\Hydration\Hydrator\VariadicConstructor;
+use Stratadox\Hydration\Mapper\NoContainerAvailable;
 use Stratadox\Hydration\Mapper\NoLoaderAvailable;
 use Stratadox\Hydration\Mapping\Property\Relationship\HasManyNested;
 use Stratadox\Hydration\Mapping\Property\Relationship\HasManyProxies;
@@ -47,6 +48,9 @@ final class HasMany extends Relationship
                     $this->updaterFactory()
                 )
             );
+        }
+        if (!isset($this->container)) {
+            throw NoContainerAvailable::for($this->class);
         }
         return HasOneProxy::inProperty($property,
             ProxyFactory::fromThis(
