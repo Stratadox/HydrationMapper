@@ -6,7 +6,7 @@ namespace Stratadox\Hydration\Mapper\Test\Unit;
 
 use PHPUnit\Framework\TestCase;
 use Stratadox\Hydration\Mapper\Mapper;
-use Stratadox\Hydration\Mapper\Test\Stub\Author;
+use Stratadox\Hydration\Mapper\Test\Stub\Book\Author;
 use Stratadox\Hydration\Mapping\Mapping;
 use Stratadox\Hydration\Mapping\Property\Scalar\StringValue;
 

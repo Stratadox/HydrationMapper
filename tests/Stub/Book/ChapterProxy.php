@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Stratadox\Hydration\Mapper\Test\Stub;
+namespace Stratadox\Hydration\Mapper\Test\Stub\Book;
 
 use Stratadox\Hydration\Proxy;
 use Stratadox\Hydration\Proxying\Proxying;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Stratadox\Hydration\Mapper\Test\Stub;
+namespace Stratadox\Hydration\Mapper\Test\Stub\Book;
 
 interface Element
 {
