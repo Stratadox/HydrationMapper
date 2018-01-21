@@ -20,6 +20,7 @@ use Stratadox\Hydration\Mapper\Test\Stub\Book\Text;
 use Stratadox\Hydration\Mapping\Mapping;
 use Stratadox\Hydration\Mapping\Property\Relationship\HasManyNested;
 use Stratadox\Hydration\Mapping\Property\Relationship\HasManyProxies;
+use Stratadox\Hydration\Mapping\Property\Relationship\HasOneProxy;
 use Stratadox\Hydration\Mapping\Property\Scalar\StringValue;
 use Stratadox\Hydration\Proxying\AlterableCollectionEntryUpdaterFactory;
 use Stratadox\Hydration\Proxying\ArrayEntryUpdaterFactory;
@@ -71,7 +72,6 @@ class HasMany_indicates_a_polygamic_relationship extends TestCase
     /** @scenario */
     function producing_a_lazy_hasMany()
     {
-        self::markTestSkipped('@todo: implement HasOneProxy mapping');
         self::assertEquals(
             HasOneProxy::inProperty('contents',
                 ProxyFactory::fromThis(
