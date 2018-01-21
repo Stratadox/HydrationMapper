@@ -37,8 +37,9 @@ final class Mapper
         $class = $this->name;
         $properties = [];
         foreach ($this->properties as $name => $instruction) {
-            // @todo maybe follow instructions?
-            $properties[] = StringValue::inProperty($name);
+            $properties[] = $instruction
+                ? $instruction->followFor($name)
+                : StringValue::inProperty($name);
         }
         return Mapping::ofThe($class, ...$properties);
     }

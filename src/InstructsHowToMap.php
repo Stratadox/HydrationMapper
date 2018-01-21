@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Stratadox\Hydration\Mapper;
 
+use Stratadox\Hydration\MapsProperty;
+
 interface InstructsHowToMap
 {
-    // @todo
+    public function followFor(string $property) : MapsProperty;
 }
