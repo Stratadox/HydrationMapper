@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "a95273b4ecaae6b7a75e23968769fb4f",
+    "content-hash": "64bf20c6bf4929e4fb10690424219a8e",
     "packages": [
         {
             "name": "stratadox/collection-contracts",
@@ -45,7 +45,7 @@
         },
         {
             "name": "stratadox/hydration",
-            "version": "v1.5.2",
+            "version": "v1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Stratadox/Hydration.git",
@@ -80,27 +80,27 @@
         },
         {
             "name": "stratadox/hydration-mapping",
-            "version": "v1.4",
+            "version": "v1.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Stratadox/HydrationMapping.git",
-                "reference": "dd973111d7271d2b1aed44fde169ad9e9fef03f2"
+                "reference": "d8ac6c99fb7da9b8dc8253019d4e7168835f19f8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Stratadox/HydrationMapping/zipball/dd973111d7271d2b1aed44fde169ad9e9fef03f2",
-                "reference": "dd973111d7271d2b1aed44fde169ad9e9fef03f2",
+                "url": "https://api.github.com/repos/Stratadox/HydrationMapping/zipball/d8ac6c99fb7da9b8dc8253019d4e7168835f19f8",
+                "reference": "d8ac6c99fb7da9b8dc8253019d4e7168835f19f8",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.1",
-                "stratadox/hydration": "^1.4",
+                "stratadox/hydration": "^1.6",
                 "stratadox/immutable-collection": "^1.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^6.5",
-                "rpkamp/fancy-testdox-printer": "^0.1.1",
-                "satooshi/php-coveralls": "^1.0"
+                "rpkamp/fancy-testdox-printer": "^0.2.5",
+                "satooshi/php-coveralls": "^2.0"
             },
             "type": "library",
             "autoload": {
@@ -118,7 +118,7 @@
                     "homepage": "http://www.stratadox.com/"
                 }
             ],
-            "time": "2018-01-21T10:33:35+00:00"
+            "time": "2018-01-21T16:10:35+00:00"
         },
         {
             "name": "stratadox/hydration-proxies",
