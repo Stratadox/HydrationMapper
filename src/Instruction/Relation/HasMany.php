@@ -4,17 +4,18 @@ declare(strict_types=1);
 
 namespace Stratadox\Hydration\Mapper\Instruction\Relation;
 
-use Exception;
 use Stratadox\Collection\Alterable;
 use Stratadox\Hydration\Hydrates;
 use Stratadox\Hydration\Hydrator\SimpleHydrator;
 use Stratadox\Hydration\Hydrator\VariadicConstructor;
 use Stratadox\Hydration\Mapping\Property\Relationship\HasManyNested;
 use Stratadox\Hydration\Mapping\Property\Relationship\HasManyProxies;
+use Stratadox\Hydration\Mapping\Property\Relationship\HasOneProxy;
 use Stratadox\Hydration\MapsProperty;
 use Stratadox\Hydration\Proxy;
 use Stratadox\Hydration\Proxying\AlterableCollectionEntryUpdaterFactory;
 use Stratadox\Hydration\Proxying\ArrayEntryUpdaterFactory;
+use Stratadox\Hydration\Proxying\PropertyUpdaterFactory;
 use Stratadox\Hydration\Proxying\ProxyFactory;
 
 final class HasMany extends Relationship
@@ -41,7 +42,13 @@ final class HasMany extends Relationship
                 )
             );
         }
-        // @todo HasOneProxy
+        return HasOneProxy::inProperty($property,
+            ProxyFactory::fromThis(
+                SimpleHydrator::forThe($this->container),
+                $this->loader,
+                new PropertyUpdaterFactory
+            )
+        );
     }
 
     private function container() : Hydrates
