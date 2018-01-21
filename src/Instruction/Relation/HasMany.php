@@ -68,8 +68,8 @@ final class HasMany extends Relationship
 
     private function oneProxyInThe(string $property) : MapsProperty
     {
-        $this->needsAContainer();
         $this->needsALoader();
+        $this->needsAContainer();
         return HasOneProxy::inProperty($property,
             ProxyFactory::fromThis(
                 SimpleHydrator::forThe($this->container),
