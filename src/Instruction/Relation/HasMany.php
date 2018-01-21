@@ -24,6 +24,12 @@ use Stratadox\Hydration\Proxying\ArrayEntryUpdaterFactory;
 use Stratadox\Hydration\Proxying\PropertyUpdaterFactory;
 use Stratadox\Hydration\Proxying\ProxyFactory;
 
+/**
+ * Indicates a polygamic relationship in the property.
+ *
+ * @package Stratadox\Hydrate
+ * @author Stratadox
+ */
 final class HasMany extends Relationship
 {
     public function followFor(string $property) : MapsProperty

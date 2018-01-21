@@ -9,6 +9,12 @@ use Stratadox\Hydration\Mapper\InstructsHowToMap;
 use Stratadox\Hydration\Mapping\Property\Scalar\StringValue;
 use Stratadox\Hydration\MapsProperty;
 
+/**
+ * Indicates a change in data key.
+ *
+ * @package Stratadox\Hydrate
+ * @author Stratadox
+ */
 final class In implements FindsKeys, InstructsHowToMap
 {
     private $key;

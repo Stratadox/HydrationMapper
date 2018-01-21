@@ -9,6 +9,12 @@ use Stratadox\Hydration\Mapper\FindsKeys;
 use Stratadox\Hydration\Mapper\Instruction\Relation\HasMany;
 use Stratadox\Hydration\Mapper\Instruction\Relation\HasOne;
 
+/**
+ * Accessor for HasOne and HasMany objects, essentially syntax sugar.
+ *
+ * @package Stratadox\Hydrate
+ * @author Stratadox
+ */
 final class Has
 {
     private function __construct() {}

@@ -12,6 +12,10 @@ use Stratadox\Hydration\Mapper\InstructsHowToMap;
 use Stratadox\Hydration\Mapper\Mapper;
 use Stratadox\Hydration\ProducesProxyLoaders;
 
+/**
+ * @package Stratadox\Hydrate
+ * @author Stratadox
+ */
 abstract class Relationship implements DefinesRelationships
 {
     protected $class;

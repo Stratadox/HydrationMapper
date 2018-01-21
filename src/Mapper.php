@@ -8,6 +8,12 @@ use Stratadox\Hydration\Mapping\Mapping;
 use Stratadox\Hydration\Mapping\Property\Scalar\StringValue;
 use Stratadox\Hydration\MapsObject;
 
+/**
+ * Produces a mapping object.
+ *
+ * @package Stratadox\Hydrate
+ * @author Stratadox
+ */
 final class Mapper implements MakesMap
 {
     private $name;

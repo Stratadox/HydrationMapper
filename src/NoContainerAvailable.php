@@ -6,6 +6,12 @@ namespace Stratadox\Hydration\Mapper;
 
 use BadMethodCallException;
 
+/**
+ * Indicates that a container was necessary but not available.
+ *
+ * @package Stratadox\Hydrate
+ * @author Stratadox
+ */
 final class NoContainerAvailable
     extends BadMethodCallException
     implements InvalidMapperConfiguration

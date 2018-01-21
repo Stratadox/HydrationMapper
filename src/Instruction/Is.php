@@ -13,6 +13,12 @@ use Stratadox\Hydration\Mapping\Property\Scalar\IntegerValue;
 use Stratadox\Hydration\Mapping\Property\Scalar\StringValue;
 use Stratadox\Hydration\MapsProperty;
 
+/**
+ * Indicates the type of a property, optionally changing the data key.
+ *
+ * @package Stratadox\Hydrate
+ * @author Stratadox
+ */
 final class Is implements InstructsHowToMap
 {
     private const SAME_KEY = 'inProperty';
