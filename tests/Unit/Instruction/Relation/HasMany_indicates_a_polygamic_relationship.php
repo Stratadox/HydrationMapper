@@ -6,6 +6,7 @@ namespace Stratadox\Hydration\Mapper\Test\Unit\Instruction\Relation;
 
 use ArrayObject;
 use PHPUnit\Framework\TestCase;
+use Stratadox\Hydration\Hydrator\ArrayHydrator;
 use Stratadox\Hydration\Hydrator\MappedHydrator;
 use Stratadox\Hydration\Hydrator\SimpleHydrator;
 use Stratadox\Hydration\Hydrator\VariadicConstructor;
@@ -120,6 +121,24 @@ class HasMany_indicates_a_polygamic_relationship extends TestCase
             ),
             HasMany::ofThe(ChapterProxy::class, In::key('data'))
                 ->containedInA(ArrayObject::class)
+                ->loadedBy(new ChapterLoaderFactory)
+                ->followFor('chapter')
+        );
+    }
+
+    /** @scenario */
+    function producing_an_array_hydrator_when_no_container_was_defined()
+    {
+        self::assertEquals(
+            HasManyProxies::inProperty('chapter',
+                ArrayHydrator::create(),
+                ProxyFactory::fromThis(
+                    SimpleHydrator::forThe(ChapterProxy::class),
+                    new ChapterLoaderFactory,
+                    new ArrayEntryUpdaterFactory
+                )
+            ),
+            HasMany::ofThe(ChapterProxy::class)
                 ->loadedBy(new ChapterLoaderFactory)
                 ->followFor('chapter')
         );
