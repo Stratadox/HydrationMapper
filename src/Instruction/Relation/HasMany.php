@@ -29,29 +29,44 @@ final class HasMany extends Relationship
     public function followFor(string $property) : MapsProperty
     {
         if ($this->shouldNest) {
-            return HasManyNested::inPropertyWithDifferentKey($property,
-                $this->keyOr($property),
-                $this->container(),
-                $this->hydrator()
-            );
+            return $this->manyNestedInThe($property);
         }
         if (!isset($this->loader)) {
             throw NoLoaderAvailable::for($this->class);
         }
         if ($this->implements(Proxy::class, $this->class)) {
-            return HasManyProxies::inPropertyWithDifferentKey($property,
-                $this->keyOr($property),
-                $this->container(),
-                ProxyFactory::fromThis(
-                    SimpleHydrator::forThe($this->class),
-                    $this->loader,
-                    $this->updaterFactory()
-                )
-            );
+            return $this->manyProxiesInThe($property);
         }
         if (!isset($this->container)) {
             throw NoContainerAvailable::for($this->class);
         }
+        return $this->oneProxyInThe($property);
+    }
+
+    private function manyNestedInThe(string $property) : MapsProperty
+    {
+        return HasManyNested::inPropertyWithDifferentKey($property,
+            $this->keyOr($property),
+            $this->container(),
+            $this->hydrator()
+        );
+    }
+
+    private function manyProxiesInThe(string $property) : MapsProperty
+    {
+        return HasManyProxies::inPropertyWithDifferentKey($property,
+            $this->keyOr($property),
+            $this->container(),
+            ProxyFactory::fromThis(
+                SimpleHydrator::forThe($this->class),
+                $this->loader,
+                $this->updaterFactory()
+            )
+        );
+    }
+
+    private function oneProxyInThe(string $property) : MapsProperty
+    {
         return HasOneProxy::inProperty($property,
             ProxyFactory::fromThis(
                 SimpleHydrator::forThe($this->container),
