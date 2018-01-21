@@ -15,13 +15,21 @@ use Stratadox\Hydration\MapsProperty;
 
 final class Is implements InstructsHowToMap
 {
+    private const SAME_KEY = 'inProperty';
+    private const USE_KEY = 'inPropertyWithDifferentKey';
+
     private $className;
     private $constructionMethod;
+    private $key;
 
-    public function __construct($className, $constructionMethod)
-    {
+    public function __construct(
+        string $className,
+        string $constructionMethod,
+        ?string $key
+    ) {
         $this->className = $className;
         $this->constructionMethod = $constructionMethod;
+        $this->key = $key;
     }
 
     public static function bool() : InstructsHowToMap
@@ -44,19 +52,40 @@ final class Is implements InstructsHowToMap
         return Is::type(StringValue::class);
     }
 
+    public static function boolInKey(string $key) : InstructsHowToMap
+    {
+        return Is::type(BooleanValue::class, self::USE_KEY, $key);
+    }
+
+    public static function floatInKey(string $key) : InstructsHowToMap
+    {
+        return Is::type(FloatValue::class, self::USE_KEY, $key);
+    }
+
+    public static function intInKey(string $key) : InstructsHowToMap
+    {
+        return Is::type(IntegerValue::class, self::USE_KEY, $key);
+    }
+
+    public static function stringInKey(string $key) : InstructsHowToMap
+    {
+        return Is::type(StringValue::class, self::USE_KEY, $key);
+    }
+
     private static function type(
         string $className,
-        string $constructor = 'inProperty'
+        string $constructor = self::SAME_KEY,
+        string $key = null
     ) : InstructsHowToMap
     {
-        return new Is($className, $constructor);
+        return new Is($className, $constructor, $key);
     }
 
     public function followFor(string $property) : MapsProperty
     {
         return call_user_func(
             sprintf('%s::%s', $this->className, $this->constructionMethod),
-            $property
+            $property, $this->key
         );
     }
 }
