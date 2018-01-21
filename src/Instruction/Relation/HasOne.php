@@ -13,7 +13,10 @@ final class HasOne extends Relationship
     public function followFor(string $property) : MapsProperty
     {
         if ($this->shouldNest) {
-            return HasOneNested::inProperty($property, $this->hydrator());
+            return HasOneNested::inPropertyWithDifferentKey($property,
+                $this->keyOr($property),
+                $this->hydrator()
+            );
         }
         return HasOneEmbedded::inProperty($property, $this->hydrator());
     }

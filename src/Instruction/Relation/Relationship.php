@@ -7,6 +7,7 @@ namespace Stratadox\Hydration\Mapper\Instruction\Relation;
 use Stratadox\Hydration\Hydrates;
 use Stratadox\Hydration\Hydrator\MappedHydrator;
 use Stratadox\Hydration\Mapper\DefinesRelationships;
+use Stratadox\Hydration\Mapper\FindsKeys;
 use Stratadox\Hydration\Mapper\InstructsHowToMap;
 use Stratadox\Hydration\Mapper\Mapper;
 use Stratadox\Hydration\ProducesProxyLoaders;
@@ -14,6 +15,7 @@ use Stratadox\Hydration\ProducesProxyLoaders;
 abstract class Relationship implements DefinesRelationships
 {
     protected $class;
+    protected $key;
     protected $container;
     protected $loader;
     protected $shouldNest;
@@ -21,21 +23,26 @@ abstract class Relationship implements DefinesRelationships
 
     final protected function __construct(
         string $class,
+        FindsKeys $key = null,
         string $container = null,
         ProducesProxyLoaders $loader = null,
         bool $nested = false,
         array $properties = []
     ) {
         $this->class = $class;
+        $this->key = $key;
         $this->container = $container;
         $this->loader = $loader;
         $this->shouldNest = $nested;
         $this->properties = $properties;
     }
 
-    public static function ofThe(string $class) : DefinesRelationships
+    public static function ofThe(
+        string $class,
+        FindsKeys $key = null
+    ) : DefinesRelationships
     {
-        return new static($class);
+        return new static($class, $key);
     }
 
     public function containedInA(
@@ -44,6 +51,7 @@ abstract class Relationship implements DefinesRelationships
     {
         return new static(
             $this->class,
+            $this->key,
             $container,
             $this->loader,
             $this->shouldNest,
@@ -57,6 +65,7 @@ abstract class Relationship implements DefinesRelationships
     {
         return new static(
             $this->class,
+            $this->key,
             $this->container,
             $loader,
             $this->shouldNest,
@@ -68,6 +77,7 @@ abstract class Relationship implements DefinesRelationships
     {
         return new static(
             $this->class,
+            $this->key,
             $this->container,
             $this->loader,
             true,
@@ -82,6 +92,7 @@ abstract class Relationship implements DefinesRelationships
     {
         return new static(
             $this->class,
+            $this->key,
             $this->container,
             $this->loader,
             $this->shouldNest,
@@ -96,5 +107,10 @@ abstract class Relationship implements DefinesRelationships
             $mapped = $mapped->property($property, $instruction);
         }
         return MappedHydrator::fromThis($mapped->map());
+    }
+
+    protected function keyOr(string $property) : string
+    {
+        return $this->key ? $this->key->find() : $property;
     }
 }

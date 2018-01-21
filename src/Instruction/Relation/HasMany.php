@@ -21,13 +21,15 @@ final class HasMany extends Relationship
     public function followFor(string $property) : MapsProperty
     {
         if ($this->shouldNest) {
-            return HasManyNested::inProperty($property,
+            return HasManyNested::inPropertyWithDifferentKey($property,
+                $this->keyOr($property),
                 VariadicConstructor::forThe($this->container),
                 $this->hydrator()
             );
         }
         if ($this->implements(Proxy::class, $this->class)) {
-            return HasManyProxies::inProperty($property,
+            return HasManyProxies::inPropertyWithDifferentKey($property,
+                $this->keyOr($property),
                 VariadicConstructor::forThe($this->container),
                 ProxyFactory::fromThis(
                     SimpleHydrator::forThe($this->class),
