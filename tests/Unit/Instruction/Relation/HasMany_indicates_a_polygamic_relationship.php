@@ -33,6 +33,7 @@ use Stratadox\Hydration\Proxying\ProxyFactory;
  * @covers \Stratadox\Hydration\Mapper\Instruction\Relation\HasMany
  * @covers \Stratadox\Hydration\Mapper\Instruction\Relation\Relationship
  * @covers \Stratadox\Hydration\Mapper\NoLoaderAvailable
+ * @covers \Stratadox\Hydration\Mapper\NoContainerAvailable
  */
 class HasMany_indicates_a_polygamic_relationship extends TestCase
 {
@@ -152,8 +153,32 @@ class HasMany_indicates_a_polygamic_relationship extends TestCase
         $this->expectException(InvalidMapperConfiguration::class);
         $this->expectExceptionMessage(sprintf(
             'Could not produce mapping due to a missing loader for class `%s`',
+            Chapter::class
+        ));
+        HasMany::ofThe(Chapter::class)->followFor('chapter');
+    }
+
+    /** @scenario */
+    function extra_lazy_collections_need_to_get_a_loader()
+    {
+        $this->expectException(InvalidMapperConfiguration::class);
+        $this->expectExceptionMessage(sprintf(
+            'Could not produce mapping due to a missing loader for class `%s`',
             ChapterProxy::class
         ));
         HasMany::ofThe(ChapterProxy::class)->followFor('chapter');
+    }
+
+    /** @scenario */
+    function lazy_collections_need_to_get_a_container()
+    {
+        $this->expectException(InvalidMapperConfiguration::class);
+        $this->expectExceptionMessage(sprintf(
+            'Could not produce mapping due to a missing container for class `%s`',
+            Chapter::class
+        ));
+        HasMany::ofThe(Chapter::class)
+            ->loadedBy(new ChapterLoaderFactory)
+            ->followFor('chapter');
     }
 }
