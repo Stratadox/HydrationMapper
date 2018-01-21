@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Stratadox\Hydration\Mapper\Instruction\Relation;
 
+use function class_implements;
+use function in_array;
 use Stratadox\Collection\Alterable;
 use Stratadox\Hydration\Hydrates;
 use Stratadox\Hydration\Hydrator\ArrayHydrator;
@@ -63,16 +65,16 @@ final class HasMany extends Relationship
         return ArrayHydrator::create();
     }
 
-    private function implements(string $interface, $class)
-    {
-        return isset($class) && in_array($interface, class_implements($class));
-    }
-
     private function updaterFactory() : ProducesOwnerUpdaters
     {
         if ($this->implements(Alterable::class, $this->container)) {
             return new AlterableCollectionEntryUpdaterFactory;
         }
         return new ArrayEntryUpdaterFactory;
+    }
+
+    private function implements(string $interface, $class)
+    {
+        return isset($class) && in_array($interface, class_implements($class));
     }
 }
