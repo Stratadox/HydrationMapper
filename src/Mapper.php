@@ -8,7 +8,7 @@ use Stratadox\Hydration\Mapping\Mapping;
 use Stratadox\Hydration\Mapping\Property\Scalar\StringValue;
 use Stratadox\Hydration\MapsObject;
 
-final class Mapper
+final class Mapper implements MakesMap
 {
     private $name;
     private $properties;
@@ -27,7 +27,7 @@ final class Mapper
     public function property(
         string $property,
         InstructsHowToMap $instruction = null
-    ) : self
+    ) : MakesMap
     {
         return new self($this->name, $this->add($property, $instruction));
     }
