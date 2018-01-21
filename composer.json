@@ -9,7 +9,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Stratadox\\Hydration\\Mapper\\": "tests"
+            "Stratadox\\Hydration\\Mapper\\": "src"
         }
     },
     "autoload-dev": {
