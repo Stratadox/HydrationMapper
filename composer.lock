@@ -45,16 +45,16 @@
         },
         {
             "name": "stratadox/hydration",
-            "version": "v1.5",
+            "version": "v1.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Stratadox/Hydration.git",
-                "reference": "a19b13e3493224bf587a5895f1988dc26ede8b5b"
+                "reference": "32534656962a9d6a0bbf21c5e972cc200a55ee43"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Stratadox/Hydration/zipball/a19b13e3493224bf587a5895f1988dc26ede8b5b",
-                "reference": "a19b13e3493224bf587a5895f1988dc26ede8b5b",
+                "url": "https://api.github.com/repos/Stratadox/Hydration/zipball/32534656962a9d6a0bbf21c5e972cc200a55ee43",
+                "reference": "32534656962a9d6a0bbf21c5e972cc200a55ee43",
                 "shasum": ""
             },
             "require": {
@@ -76,7 +76,7 @@
                     "homepage": "http://www.stratadox.com/"
                 }
             ],
-            "time": "2018-01-21T13:38:30+00:00"
+            "time": "2018-01-21T14:46:11+00:00"
         },
         {
             "name": "stratadox/hydration-mapping",

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Stratadox\Hydration\Mapper;
 
+use Stratadox\Hydration\Hydrates;
+use Stratadox\Hydration\Hydrator\MappedHydrator;
 use Stratadox\Hydration\Mapper\Instruction\Is;
 use Stratadox\Hydration\Mapping\Mapping;
 use Stratadox\Hydration\MapsObject;
@@ -36,6 +38,11 @@ final class Mapper implements MakesMap
     ) : MakesMap
     {
         return new self($this->name, $this->add($property, $instruction));
+    }
+
+    public function hydrator() : Hydrates
+    {
+        return MappedHydrator::fromThis($this->map());
     }
 
     public function map() : MapsObject
