@@ -9,7 +9,7 @@ use Stratadox\Hydration\Hydrator\MappedHydrator;
 use Stratadox\Hydration\Mapper\Instruction\Relation\Choose;
 use Stratadox\Hydration\Mapper\Test\Stub\Book\Text;
 use Stratadox\Hydration\Mapper\Test\Stub\Instruction\ItsANumber;
-use Stratadox\Hydration\Mapping\Mapping;
+use Stratadox\Hydration\Mapping\Properties;
 use Stratadox\Hydration\Mapping\Property\Scalar\IntegerValue;
 use Stratadox\Hydration\Mapping\Property\Scalar\StringValue;
 
@@ -22,14 +22,14 @@ class Choose_indicates_an_implementation_decision extends TestCase
     function building_a_hydrator()
     {
         self::assertEquals(
-            MappedHydrator::fromThis(Mapping::ofThe(Text::class,
+            MappedHydrator::forThe(Text::class, Properties::map(
                 IntegerValue::inProperty('id'),
                 StringValue::inProperty('text')
             )),
             Choose::the(Text::class)
                 ->with('id', ItsANumber::allRight())
                 ->with('text')
-                ->hydrator()
+                ->finish()
         );
     }
 }

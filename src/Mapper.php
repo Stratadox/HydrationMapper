@@ -7,8 +7,8 @@ namespace Stratadox\Hydration\Mapper;
 use Stratadox\Hydration\Hydrates;
 use Stratadox\Hydration\Hydrator\MappedHydrator;
 use Stratadox\Hydration\Mapper\Instruction\Is;
-use Stratadox\Hydration\Mapping\Mapping;
-use Stratadox\Hydration\MapsObject;
+use Stratadox\Hydration\Mapping\Properties;
+use Stratadox\Hydration\MapsProperties;
 
 /**
  * Produces a mapping object.
@@ -40,19 +40,14 @@ final class Mapper implements MakesMap
         return new self($this->name, $this->add($property, $instruction));
     }
 
-    public function hydrator() : Hydrates
-    {
-        return MappedHydrator::fromThis($this->map());
-    }
-
-    public function map() : MapsObject
+    public function finish() : Hydrates
     {
         $class = $this->name;
         $properties = [];
         foreach ($this->properties as $name => $instruction) {
             $properties[] = $instruction->followFor($name);
         }
-        return Mapping::ofThe($class, ...$properties);
+        return MappedHydrator::forThe($class, Properties::map(...$properties));
     }
 
     private function add(

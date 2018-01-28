@@ -24,7 +24,7 @@ use Stratadox\Hydration\Mapper\Test\Stub\Book\Element;
 use Stratadox\Hydration\Mapper\Test\Stub\Book\Elements;
 use Stratadox\Hydration\Mapper\Test\Stub\Book\Image;
 use Stratadox\Hydration\Mapper\Test\Stub\Book\Text;
-use Stratadox\Hydration\Mapping\Mapping;
+use Stratadox\Hydration\Mapping\Properties;
 use Stratadox\Hydration\Mapping\Property\Relationship\HasManyNested;
 use Stratadox\Hydration\Mapping\Property\Relationship\HasManyProxies;
 use Stratadox\Hydration\Mapping\Property\Relationship\HasOneProxy;
@@ -48,7 +48,7 @@ class HasMany_indicates_a_polygamic_relationship extends TestCase
         self::assertEquals(
             HasManyNested::inProperty('contents',
                 VariadicConstructor::forThe(Chapters::class),
-                MappedHydrator::fromThis(Mapping::ofThe(Chapter::class,
+                MappedHydrator::forThe(Chapter::class, Properties::map(
                     StringValue::inProperty('title')
                 ))
             ),
@@ -66,7 +66,7 @@ class HasMany_indicates_a_polygamic_relationship extends TestCase
         self::assertEquals(
             HasManyNested::inPropertyWithDifferentKey('chapter', 'data',
                 VariadicConstructor::forThe(Chapter::class),
-                MappedHydrator::fromThis(Mapping::ofThe(Text::class,
+                MappedHydrator::forThe(Text::class, Properties::map(
                     StringValue::inProperty('text')
                 ))
             ),
@@ -85,10 +85,10 @@ class HasMany_indicates_a_polygamic_relationship extends TestCase
             HasManyNested::inProperty('elements',
                 VariadicConstructor::forThe(Elements::class),
                 OneOfTheseHydrators::decideBasedOnThe('type', [
-                    'text' => MappedHydrator::fromThis(Mapping::ofThe(Text::class,
+                    'text' => MappedHydrator::forThe(Text::class, Properties::map(
                         StringValue::inProperty('text')
                     )),
-                    'image' => MappedHydrator::fromThis(Mapping::ofThe(Image::class,
+                    'image' => MappedHydrator::forThe(Image::class, Properties::map(
                         StringValue::inProperty('src'),
                         StringValue::inProperty('alt')
                     )),

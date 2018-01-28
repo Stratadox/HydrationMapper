@@ -36,8 +36,8 @@ final class Choose implements RepresentsChoice
         return $this;
     }
 
-    public function hydrator() : Hydrates
+    public function finish() : Hydrates
     {
-        return $this->class->hydrator();
+        return $this->class->finish();
     }
 }

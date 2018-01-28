@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "1c0eef86770e12f8e0ec0261bde4d816",
+    "content-hash": "3f9e4031ae98b034bee268046b5f5c7c",
     "packages": [
         {
             "name": "stratadox/collection-contracts",
@@ -45,16 +45,16 @@
         },
         {
             "name": "stratadox/hydration",
-            "version": "v1.8",
+            "version": "v2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Stratadox/Hydration.git",
-                "reference": "76df375405f7b2c661ee19c5ad8418c55942a9a6"
+                "reference": "2fbad82fcf1efaed62fe62b032464057df2da359"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Stratadox/Hydration/zipball/76df375405f7b2c661ee19c5ad8418c55942a9a6",
-                "reference": "76df375405f7b2c661ee19c5ad8418c55942a9a6",
+                "url": "https://api.github.com/repos/Stratadox/Hydration/zipball/2fbad82fcf1efaed62fe62b032464057df2da359",
+                "reference": "2fbad82fcf1efaed62fe62b032464057df2da359",
                 "shasum": ""
             },
             "require": {
@@ -76,31 +76,32 @@
                     "homepage": "http://www.stratadox.com/"
                 }
             ],
-            "time": "2018-01-21T20:21:43+00:00"
+            "time": "2018-01-28T17:49:27+00:00"
         },
         {
             "name": "stratadox/hydration-mapping",
-            "version": "v1.4.2",
+            "version": "v2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Stratadox/HydrationMapping.git",
-                "reference": "cd03ce6fc66ee329218a43f707f36a7742ba5783"
+                "reference": "a0b884a5e9e64a1516bbe8ebc8f519e8a3dbfe3d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Stratadox/HydrationMapping/zipball/cd03ce6fc66ee329218a43f707f36a7742ba5783",
-                "reference": "cd03ce6fc66ee329218a43f707f36a7742ba5783",
+                "url": "https://api.github.com/repos/Stratadox/HydrationMapping/zipball/a0b884a5e9e64a1516bbe8ebc8f519e8a3dbfe3d",
+                "reference": "a0b884a5e9e64a1516bbe8ebc8f519e8a3dbfe3d",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.1",
-                "stratadox/hydration": "^1.6",
+                "stratadox/hydration": "^v2.0",
                 "stratadox/immutable-collection": "^1.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^6.5",
                 "rpkamp/fancy-testdox-printer": "^0.2.5",
-                "satooshi/php-coveralls": "^2.0"
+                "satooshi/php-coveralls": "^2.0",
+                "stratadox/hydrator": "^v2.0"
             },
             "type": "library",
             "autoload": {
@@ -118,32 +119,32 @@
                     "homepage": "http://www.stratadox.com/"
                 }
             ],
-            "time": "2018-01-24T01:15:37+00:00"
+            "time": "2018-01-28T18:37:31+00:00"
         },
         {
             "name": "stratadox/hydration-proxies",
-            "version": "v1.3.1",
+            "version": "v1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Stratadox/HydrationProxies.git",
-                "reference": "c4e34040521a05f557d2917952d33b2ff4805e61"
+                "reference": "c670dcf0db39119405b8e54ea6722b37b7d384b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Stratadox/HydrationProxies/zipball/c4e34040521a05f557d2917952d33b2ff4805e61",
-                "reference": "c4e34040521a05f557d2917952d33b2ff4805e61",
+                "url": "https://api.github.com/repos/Stratadox/HydrationProxies/zipball/c670dcf0db39119405b8e54ea6722b37b7d384b3",
+                "reference": "c670dcf0db39119405b8e54ea6722b37b7d384b3",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.1",
-                "stratadox/collection-contracts": "^1.0",
-                "stratadox/hydration": "^1.6"
+                "stratadox/collection-contracts": ">=1.0",
+                "stratadox/hydration": ">=1.3"
             },
             "require-dev": {
-                "phpunit/phpunit": "^6.5",
-                "rpkamp/fancy-testdox-printer": "^0.2.5",
-                "satooshi/php-coveralls": "^2.0",
-                "stratadox/hydrator": "^1.2",
+                "phpunit/phpunit": ">=6.3",
+                "rpkamp/fancy-testdox-printer": "^0.1.1",
+                "satooshi/php-coveralls": "^1.0",
+                "stratadox/hydrator": "^1.0",
                 "stratadox/immutable-collection": "^1.0"
             },
             "type": "library",
@@ -162,29 +163,29 @@
                     "homepage": "http://www.stratadox.com/"
                 }
             ],
-            "time": "2018-01-21T16:22:12+00:00"
+            "time": "2017-11-26T14:19:43+00:00"
         },
         {
             "name": "stratadox/hydrator",
-            "version": "v1.2",
+            "version": "v2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Stratadox/Hydrator.git",
-                "reference": "1c0d73c0aecdcd7be3561dd8149d37aebdff010d"
+                "reference": "9d457f0eac06f3ba74f1acdbb8c4ac726a3d8a91"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Stratadox/Hydrator/zipball/1c0d73c0aecdcd7be3561dd8149d37aebdff010d",
-                "reference": "1c0d73c0aecdcd7be3561dd8149d37aebdff010d",
+                "url": "https://api.github.com/repos/Stratadox/Hydrator/zipball/9d457f0eac06f3ba74f1acdbb8c4ac726a3d8a91",
+                "reference": "9d457f0eac06f3ba74f1acdbb8c4ac726a3d8a91",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.1",
-                "stratadox/hydration": "^1.4"
+                "stratadox/hydration": "^v2.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^6.5",
-                "rpkamp/fancy-testdox-printer": "^0.1.1",
+                "rpkamp/fancy-testdox-printer": "^0.2.5",
                 "satooshi/php-coveralls": "^2.0",
                 "stratadox/immutable-collection": "^1.0"
             },
@@ -204,7 +205,7 @@
                     "homepage": "http://www.stratadox.com/"
                 }
             ],
-            "time": "2018-01-21T11:02:06+00:00"
+            "time": "2018-01-28T18:14:32+00:00"
         },
         {
             "name": "stratadox/immutable-collection",
@@ -747,16 +748,16 @@
         },
         {
             "name": "phpdocumentor/reflection-docblock",
-            "version": "4.2.0",
+            "version": "4.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
-                "reference": "66465776cfc249844bde6d117abff1d22e06c2da"
+                "reference": "94fd0001232e47129dd3504189fa1c7225010d08"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/66465776cfc249844bde6d117abff1d22e06c2da",
-                "reference": "66465776cfc249844bde6d117abff1d22e06c2da",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/94fd0001232e47129dd3504189fa1c7225010d08",
+                "reference": "94fd0001232e47129dd3504189fa1c7225010d08",
                 "shasum": ""
             },
             "require": {
@@ -794,7 +795,7 @@
                 }
             ],
             "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
-            "time": "2017-11-27T17:38:31+00:00"
+            "time": "2017-11-30T07:14:17+00:00"
         },
         {
             "name": "phpdocumentor/type-resolver",

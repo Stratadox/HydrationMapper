@@ -16,7 +16,7 @@ use Stratadox\Hydration\Mapper\Test\Stub\Book\Isbn;
 use Stratadox\Hydration\Mapper\Test\Stub\Book\Text;
 use Stratadox\Hydration\Mapper\Test\Stub\Book\Title;
 use Stratadox\Hydration\Mapper\Test\Stub\Instruction\ItsANumber;
-use Stratadox\Hydration\Mapping\Mapping;
+use Stratadox\Hydration\Mapping\Properties;
 use Stratadox\Hydration\Mapping\Property\Relationship\HasOneEmbedded;
 use Stratadox\Hydration\Mapping\Property\Relationship\HasOneNested;
 use Stratadox\Hydration\Mapping\Property\Scalar\IntegerValue;
@@ -33,7 +33,7 @@ class HasOne_indicates_a_monogamous_relationship extends TestCase
     {
         self::assertEquals(
             HasOneEmbedded::inProperty('title',
-                MappedHydrator::fromThis(Mapping::ofThe(Title::class,
+                MappedHydrator::forThe(Title::class, Properties::map(
                     StringValue::inProperty('title')
                 ))
             ),
@@ -46,7 +46,7 @@ class HasOne_indicates_a_monogamous_relationship extends TestCase
     {
         self::assertEquals(
             HasOneNested::inProperty('isbn',
-                MappedHydrator::fromThis(Mapping::ofThe(Isbn::class,
+                MappedHydrator::forThe(Isbn::class, Properties::map(
                     StringValue::inProperty('code'),
                     IntegerValue::inProperty('version')
                 ))
@@ -64,7 +64,7 @@ class HasOne_indicates_a_monogamous_relationship extends TestCase
     {
         self::assertEquals(
             HasOneNested::inPropertyWithDifferentKey('isbn', 'id',
-                MappedHydrator::fromThis(Mapping::ofThe(Isbn::class,
+                MappedHydrator::forThe(Isbn::class, Properties::map(
                     StringValue::inProperty('code'),
                     IntegerValue::inProperty('version')
                 ))
@@ -83,10 +83,10 @@ class HasOne_indicates_a_monogamous_relationship extends TestCase
         self::assertEquals(
             HasOneEmbedded::inProperty('element',
                 OneOfTheseHydrators::decideBasedOnThe('type', [
-                    'text' => MappedHydrator::fromThis(Mapping::ofThe(Text::class,
+                    'text' => MappedHydrator::forThe(Text::class, Properties::map(
                         StringValue::inProperty('text')
                     )),
-                    'image' => MappedHydrator::fromThis(Mapping::ofThe(Image::class,
+                    'image' => MappedHydrator::forThe(Image::class, Properties::map(
                         StringValue::inProperty('src'),
                         StringValue::inProperty('alt')
                     )),
@@ -107,10 +107,10 @@ class HasOne_indicates_a_monogamous_relationship extends TestCase
         self::assertEquals(
             HasOneNested::inProperty('element',
                 OneOfTheseHydrators::decideBasedOnThe('type', [
-                    'text' => MappedHydrator::fromThis(Mapping::ofThe(Text::class,
+                    'text' => MappedHydrator::forThe(Text::class, Properties::map(
                         StringValue::inProperty('text')
                     )),
-                    'image' => MappedHydrator::fromThis(Mapping::ofThe(Image::class,
+                    'image' => MappedHydrator::forThe(Image::class, Properties::map(
                         StringValue::inProperty('src'),
                         StringValue::inProperty('alt')
                     )),

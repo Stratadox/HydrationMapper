@@ -19,7 +19,7 @@ use Stratadox\Hydration\Mapper\Test\Stub\Book\ChapterProxy;
 use Stratadox\Hydration\Mapper\Test\Stub\Book\Chapters;
 use Stratadox\Hydration\Mapper\Test\Stub\Book\Isbn;
 use Stratadox\Hydration\Mapper\Test\Stub\Book\Title;
-use Stratadox\Hydration\Mapping\Mapping;
+use Stratadox\Hydration\Mapping\Properties;
 use Stratadox\Hydration\Mapping\Property\Dynamic\ClosureResult;
 use Stratadox\Hydration\Mapping\Property\Relationship\HasManyProxies;
 use Stratadox\Hydration\Mapping\Property\Relationship\HasOneEmbedded;
@@ -36,14 +36,14 @@ class HydrationMapper_produces_fully_mapped_hydrators extends TestCase
     /** @scenario */
     function building_a_mapped_hydrator_for_Books()
     {
-        $expected = MappedHydrator::fromThis(Mapping::ofThe(Book::class,
+        $expected = MappedHydrator::forThe(Book::class, Properties::map(
             HasOneEmbedded::inProperty('title',
-                MappedHydrator::fromThis(Mapping::ofThe(Title::class,
+                MappedHydrator::forThe(Title::class, Properties::map(
                     StringValue::inProperty('title')
                 ))
             ),
             HasOneEmbedded::inProperty('isbn',
-                MappedHydrator::fromThis(Mapping::ofThe(Isbn::class,
+                MappedHydrator::forThe(Isbn::class, Properties::map(
                     StringValue::inPropertyWithDifferentKey('code', 'id'),
                     ClosureResult::inProperty('version', function ($data) {
                         return strlen($data['id']);
@@ -51,7 +51,7 @@ class HydrationMapper_produces_fully_mapped_hydrators extends TestCase
                 ))
             ),
             HasOneEmbedded::inProperty('author',
-                MappedHydrator::fromThis(Mapping::ofThe(Author::class,
+                MappedHydrator::forThe(Author::class, Properties::map(
                     StringValue::inPropertyWithDifferentKey('firstName', 'author_first_name'),
                     StringValue::inPropertyWithDifferentKey('lastName', 'author_last_name')
                 ))
@@ -84,7 +84,7 @@ class HydrationMapper_produces_fully_mapped_hydrators extends TestCase
                 ->loadedBy(new ChapterLoaderFactory)
             )
             ->property('format')
-            ->hydrator();
+            ->finish();
 
         self::assertEquals($expected, $actual);
     }

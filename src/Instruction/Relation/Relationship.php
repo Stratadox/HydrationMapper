@@ -151,7 +151,7 @@ abstract class Relationship implements DefinesRelationships
         foreach ($this->properties as $property => $instruction) {
             $mapped = $mapped->property($property, $instruction);
         }
-        return MappedHydrator::fromThis($mapped->map());
+        return $mapped->finish();
     }
 
     private function choiceHydrator() : Hydrates
@@ -159,7 +159,7 @@ abstract class Relationship implements DefinesRelationships
         return OneOfTheseHydrators::decideBasedOnThe(
             $this->decisionKey,
             array_map(function (RepresentsChoice $choice) {
-                return $choice->hydrator();
+                return $choice->finish();
             }, $this->choices)
         );
     }
