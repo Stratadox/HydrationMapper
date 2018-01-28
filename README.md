@@ -3,6 +3,8 @@
 [![Build Status](https://travis-ci.org/Stratadox/HydrationMapper.svg?branch=master)](https://travis-ci.org/Stratadox/HydrationMapper)
 [![Coverage Status](https://coveralls.io/repos/github/Stratadox/HydrationMapper/badge.svg?branch=master)](https://coveralls.io/github/Stratadox/HydrationMapper?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Stratadox/HydrationMapper/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Stratadox/HydrationMapper/?branch=master)
+[![Latest Stable Version](https://poser.pugx.org/stratadox/hydration-mapper/v/stable)](https://packagist.org/packages/stratadox/hydration-mapper)
+[![License](https://poser.pugx.org/stratadox/hydration-mapper/license)](https://packagist.org/packages/stratadox/hydration-mapper)
 
 Mapping builder for hydration purposes; maps array or array-like data structures to 
 object properties, in order to assemble the objects that model a business domain.
@@ -40,3 +42,8 @@ $mapping = Mapper::forThe(Book::class)
 Install using composer:
 
 `composer require stratadox/hydration-mapper`
+
+
+# More details
+
+For more information, view the [Hydrate repository](https://github.com/Stratadox/Hydrate)
