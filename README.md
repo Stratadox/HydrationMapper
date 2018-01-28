@@ -14,7 +14,7 @@ object properties, in order to assemble the objects that model a business domain
 ```php
 <?php
 
-$mapping = Mapper::forThe(Book::class)
+$hydrator = Mapper::forThe(Book::class)
      ->property('title', Has::one(Title::class)
         ->with('title')
     )
@@ -33,7 +33,7 @@ $mapping = Mapper::forThe(Book::class)
          ->loadedBy(new ChapterLoaderFactory)
      )
      ->property('format')
-     ->map();
+     ->finish();
 
 ```
 
