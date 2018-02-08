@@ -17,7 +17,7 @@ object properties, in order to assemble the objects that model a business domain
 $hydrator = Mapper::forThe(Book::class)
      ->property('title', Has::one(Title::class)
         ->with('title')
-    )
+     )
      ->property('isbn', Has::one(Isbn::class)
          ->with('code', In::key('id'))
          ->with('version', Call::the(function ($data) {
