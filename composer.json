@@ -22,11 +22,10 @@
     "stratadox/hydrator": "^v3.0",
     "stratadox/hydration-mapping": "^v2.1",
     "stratadox/proxy": "^0.1",
-    "stratadox/hydration-mapper-contracts": "^0.1.0"
+    "stratadox/hydration-mapper-contracts": "^0.1.0",
+    "phpunit/phpunit": "^7.0"
   },
   "require-dev": {
-    "phpunit/phpunit": "^6.5",
-    "satooshi/php-coveralls": "^2.0",
-    "rpkamp/fancy-testdox-printer": "^0.2.5"
+    "satooshi/php-coveralls": "^2.0"
   }
 }
