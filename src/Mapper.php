@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace Stratadox\Hydration\Mapper;
 
-use Stratadox\Hydration\Hydrates;
-use Stratadox\Hydration\Hydrator\MappedHydrator;
 use Stratadox\Hydration\Mapper\Instruction\Is;
 use Stratadox\Hydration\Mapping\Properties;
-use Stratadox\Hydration\MapsProperties;
+use Stratadox\HydrationMapper\InstructsHowToMap;
+use Stratadox\HydrationMapper\MakesMap;
+use Stratadox\Hydrator\Hydrates;
+use Stratadox\Hydrator\MappedHydrator;
 
 /**
  * Produces a mapping object.

@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Stratadox\Hydration\Mapper\Instruction\Relation;
 
-use Stratadox\Hydration\Hydrates;
-use Stratadox\Hydration\Mapper\InstructsHowToMap;
-use Stratadox\Hydration\Mapper\MakesMap;
 use Stratadox\Hydration\Mapper\Mapper;
-use Stratadox\Hydration\Mapper\RepresentsChoice;
+use Stratadox\HydrationMapper\InstructsHowToMap;
+use Stratadox\HydrationMapper\MakesMap;
+use Stratadox\HydrationMapper\RepresentsChoice;
+use Stratadox\Hydrator\Hydrates;
 
 /**
  * Indicates a choice for one of several concrete types.

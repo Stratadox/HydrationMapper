@@ -5,15 +5,14 @@ declare(strict_types=1);
 namespace Stratadox\Hydration\Mapper\Test\Unit;
 
 use PHPUnit\Framework\TestCase;
-use Stratadox\Hydration\Hydrator\MappedHydrator;
 use Stratadox\Hydration\Mapper\Mapper;
 use Stratadox\Hydration\Mapper\Test\Stub\Book\Author;
 use Stratadox\Hydration\Mapper\Test\Stub\Foo\Foo;
 use Stratadox\Hydration\Mapper\Test\Stub\Instruction\ItsANumber;
-use Stratadox\Hydration\Mapping\Mapping;
 use Stratadox\Hydration\Mapping\Properties;
 use Stratadox\Hydration\Mapping\Property\Scalar\IntegerValue;
 use Stratadox\Hydration\Mapping\Property\Scalar\StringValue;
+use Stratadox\Hydrator\MappedHydrator;
 
 /**
  * @covers \Stratadox\Hydration\Mapper\Mapper

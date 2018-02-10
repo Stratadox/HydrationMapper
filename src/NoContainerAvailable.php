@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Stratadox\Hydration\Mapper;
 
-use BadMethodCallException;
+use BadMethodCallException as BadMethodCall;
+use Stratadox\HydrationMapper\InvalidMapperConfiguration;
 
 /**
  * Indicates that a container was necessary but not available.
@@ -12,13 +13,11 @@ use BadMethodCallException;
  * @package Stratadox\Hydrate
  * @author Stratadox
  */
-final class NoContainerAvailable
-    extends BadMethodCallException
-    implements InvalidMapperConfiguration
+final class NoContainerAvailable extends BadMethodCall implements InvalidMapperConfiguration
 {
-    public static function for(string $class) : InvalidMapperConfiguration
+    public static function for(string $class) : self
     {
-        return new NoContainerAvailable(sprintf(
+        return new self(sprintf(
             'Could not produce mapping due to a missing container for class `%s`',
             $class
         ));

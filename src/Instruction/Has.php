@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Stratadox\Hydration\Mapper\Instruction;
 
-use Stratadox\Hydration\Mapper\DefinesRelationships;
-use Stratadox\Hydration\Mapper\FindsKeys;
 use Stratadox\Hydration\Mapper\Instruction\Relation\HasMany;
 use Stratadox\Hydration\Mapper\Instruction\Relation\HasOne;
+use Stratadox\HydrationMapper\DefinesRelationships;
+use Stratadox\HydrationMapper\FindsKeys;
 
 /**
  * Accessor for HasOne and HasMany objects, essentially syntax sugar.

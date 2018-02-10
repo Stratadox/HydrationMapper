@@ -5,9 +5,6 @@ declare(strict_types=1);
 namespace Stratadox\Hydration\Mapper\Test\Integration;
 
 use PHPUnit\Framework\TestCase;
-use Stratadox\Hydration\Hydrator\MappedHydrator;
-use Stratadox\Hydration\Hydrator\SimpleHydrator;
-use Stratadox\Hydration\Hydrator\VariadicConstructor;
 use Stratadox\Hydration\Mapper\Mapper;
 use Stratadox\Hydration\Mapper\Instruction\Call;
 use Stratadox\Hydration\Mapper\Instruction\Has;
@@ -24,8 +21,11 @@ use Stratadox\Hydration\Mapping\Property\Dynamic\ClosureResult;
 use Stratadox\Hydration\Mapping\Property\Relationship\HasManyProxies;
 use Stratadox\Hydration\Mapping\Property\Relationship\HasOneEmbedded;
 use Stratadox\Hydration\Mapping\Property\Scalar\StringValue;
-use Stratadox\Hydration\Proxying\AlterableCollectionEntryUpdaterFactory;
-use Stratadox\Hydration\Proxying\ProxyFactory;
+use Stratadox\Hydrator\MappedHydrator;
+use Stratadox\Hydrator\SimpleHydrator;
+use Stratadox\Hydrator\VariadicConstructor;
+use Stratadox\Proxy\AlterableCollectionEntryUpdaterFactory;
+use Stratadox\Proxy\ProxyFactory;
 use function strlen;
 
 /**

@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "3f9e4031ae98b034bee268046b5f5c7c",
+    "content-hash": "b4e9c0c071b2006e6c777a221c812c04",
     "packages": [
         {
             "name": "stratadox/collection-contracts",
-            "version": "v1",
+            "version": "v1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Stratadox/CollectionContracts.git",
-                "reference": "a7de67fd0edbc68be319c5ddc7fd0a1c6291f254"
+                "reference": "3b84ba39925779cedee322f5595912e0894bd1bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Stratadox/CollectionContracts/zipball/a7de67fd0edbc68be319c5ddc7fd0a1c6291f254",
-                "reference": "a7de67fd0edbc68be319c5ddc7fd0a1c6291f254",
+                "url": "https://api.github.com/repos/Stratadox/CollectionContracts/zipball/3b84ba39925779cedee322f5595912e0894bd1bb",
+                "reference": "3b84ba39925779cedee322f5595912e0894bd1bb",
                 "shasum": ""
             },
             "require": {
@@ -41,29 +41,32 @@
                 }
             ],
             "description": "Interfaces for the collection classes.",
-            "time": "2017-11-06T23:12:22+00:00"
+            "time": "2018-01-30T20:31:12+00:00"
         },
         {
-            "name": "stratadox/hydration",
-            "version": "v2.0",
+            "name": "stratadox/hydration-mapper-contracts",
+            "version": "v0.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Stratadox/Hydration.git",
-                "reference": "2fbad82fcf1efaed62fe62b032464057df2da359"
+                "url": "https://github.com/Stratadox/HydrationMapperContracts.git",
+                "reference": "37bd7aefe99f0caaa11edc7bac8afc92e4d15267"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Stratadox/Hydration/zipball/2fbad82fcf1efaed62fe62b032464057df2da359",
-                "reference": "2fbad82fcf1efaed62fe62b032464057df2da359",
+                "url": "https://api.github.com/repos/Stratadox/HydrationMapperContracts/zipball/37bd7aefe99f0caaa11edc7bac8afc92e4d15267",
+                "reference": "37bd7aefe99f0caaa11edc7bac8afc92e4d15267",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.1"
+                "php": ">=7.1",
+                "stratadox/hydration-mapping-contracts": "^0.1.2",
+                "stratadox/hydrator-contracts": "^0.1.1",
+                "stratadox/proxy-contracts": "^0.1.0"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Stratadox\\Hydration\\": "src"
+                    "Stratadox\\HydrationMapper\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -76,32 +79,33 @@
                     "homepage": "http://www.stratadox.com/"
                 }
             ],
-            "time": "2018-01-28T17:49:27+00:00"
+            "time": "2018-02-10T16:55:17+00:00"
         },
         {
             "name": "stratadox/hydration-mapping",
-            "version": "v2.0",
+            "version": "v2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Stratadox/HydrationMapping.git",
-                "reference": "a0b884a5e9e64a1516bbe8ebc8f519e8a3dbfe3d"
+                "reference": "c45d953351278f87976acdd9b4f4e9a8dfb812a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Stratadox/HydrationMapping/zipball/a0b884a5e9e64a1516bbe8ebc8f519e8a3dbfe3d",
-                "reference": "a0b884a5e9e64a1516bbe8ebc8f519e8a3dbfe3d",
+                "url": "https://api.github.com/repos/Stratadox/HydrationMapping/zipball/c45d953351278f87976acdd9b4f4e9a8dfb812a2",
+                "reference": "c45d953351278f87976acdd9b4f4e9a8dfb812a2",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.1",
-                "stratadox/hydration": "^v2.0",
-                "stratadox/immutable-collection": "^1.0"
+                "stratadox/hydration-mapping-contracts": "^0.1.0",
+                "stratadox/immutable-collection": "^1.0",
+                "stratadox/proxy-contracts": "^0.1.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^6.5",
                 "rpkamp/fancy-testdox-printer": "^0.2.5",
                 "satooshi/php-coveralls": "^2.0",
-                "stratadox/hydrator": "^v2.0"
+                "stratadox/hydrator": "^3.0"
             },
             "type": "library",
             "autoload": {
@@ -119,38 +123,30 @@
                     "homepage": "http://www.stratadox.com/"
                 }
             ],
-            "time": "2018-01-28T18:37:31+00:00"
+            "time": "2018-02-01T23:09:07+00:00"
         },
         {
-            "name": "stratadox/hydration-proxies",
-            "version": "v1.3",
+            "name": "stratadox/hydration-mapping-contracts",
+            "version": "v0.1.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Stratadox/HydrationProxies.git",
-                "reference": "c670dcf0db39119405b8e54ea6722b37b7d384b3"
+                "url": "https://github.com/Stratadox/HydrationMappingContracts.git",
+                "reference": "37b506fc86bb8b585e614b676f94b1c862b86914"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Stratadox/HydrationProxies/zipball/c670dcf0db39119405b8e54ea6722b37b7d384b3",
-                "reference": "c670dcf0db39119405b8e54ea6722b37b7d384b3",
+                "url": "https://api.github.com/repos/Stratadox/HydrationMappingContracts/zipball/37b506fc86bb8b585e614b676f94b1c862b86914",
+                "reference": "37b506fc86bb8b585e614b676f94b1c862b86914",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.1",
-                "stratadox/collection-contracts": ">=1.0",
-                "stratadox/hydration": ">=1.3"
-            },
-            "require-dev": {
-                "phpunit/phpunit": ">=6.3",
-                "rpkamp/fancy-testdox-printer": "^0.1.1",
-                "satooshi/php-coveralls": "^1.0",
-                "stratadox/hydrator": "^1.0",
-                "stratadox/immutable-collection": "^1.0"
+                "stratadox/collection-contracts": "^1.0"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Stratadox\\Hydration\\Proxying\\": "src"
+                    "Stratadox\\HydrationMapping\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -163,36 +159,37 @@
                     "homepage": "http://www.stratadox.com/"
                 }
             ],
-            "time": "2017-11-26T14:19:43+00:00"
+            "time": "2018-02-01T22:12:56+00:00"
         },
         {
             "name": "stratadox/hydrator",
-            "version": "v2.0",
+            "version": "v3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Stratadox/Hydrator.git",
-                "reference": "9d457f0eac06f3ba74f1acdbb8c4ac726a3d8a91"
+                "reference": "574e8fc7c5c75c3cb2c80d09267f3085aa35dfab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Stratadox/Hydrator/zipball/9d457f0eac06f3ba74f1acdbb8c4ac726a3d8a91",
-                "reference": "9d457f0eac06f3ba74f1acdbb8c4ac726a3d8a91",
+                "url": "https://api.github.com/repos/Stratadox/Hydrator/zipball/574e8fc7c5c75c3cb2c80d09267f3085aa35dfab",
+                "reference": "574e8fc7c5c75c3cb2c80d09267f3085aa35dfab",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.1",
-                "stratadox/hydration": "^v2.0"
+                "stratadox/hydrator-contracts": "^0.1.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^6.5",
                 "rpkamp/fancy-testdox-printer": "^0.2.5",
                 "satooshi/php-coveralls": "^2.0",
+                "stratadox/hydration-mapping-contracts": "^0.1.0",
                 "stratadox/immutable-collection": "^1.0"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Stratadox\\Hydration\\Hydrator\\": "src"
+                    "Stratadox\\Hydrator\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -205,7 +202,42 @@
                     "homepage": "http://www.stratadox.com/"
                 }
             ],
-            "time": "2018-01-28T18:14:32+00:00"
+            "time": "2018-01-31T00:51:28+00:00"
+        },
+        {
+            "name": "stratadox/hydrator-contracts",
+            "version": "v0.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Stratadox/HydratorContracts.git",
+                "reference": "c1bbfa077eebce3b20523f3e718c2cb45603bc26"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Stratadox/HydratorContracts/zipball/c1bbfa077eebce3b20523f3e718c2cb45603bc26",
+                "reference": "c1bbfa077eebce3b20523f3e718c2cb45603bc26",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Stratadox\\Hydrator\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stratadox",
+                    "homepage": "http://www.stratadox.com/"
+                }
+            ],
+            "time": "2018-01-30T22:22:34+00:00"
         },
         {
             "name": "stratadox/immutable-collection",
@@ -247,6 +279,85 @@
                 }
             ],
             "time": "2017-11-11T20:39:52+00:00"
+        },
+        {
+            "name": "stratadox/proxy",
+            "version": "v0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Stratadox/Proxy.git",
+                "reference": "fb2cf759d47cf2b7008cb1ac3d4f65ab1389a549"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Stratadox/Proxy/zipball/fb2cf759d47cf2b7008cb1ac3d4f65ab1389a549",
+                "reference": "fb2cf759d47cf2b7008cb1ac3d4f65ab1389a549",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1",
+                "stratadox/hydrator-contracts": "^0.1.1",
+                "stratadox/proxy-contracts": "^0.1.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.5",
+                "rpkamp/fancy-testdox-printer": "^0.2.5",
+                "satooshi/php-coveralls": "^2.0",
+                "stratadox/hydrator": "^3.0",
+                "stratadox/immutable-collection": "^1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Stratadox\\Proxy\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stratadox",
+                    "homepage": "http://www.stratadox.com/"
+                }
+            ],
+            "time": "2018-02-09T00:12:47+00:00"
+        },
+        {
+            "name": "stratadox/proxy-contracts",
+            "version": "v0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Stratadox/ProxyContracts.git",
+                "reference": "9f4894a6dcf0e1b8c6a379ddcee20c09134a3f7b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Stratadox/ProxyContracts/zipball/9f4894a6dcf0e1b8c6a379ddcee20c09134a3f7b",
+                "reference": "9f4894a6dcf0e1b8c6a379ddcee20c09134a3f7b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Stratadox\\Proxy\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stratadox",
+                    "homepage": "http://www.stratadox.com/"
+                }
+            ],
+            "time": "2018-02-01T20:26:25+00:00"
         },
         {
             "name": "stratadox/specification-interfaces",
@@ -1158,16 +1269,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "6.5.5",
+            "version": "6.5.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "83d27937a310f2984fd575686138597147bdc7df"
+                "reference": "3330ef26ade05359d006041316ed0fa9e8e3cefe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/83d27937a310f2984fd575686138597147bdc7df",
-                "reference": "83d27937a310f2984fd575686138597147bdc7df",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/3330ef26ade05359d006041316ed0fa9e8e3cefe",
+                "reference": "3330ef26ade05359d006041316ed0fa9e8e3cefe",
                 "shasum": ""
             },
             "require": {
@@ -1238,7 +1349,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-12-17T06:31:19+00:00"
+            "time": "2018-02-01T05:57:37+00:00"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -1571,21 +1682,21 @@
         },
         {
             "name": "sebastian/comparator",
-            "version": "2.1.2",
+            "version": "2.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/comparator.git",
-                "reference": "11c07feade1d65453e06df3b3b90171d6d982087"
+                "reference": "34369daee48eafb2651bea869b4b15d75ccc35f9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/comparator/zipball/11c07feade1d65453e06df3b3b90171d6d982087",
-                "reference": "11c07feade1d65453e06df3b3b90171d6d982087",
+                "url": "https://api.github.com/repos/sebastianbergmann/comparator/zipball/34369daee48eafb2651bea869b4b15d75ccc35f9",
+                "reference": "34369daee48eafb2651bea869b4b15d75ccc35f9",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.0",
-                "sebastian/diff": "^2.0",
+                "sebastian/diff": "^2.0 || ^3.0",
                 "sebastian/exporter": "^3.1"
             },
             "require-dev": {
@@ -1631,7 +1742,7 @@
                 "compare",
                 "equality"
             ],
-            "time": "2018-01-12T06:34:42+00:00"
+            "time": "2018-02-01T13:46:46+00:00"
         },
         {
             "name": "sebastian/diff",
@@ -2085,16 +2196,16 @@
         },
         {
             "name": "symfony/config",
-            "version": "v4.0.3",
+            "version": "v4.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
-                "reference": "0e86d267db0851cf55f339c97df00d693fe8592f"
+                "reference": "ecd917899167922086ddb3247aa43eb1c418fcb2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/config/zipball/0e86d267db0851cf55f339c97df00d693fe8592f",
-                "reference": "0e86d267db0851cf55f339c97df00d693fe8592f",
+                "url": "https://api.github.com/repos/symfony/config/zipball/ecd917899167922086ddb3247aa43eb1c418fcb2",
+                "reference": "ecd917899167922086ddb3247aa43eb1c418fcb2",
                 "shasum": ""
             },
             "require": {
@@ -2141,20 +2252,20 @@
             ],
             "description": "Symfony Config Component",
             "homepage": "https://symfony.com",
-            "time": "2018-01-03T07:38:00+00:00"
+            "time": "2018-01-21T19:06:11+00:00"
         },
         {
             "name": "symfony/console",
-            "version": "v4.0.3",
+            "version": "v4.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "fe0e69d7162cba0885791cf7eea5f0d7bc0f897e"
+                "reference": "36d5b41e7d4e1ccf0370f6babe966c08ef0a1488"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/fe0e69d7162cba0885791cf7eea5f0d7bc0f897e",
-                "reference": "fe0e69d7162cba0885791cf7eea5f0d7bc0f897e",
+                "url": "https://api.github.com/repos/symfony/console/zipball/36d5b41e7d4e1ccf0370f6babe966c08ef0a1488",
+                "reference": "36d5b41e7d4e1ccf0370f6babe966c08ef0a1488",
                 "shasum": ""
             },
             "require": {
@@ -2209,11 +2320,11 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2018-01-03T07:38:00+00:00"
+            "time": "2018-01-29T09:06:29+00:00"
         },
         {
             "name": "symfony/filesystem",
-            "version": "v4.0.3",
+            "version": "v4.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
@@ -2262,16 +2373,16 @@
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.6.0",
+            "version": "v1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "2ec8b39c38cb16674bbf3fea2b6ce5bf117e1296"
+                "reference": "78be803ce01e55d3491c1397cf1c64beb9c1b63b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/2ec8b39c38cb16674bbf3fea2b6ce5bf117e1296",
-                "reference": "2ec8b39c38cb16674bbf3fea2b6ce5bf117e1296",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/78be803ce01e55d3491c1397cf1c64beb9c1b63b",
+                "reference": "78be803ce01e55d3491c1397cf1c64beb9c1b63b",
                 "shasum": ""
             },
             "require": {
@@ -2283,7 +2394,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.6-dev"
+                    "dev-master": "1.7-dev"
                 }
             },
             "autoload": {
@@ -2317,11 +2428,11 @@
                 "portable",
                 "shim"
             ],
-            "time": "2017-10-11T12:05:26+00:00"
+            "time": "2018-01-30T19:27:44+00:00"
         },
         {
             "name": "symfony/stopwatch",
-            "version": "v4.0.3",
+            "version": "v4.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/stopwatch.git",
@@ -2370,16 +2481,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v4.0.3",
+            "version": "v4.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "b84f646b9490d2101e2c25ddeec77ceefbda2eee"
+                "reference": "ffc60bda1d4a00ec0b32eeabf39dc017bf480028"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/b84f646b9490d2101e2c25ddeec77ceefbda2eee",
-                "reference": "b84f646b9490d2101e2c25ddeec77ceefbda2eee",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/ffc60bda1d4a00ec0b32eeabf39dc017bf480028",
+                "reference": "ffc60bda1d4a00ec0b32eeabf39dc017bf480028",
                 "shasum": ""
             },
             "require": {
@@ -2424,7 +2535,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2018-01-03T07:38:00+00:00"
+            "time": "2018-01-21T19:06:11+00:00"
         },
         {
             "name": "theseer/tokenizer",
@@ -2468,16 +2579,16 @@
         },
         {
             "name": "webmozart/assert",
-            "version": "1.2.0",
+            "version": "1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webmozart/assert.git",
-                "reference": "2db61e59ff05fe5126d152bd0655c9ea113e550f"
+                "reference": "0df1908962e7a3071564e857d86874dad1ef204a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webmozart/assert/zipball/2db61e59ff05fe5126d152bd0655c9ea113e550f",
-                "reference": "2db61e59ff05fe5126d152bd0655c9ea113e550f",
+                "url": "https://api.github.com/repos/webmozart/assert/zipball/0df1908962e7a3071564e857d86874dad1ef204a",
+                "reference": "0df1908962e7a3071564e857d86874dad1ef204a",
                 "shasum": ""
             },
             "require": {
@@ -2514,7 +2625,7 @@
                 "check",
                 "validate"
             ],
-            "time": "2016-11-23T20:04:58+00:00"
+            "time": "2018-01-29T19:49:41+00:00"
         }
     ],
     "aliases": [],

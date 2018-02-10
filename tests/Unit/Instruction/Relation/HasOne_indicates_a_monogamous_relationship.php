@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace Stratadox\Hydration\Mapper\Test\Unit\Instruction;
 
 use PHPUnit\Framework\TestCase;
-use Stratadox\Hydration\Hydrator\MappedHydrator;
-use Stratadox\Hydration\Hydrator\OneOfTheseHydrators;
 use Stratadox\Hydration\Mapper\Instruction\In;
 use Stratadox\Hydration\Mapper\Instruction\Relation\Choose;
 use Stratadox\Hydration\Mapper\Instruction\Relation\HasOne;
@@ -21,6 +19,8 @@ use Stratadox\Hydration\Mapping\Property\Relationship\HasOneEmbedded;
 use Stratadox\Hydration\Mapping\Property\Relationship\HasOneNested;
 use Stratadox\Hydration\Mapping\Property\Scalar\IntegerValue;
 use Stratadox\Hydration\Mapping\Property\Scalar\StringValue;
+use Stratadox\Hydrator\MappedHydrator;
+use Stratadox\Hydrator\OneOfTheseHydrators;
 
 /**
  * @covers \Stratadox\Hydration\Mapper\Instruction\Relation\HasOne

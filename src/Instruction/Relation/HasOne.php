@@ -6,7 +6,7 @@ namespace Stratadox\Hydration\Mapper\Instruction\Relation;
 
 use Stratadox\Hydration\Mapping\Property\Relationship\HasOneEmbedded;
 use Stratadox\Hydration\Mapping\Property\Relationship\HasOneNested;
-use Stratadox\Hydration\MapsProperty;
+use Stratadox\HydrationMapping\MapsProperty;
 
 /**
  * Indicates a monogamous relationship in the property.

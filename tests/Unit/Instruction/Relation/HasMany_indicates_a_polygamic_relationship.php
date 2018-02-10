@@ -6,15 +6,9 @@ namespace Stratadox\Hydration\Mapper\Test\Unit\Instruction\Relation;
 
 use ArrayObject;
 use PHPUnit\Framework\TestCase;
-use Stratadox\Hydration\Hydrator\ArrayHydrator;
-use Stratadox\Hydration\Hydrator\MappedHydrator;
-use Stratadox\Hydration\Hydrator\OneOfTheseHydrators;
-use Stratadox\Hydration\Hydrator\SimpleHydrator;
-use Stratadox\Hydration\Hydrator\VariadicConstructor;
 use Stratadox\Hydration\Mapper\Instruction\In;
 use Stratadox\Hydration\Mapper\Instruction\Relation\Choose;
 use Stratadox\Hydration\Mapper\Instruction\Relation\HasMany;
-use Stratadox\Hydration\Mapper\InvalidMapperConfiguration;
 use Stratadox\Hydration\Mapper\Test\Stub\Book\Chapter;
 use Stratadox\Hydration\Mapper\Test\Stub\Book\ChapterLoaderFactory;
 use Stratadox\Hydration\Mapper\Test\Stub\Book\ChapterProxy;
@@ -29,10 +23,16 @@ use Stratadox\Hydration\Mapping\Property\Relationship\HasManyNested;
 use Stratadox\Hydration\Mapping\Property\Relationship\HasManyProxies;
 use Stratadox\Hydration\Mapping\Property\Relationship\HasOneProxy;
 use Stratadox\Hydration\Mapping\Property\Scalar\StringValue;
-use Stratadox\Hydration\Proxying\AlterableCollectionEntryUpdaterFactory;
-use Stratadox\Hydration\Proxying\ArrayEntryUpdaterFactory;
-use Stratadox\Hydration\Proxying\PropertyUpdaterFactory;
-use Stratadox\Hydration\Proxying\ProxyFactory;
+use Stratadox\HydrationMapper\InvalidMapperConfiguration;
+use Stratadox\Hydrator\ArrayHydrator;
+use Stratadox\Hydrator\MappedHydrator;
+use Stratadox\Hydrator\OneOfTheseHydrators;
+use Stratadox\Hydrator\SimpleHydrator;
+use Stratadox\Hydrator\VariadicConstructor;
+use Stratadox\Proxy\AlterableCollectionEntryUpdaterFactory;
+use Stratadox\Proxy\ArrayEntryUpdaterFactory;
+use Stratadox\Proxy\PropertyUpdaterFactory;
+use Stratadox\Proxy\ProxyFactory;
 
 /**
  * @covers \Stratadox\Hydration\Mapper\Instruction\Relation\HasMany

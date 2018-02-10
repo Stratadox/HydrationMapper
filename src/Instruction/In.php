@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Stratadox\Hydration\Mapper\Instruction;
 
-use Stratadox\Hydration\Mapper\FindsKeys;
-use Stratadox\Hydration\Mapper\InstructsHowToMap;
 use Stratadox\Hydration\Mapping\Property\Scalar\StringValue;
-use Stratadox\Hydration\MapsProperty;
+use Stratadox\HydrationMapper\FindsKeys;
+use Stratadox\HydrationMapper\InstructsHowToMap;
+use Stratadox\HydrationMapping\MapsProperty;
 
 /**
  * Indicates a change in data key.

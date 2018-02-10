@@ -4,15 +4,14 @@ declare(strict_types=1);
 
 namespace Stratadox\Hydration\Mapper\Instruction\Relation;
 
-use Stratadox\Hydration\Hydrates;
-use Stratadox\Hydration\Hydrator\MappedHydrator;
-use Stratadox\Hydration\Hydrator\OneOfTheseHydrators;
-use Stratadox\Hydration\Mapper\DefinesRelationships;
-use Stratadox\Hydration\Mapper\FindsKeys;
-use Stratadox\Hydration\Mapper\InstructsHowToMap;
 use Stratadox\Hydration\Mapper\Mapper;
-use Stratadox\Hydration\Mapper\RepresentsChoice;
-use Stratadox\Hydration\ProducesProxyLoaders;
+use Stratadox\HydrationMapper\DefinesRelationships;
+use Stratadox\HydrationMapper\FindsKeys;
+use Stratadox\HydrationMapper\InstructsHowToMap;
+use Stratadox\HydrationMapper\RepresentsChoice;
+use Stratadox\Hydrator\Hydrates;
+use Stratadox\Hydrator\OneOfTheseHydrators;
+use Stratadox\Proxy\ProducesProxyLoaders;
 
 /**
  * @package Stratadox\Hydrate

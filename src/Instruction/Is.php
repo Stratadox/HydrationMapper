@@ -6,12 +6,12 @@ namespace Stratadox\Hydration\Mapper\Instruction;
 
 use function call_user_func;
 use function sprintf;
-use Stratadox\Hydration\Mapper\InstructsHowToMap;
 use Stratadox\Hydration\Mapping\Property\Scalar\BooleanValue;
 use Stratadox\Hydration\Mapping\Property\Scalar\FloatValue;
 use Stratadox\Hydration\Mapping\Property\Scalar\IntegerValue;
 use Stratadox\Hydration\Mapping\Property\Scalar\StringValue;
-use Stratadox\Hydration\MapsProperty;
+use Stratadox\HydrationMapper\InstructsHowToMap;
+use Stratadox\HydrationMapping\MapsProperty;
 
 /**
  * Indicates the type of a property, optionally changing the data key.

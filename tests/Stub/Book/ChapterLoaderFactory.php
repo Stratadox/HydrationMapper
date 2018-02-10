@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Stratadox\Hydration\Mapper\Test\Stub\Book;
 
-use Stratadox\Hydration\LoadsProxiedObjects;
-use Stratadox\Hydration\ProducesProxyLoaders;
+use Stratadox\Proxy\LoadsProxiedObjects;
+use Stratadox\Proxy\ProducesProxyLoaders;
 
 class ChapterLoaderFactory implements ProducesProxyLoaders
 {

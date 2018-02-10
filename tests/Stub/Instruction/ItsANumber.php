@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Stratadox\Hydration\Mapper\Test\Stub\Instruction;
 
-use Stratadox\Hydration\Mapper\InstructsHowToMap;
 use Stratadox\Hydration\Mapping\Property\Scalar\IntegerValue;
-use Stratadox\Hydration\MapsProperty;
+use Stratadox\HydrationMapper\InstructsHowToMap;
+use Stratadox\HydrationMapping\MapsProperty;
 
 class ItsANumber implements InstructsHowToMap
 {

@@ -7,22 +7,22 @@ namespace Stratadox\Hydration\Mapper\Instruction\Relation;
 use function class_implements;
 use function in_array;
 use Stratadox\Collection\Alterable;
-use Stratadox\Hydration\Hydrates;
-use Stratadox\Hydration\Hydrator\ArrayHydrator;
-use Stratadox\Hydration\Hydrator\SimpleHydrator;
-use Stratadox\Hydration\Hydrator\VariadicConstructor;
 use Stratadox\Hydration\Mapper\NoContainerAvailable;
 use Stratadox\Hydration\Mapper\NoLoaderAvailable;
 use Stratadox\Hydration\Mapping\Property\Relationship\HasManyNested;
 use Stratadox\Hydration\Mapping\Property\Relationship\HasManyProxies;
 use Stratadox\Hydration\Mapping\Property\Relationship\HasOneProxy;
-use Stratadox\Hydration\MapsProperty;
-use Stratadox\Hydration\ProducesOwnerUpdaters;
-use Stratadox\Hydration\Proxy;
-use Stratadox\Hydration\Proxying\AlterableCollectionEntryUpdaterFactory;
-use Stratadox\Hydration\Proxying\ArrayEntryUpdaterFactory;
-use Stratadox\Hydration\Proxying\PropertyUpdaterFactory;
-use Stratadox\Hydration\Proxying\ProxyFactory;
+use Stratadox\HydrationMapping\MapsProperty;
+use Stratadox\Hydrator\ArrayHydrator;
+use Stratadox\Hydrator\Hydrates;
+use Stratadox\Hydrator\SimpleHydrator;
+use Stratadox\Hydrator\VariadicConstructor;
+use Stratadox\Proxy\AlterableCollectionEntryUpdaterFactory;
+use Stratadox\Proxy\ArrayEntryUpdaterFactory;
+use Stratadox\Proxy\ProducesOwnerUpdaters;
+use Stratadox\Proxy\PropertyUpdaterFactory;
+use Stratadox\Proxy\Proxy;
+use Stratadox\Proxy\ProxyFactory;
 
 /**
  * Indicates a polygamic relationship in the property.
