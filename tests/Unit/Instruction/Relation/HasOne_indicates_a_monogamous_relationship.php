@@ -28,7 +28,7 @@ use Stratadox\Hydrator\OneOfTheseHydrators;
  */
 class HasOne_indicates_a_monogamous_relationship extends TestCase
 {
-    /** @scenario */
+    /** @test */
     function producing_an_embedded_hasOne()
     {
         self::assertEquals(
@@ -41,7 +41,7 @@ class HasOne_indicates_a_monogamous_relationship extends TestCase
         );
     }
 
-    /** @scenario */
+    /** @test */
     function producing_a_nested_hasOne()
     {
         self::assertEquals(
@@ -59,7 +59,7 @@ class HasOne_indicates_a_monogamous_relationship extends TestCase
         );
     }
 
-    /** @scenario */
+    /** @test */
     function producing_a_nested_hasOne_with_different_key()
     {
         self::assertEquals(
@@ -77,7 +77,7 @@ class HasOne_indicates_a_monogamous_relationship extends TestCase
         );
     }
 
-    /** @scenario */
+    /** @test */
     function producing_an_embedded_hasOne_with_polymorphism()
     {
         self::assertEquals(
@@ -101,7 +101,7 @@ class HasOne_indicates_a_monogamous_relationship extends TestCase
         );
     }
 
-    /** @scenario */
+    /** @test */
     function producing_a_nested_hasOne_with_polymorphism()
     {
         self::assertEquals(

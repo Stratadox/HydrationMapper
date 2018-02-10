@@ -16,7 +16,7 @@ use Stratadox\Hydration\Mapping\Property\Scalar\StringValue;
  */
 class Is_determines_the_type extends TestCase
 {
-    /** @scenario */
+    /** @test */
     function producing_a_string_mapping()
     {
         self::assertEquals(
@@ -25,7 +25,7 @@ class Is_determines_the_type extends TestCase
         );
     }
 
-    /** @scenario */
+    /** @test */
     function producing_an_integer_mapping()
     {
         self::assertEquals(
@@ -34,7 +34,7 @@ class Is_determines_the_type extends TestCase
         );
     }
 
-    /** @scenario */
+    /** @test */
     function producing_a_floating_point_mapping()
     {
         self::assertEquals(
@@ -43,7 +43,7 @@ class Is_determines_the_type extends TestCase
         );
     }
 
-    /** @scenario */
+    /** @test */
     function producing_a_boolean_mapping()
     {
         self::assertEquals(
@@ -52,7 +52,7 @@ class Is_determines_the_type extends TestCase
         );
     }
 
-    /** @scenario */
+    /** @test */
     function producing_a_string_mapping_using_a_different_key()
     {
         self::assertEquals(
@@ -61,7 +61,7 @@ class Is_determines_the_type extends TestCase
         );
     }
 
-    /** @scenario */
+    /** @test */
     function producing_an_integer_mapping_using_a_different_key()
     {
         self::assertEquals(
@@ -70,7 +70,7 @@ class Is_determines_the_type extends TestCase
         );
     }
 
-    /** @scenario */
+    /** @test */
     function producing_a_floating_point_mapping_using_a_different_key()
     {
         self::assertEquals(
@@ -79,7 +79,7 @@ class Is_determines_the_type extends TestCase
         );
     }
 
-    /** @scenario */
+    /** @test */
     function producing_a_boolean_mapping_using_a_different_key()
     {
         self::assertEquals(

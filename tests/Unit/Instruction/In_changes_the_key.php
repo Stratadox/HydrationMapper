@@ -13,7 +13,7 @@ use Stratadox\Hydration\Mapping\Property\Scalar\StringValue;
  */
 class In_changes_the_key extends TestCase
 {
-    /** @scenario */
+    /** @test */
     function using_the_value_from_a_different_key()
     {
         self::assertEquals(
@@ -26,7 +26,7 @@ class In_changes_the_key extends TestCase
         );
     }
 
-    /** @scenario */
+    /** @test */
     function finding_the_key()
     {
         self::assertEquals(

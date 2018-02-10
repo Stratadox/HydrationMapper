@@ -33,7 +33,7 @@ use function strlen;
  */
 class HydrationMapper_produces_fully_mapped_hydrators extends TestCase
 {
-    /** @scenario */
+    /** @test */
     function building_a_mapped_hydrator_for_Books()
     {
         $expected = MappedHydrator::forThe(Book::class, Properties::map(

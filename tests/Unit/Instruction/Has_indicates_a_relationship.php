@@ -16,7 +16,7 @@ use Stratadox\Hydration\Mapper\Test\Stub\Book\Title;
  */
 class Has_indicates_a_relationship extends TestCase
 {
-    /** @scenario */
+    /** @test */
     function producing_a_hasOne()
     {
         self::assertEquals(
@@ -25,7 +25,7 @@ class Has_indicates_a_relationship extends TestCase
         );
     }
 
-    /** @scenario */
+    /** @test */
     function producing_a_hasMany()
     {
         self::assertEquals(
@@ -34,7 +34,7 @@ class Has_indicates_a_relationship extends TestCase
         );
     }
 
-    /** @scenario */
+    /** @test */
     function producing_a_hasOne_with_different_key()
     {
         self::assertEquals(
@@ -43,7 +43,7 @@ class Has_indicates_a_relationship extends TestCase
         );
     }
 
-    /** @scenario */
+    /** @test */
     function producing_a_hasMany_with_different_key()
     {
         self::assertEquals(

@@ -18,7 +18,7 @@ use Stratadox\Hydrator\MappedHydrator;
  */
 class Choose_indicates_an_implementation_decision extends TestCase
 {
-    /** @scenario */
+    /** @test */
     function building_a_hydrator()
     {
         self::assertEquals(

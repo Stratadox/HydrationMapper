@@ -19,7 +19,7 @@ use Stratadox\Hydrator\MappedHydrator;
  */
 class Mapper_collects_and_maps_properties extends TestCase
 {
-    /** @scenario */
+    /** @test */
     function mapping_an_author()
     {
         self::assertEquals(
@@ -34,7 +34,7 @@ class Mapper_collects_and_maps_properties extends TestCase
         );
     }
 
-    /** @scenario */
+    /** @test */
     function mapping_with_instructions()
     {
         self::assertEquals(

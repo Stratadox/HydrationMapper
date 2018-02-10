@@ -15,7 +15,7 @@ use function var_export;
  */
 class Call_produces_a_closure_result extends TestCase
 {
-    /** @scenario */
+    /** @test */
     function producing_a_closure_mapping()
     {
         self::assertEquals(
@@ -28,7 +28,7 @@ class Call_produces_a_closure_result extends TestCase
         );
     }
 
-    /** @scenario */
+    /** @test */
     function producing_another_closure_mapping()
     {
         self::assertEquals(

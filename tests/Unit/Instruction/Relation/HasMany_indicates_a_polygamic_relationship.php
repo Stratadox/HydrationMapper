@@ -42,7 +42,7 @@ use Stratadox\Proxy\ProxyFactory;
  */
 class HasMany_indicates_a_polygamic_relationship extends TestCase
 {
-    /** @scenario */
+    /** @test */
     function producing_a_nested_hasMany()
     {
         self::assertEquals(
@@ -60,7 +60,7 @@ class HasMany_indicates_a_polygamic_relationship extends TestCase
         );
     }
 
-    /** @scenario */
+    /** @test */
     function producing_a_nested_hasMany_with_different_key()
     {
         self::assertEquals(
@@ -78,7 +78,7 @@ class HasMany_indicates_a_polygamic_relationship extends TestCase
         );
     }
 
-    /** @scenario */
+    /** @test */
     function producing_a_nested_hasMany_with_polymorphism()
     {
         self::assertEquals(
@@ -106,7 +106,7 @@ class HasMany_indicates_a_polygamic_relationship extends TestCase
         );
     }
 
-    /** @scenario */
+    /** @test */
     function producing_a_lazy_hasMany()
     {
         self::assertEquals(
@@ -124,7 +124,7 @@ class HasMany_indicates_a_polygamic_relationship extends TestCase
         );
     }
 
-    /** @scenario */
+    /** @test */
     function producing_an_extra_lazy_hasMany()
     {
         self::assertEquals(
@@ -143,7 +143,7 @@ class HasMany_indicates_a_polygamic_relationship extends TestCase
         );
     }
 
-    /** @scenario */
+    /** @test */
     function producing_an_extra_lazy_hasMany_with_different_key()
     {
         self::assertEquals(
@@ -162,7 +162,7 @@ class HasMany_indicates_a_polygamic_relationship extends TestCase
         );
     }
 
-    /** @scenario */
+    /** @test */
     function producing_an_array_hydrator_when_no_container_was_defined()
     {
         self::assertEquals(
@@ -180,7 +180,7 @@ class HasMany_indicates_a_polygamic_relationship extends TestCase
         );
     }
 
-    /** @scenario */
+    /** @test */
     function lazy_collections_need_to_get_a_loader()
     {
         $this->expectException(InvalidMapperConfiguration::class);
@@ -191,7 +191,7 @@ class HasMany_indicates_a_polygamic_relationship extends TestCase
         HasMany::ofThe(Chapter::class)->followFor('chapter');
     }
 
-    /** @scenario */
+    /** @test */
     function extra_lazy_collections_need_to_get_a_loader()
     {
         $this->expectException(InvalidMapperConfiguration::class);
@@ -202,7 +202,7 @@ class HasMany_indicates_a_polygamic_relationship extends TestCase
         HasMany::ofThe(ChapterProxy::class)->followFor('chapter');
     }
 
-    /** @scenario */
+    /** @test */
     function lazy_collections_need_to_get_a_container()
     {
         $this->expectException(InvalidMapperConfiguration::class);
