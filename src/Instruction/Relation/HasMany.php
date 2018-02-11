@@ -103,14 +103,14 @@ final class HasMany extends Relationship
     private function needsALoader() : void
     {
         if (!isset($this->loader)) {
-            throw NoLoaderAvailable::for($this->class);
+            throw NoLoaderAvailable::whilstRequiredFor($this->class);
         }
     }
 
     private function needsAContainer() : void
     {
         if (!isset($this->container)) {
-            throw NoContainerAvailable::for($this->class);
+            throw NoContainerAvailable::whilstRequiredFor($this->class);
         }
     }
 }

@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace Stratadox\Hydration\Mapper;
 
 use BadMethodCallException as BadMethodCall;
-use Stratadox\HydrationMapper\InvalidMapperConfiguration;
+use function sprintf as withMessage;
+use Stratadox\HydrationMapper\InvalidMapperConfiguration as InvalidMapper;
 
 /**
  * Indicates that a loader was necessary but not available.
@@ -13,7 +14,7 @@ use Stratadox\HydrationMapper\InvalidMapperConfiguration;
  * @package Stratadox\Hydrate
  * @author Stratadox
  */
-final class NoLoaderAvailable extends BadMethodCall implements InvalidMapperConfiguration
+final class NoLoaderAvailable extends BadMethodCall implements InvalidMapper
 {
     /**
      * Produce an exception for when there is no loader defined for a class.
@@ -21,9 +22,9 @@ final class NoLoaderAvailable extends BadMethodCall implements InvalidMapperConf
      * @param string $class The class that is missing a loader.
      * @return self         The exception object.
      */
-    public static function for(string $class) : self
+    public static function whilstRequiredFor(string $class) : NoLoaderAvailable
     {
-        return new self(sprintf(
+        return new NoLoaderAvailable(withMessage(
             'Could not produce mapping due to a missing loader for class `%s`',
             $class
         ));
