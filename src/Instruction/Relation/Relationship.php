@@ -38,7 +38,7 @@ abstract class Relationship implements DefinesRelationships
     /** @var RepresentsChoice[] */
     protected $choices = [];
 
-    final protected function __construct(string $class, FindsKeys $key = null)
+    private function __construct(string $class, FindsKeys $key = null)
     {
         $this->class = $class;
         $this->key = $key;
