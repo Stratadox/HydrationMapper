@@ -12,6 +12,7 @@ use Stratadox\HydrationMapping\MapsProperty;
 /**
  * Indicates that a closure should be called to hydrate this property.
  *
+ * @todo make final
  * @package Stratadox\Hydrate
  * @author Stratadox
  */
@@ -19,12 +20,20 @@ class Call implements InstructsHowToMap
 {
     private $function;
 
+    // @todo make private
     public function __construct(Closure $function)
     {
         $this->function = $function;
     }
 
-    public static function the(Closure $function)
+    /**
+     * Create a closure call instruction for the property.
+     *
+     * @param Closure $function The anonymous function to call while hydrating
+     *                          this property.
+     * @return Call             The instruction object.
+     */
+    public static function the(Closure $function) : Call
     {
         return new Call($function);
     }

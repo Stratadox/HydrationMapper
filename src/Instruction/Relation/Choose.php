@@ -25,6 +25,13 @@ final class Choose implements RepresentsChoice
         $this->class = $class;
     }
 
+    /**
+     * Creates a new option to choose from.
+     *
+     * @param string $class     The fully qualified name of the class that can
+     *                          be chosen.
+     * @return RepresentsChoice The object representation of the choice.
+     */
     public static function the(string $class) : RepresentsChoice
     {
         return new Choose(Mapper::forThe($class));

@@ -14,6 +14,8 @@ use Stratadox\Hydrator\OneOfTheseHydrators;
 use Stratadox\Proxy\ProducesProxyLoaders;
 
 /**
+ * Defines a relationship with another class.
+ *
  * @package Stratadox\Hydrate
  * @author Stratadox
  */
@@ -23,15 +25,15 @@ abstract class Relationship implements DefinesRelationships
     protected $class;
     /** @var FindsKeys */
     protected $key;
-    /** @var ?string */
+    /** @var string|null */
     protected $container;
-    /** @var ?ProducesProxyLoaders */
+    /** @var ProducesProxyLoaders|null */
     protected $loader;
     /** @var bool */
     protected $shouldNest = false;
     /** @var InstructsHowToMap[] */
     protected $properties = [];
-    /** @var ?string */
+    /** @var string|null */
     protected $decisionKey;
     /** @var RepresentsChoice[] */
     protected $choices = [];
@@ -42,6 +44,13 @@ abstract class Relationship implements DefinesRelationships
         $this->key = $key;
     }
 
+    /**
+     * Define a new relationship with another class.
+     *
+     * @param string         $class The fully qualified class name.
+     * @param FindsKeys|null $key   The input array offset (optional)
+     * @return DefinesRelationships The relationship definition.
+     */
     public static function ofThe(
         string $class,
         FindsKeys $key = null
@@ -92,11 +101,22 @@ abstract class Relationship implements DefinesRelationships
         return $inst;
     }
 
+    /**
+     * Returns the key if one was provided, defaulting to the property name.
+     *
+     * @param string $property  The property name to use as fallback.
+     * @return string           The key to use as offset for the input data.
+     */
     protected function keyOr(string $property) : string
     {
         return $this->key ? $this->key->find() : $property;
     }
 
+    /**
+     * Produces a mapped hydrator according to the relationship configuration.
+     *
+     * @return Hydrates The hydrator for the relationship mapping.
+     */
     protected function hydrator() : Hydrates
     {
         if (isset($this->decisionKey)) {

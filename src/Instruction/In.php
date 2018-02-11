@@ -24,7 +24,13 @@ final class In implements FindsKeys, InstructsHowToMap
         $this->key = $key;
     }
 
-    public static function key(string $key)
+    /**
+     * Indicates that the data for this property can be found in a different key.
+     *
+     * @param string $key The offset to use in the input array.
+     * @return In         The instruction object.
+     */
+    public static function key(string $key) : In
     {
         return new In($key);
     }

@@ -15,6 +15,12 @@ use Stratadox\HydrationMapper\InvalidMapperConfiguration;
  */
 final class NoContainerAvailable extends BadMethodCall implements InvalidMapperConfiguration
 {
+    /**
+     * Produce an exception for when there is no container defined for a class.
+     *.
+     * @param string $class The class that is missing a container.
+     * @return self         The exception object.
+     */
     public static function for(string $class) : self
     {
         return new self(sprintf(
