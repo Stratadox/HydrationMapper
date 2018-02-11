@@ -19,33 +19,27 @@ use Stratadox\Proxy\ProducesProxyLoaders;
  */
 abstract class Relationship implements DefinesRelationships
 {
+    /** @var string */
     protected $class;
+    /** @var FindsKeys */
     protected $key;
+    /** @var ?string */
     protected $container;
+    /** @var ?ProducesProxyLoaders */
     protected $loader;
-    protected $shouldNest;
-    protected $properties;
+    /** @var bool */
+    protected $shouldNest = false;
+    /** @var InstructsHowToMap[] */
+    protected $properties = [];
+    /** @var ?string */
     protected $decisionKey;
-    protected $choices;
+    /** @var RepresentsChoice[] */
+    protected $choices = [];
 
-    final protected function __construct(
-        string $class,
-        FindsKeys $key = null,
-        string $container = null,
-        ProducesProxyLoaders $loader = null,
-        bool $nested = false,
-        array $properties = [],
-        string $decisionKey = null,
-        array $choices = []
-    ) {
+    final protected function __construct(string $class, FindsKeys $key = null)
+    {
         $this->class = $class;
         $this->key = $key;
-        $this->container = $container;
-        $this->loader = $loader;
-        $this->shouldNest = $nested;
-        $this->properties = $properties;
-        $this->decisionKey = $decisionKey;
-        $this->choices = $choices;
     }
 
     public static function ofThe(
@@ -56,50 +50,25 @@ abstract class Relationship implements DefinesRelationships
         return new static($class, $key);
     }
 
-    public function containedInA(
-        string $container
-    ) : DefinesRelationships
+    public function containedInA(string $container) : DefinesRelationships
     {
-        return new static(
-            $this->class,
-            $this->key,
-            $container,
-            $this->loader,
-            $this->shouldNest,
-            $this->properties,
-            $this->decisionKey,
-            $this->choices
-        );
+        $inst = clone $this;
+        $inst->container = $container;
+        return $inst;
     }
 
-    public function loadedBy(
-        ProducesProxyLoaders $loader
-    ) : DefinesRelationships
+    public function loadedBy(ProducesProxyLoaders $loader) : DefinesRelationships
     {
-        return new static(
-            $this->class,
-            $this->key,
-            $this->container,
-            $loader,
-            $this->shouldNest,
-            $this->properties,
-            $this->decisionKey,
-            $this->choices
-        );
+        $inst = clone $this;
+        $inst->loader = $loader;
+        return $inst;
     }
 
     public function nested() : DefinesRelationships
     {
-        return new static(
-            $this->class,
-            $this->key,
-            $this->container,
-            $this->loader,
-            true,
-            $this->properties,
-            $this->decisionKey,
-            $this->choices
-        );
+        $inst = clone $this;
+        $inst->shouldNest = true;
+        return $inst;
     }
 
     public function with(
@@ -107,16 +76,9 @@ abstract class Relationship implements DefinesRelationships
         InstructsHowToMap $instruction = null
     ) : DefinesRelationships
     {
-        return new static(
-            $this->class,
-            $this->key,
-            $this->container,
-            $this->loader,
-            $this->shouldNest,
-            $this->properties + [$property => $instruction],
-            $this->decisionKey,
-            $this->choices
-        );
+        $inst = clone $this;
+        $inst->properties += [$property => $instruction];
+        return $inst;
     }
 
     public function selectBy(
@@ -124,16 +86,10 @@ abstract class Relationship implements DefinesRelationships
         array $choices
     ) : DefinesRelationships
     {
-        return new static(
-            $this->class,
-            $this->key,
-            $this->container,
-            $this->loader,
-            $this->shouldNest,
-            $this->properties,
-            $decisionKey,
-            $choices
-        );
+        $inst = clone $this;
+        $inst->decisionKey = $decisionKey;
+        $inst->choices = $choices;
+        return $inst;
     }
 
     protected function keyOr(string $property) : string
@@ -145,12 +101,13 @@ abstract class Relationship implements DefinesRelationships
     {
         if (isset($this->decisionKey)) {
             return $this->choiceHydrator();
+        } else {
+            $mapped = Mapper::forThe($this->class);
+            foreach ($this->properties as $property => $instruction) {
+                $mapped = $mapped->property($property, $instruction);
+            }
+            return $mapped->finish();
         }
-        $mapped = Mapper::forThe($this->class);
-        foreach ($this->properties as $property => $instruction) {
-            $mapped = $mapped->property($property, $instruction);
-        }
-        return $mapped->finish();
     }
 
     private function choiceHydrator() : Hydrates
