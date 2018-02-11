@@ -37,7 +37,7 @@ final class HasMany extends Relationship
         if ($this->shouldNest) {
             return $this->manyNestedInThe($property);
         }
-        if ($this->implements(Proxy::class, $this->class)) {
+        if ($this->isImplementingThe(Proxy::class, $this->class)) {
             return $this->manyProxiesInThe($property);
         }
         return $this->oneProxyInThe($property);
@@ -89,13 +89,13 @@ final class HasMany extends Relationship
 
     private function updaterFactory() : ProducesOwnerUpdaters
     {
-        if ($this->implements(Alterable::class, $this->container)) {
+        if ($this->isImplementingThe(Alterable::class, $this->container)) {
             return new AlterableCollectionEntryUpdaterFactory;
         }
         return new ArrayEntryUpdaterFactory;
     }
 
-    private function implements(string $interface, ?string $class)
+    private function isImplementingThe(string $interface, ?string $class) : bool
     {
         return isset($class) && in_array($interface, class_implements($class));
     }
