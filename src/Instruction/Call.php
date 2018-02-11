@@ -12,11 +12,10 @@ use Stratadox\HydrationMapping\MapsProperty;
 /**
  * Indicates that a closure should be called to hydrate this property.
  *
- * @todo make final
  * @package Stratadox\Hydrate
  * @author Stratadox
  */
-class Call implements InstructsHowToMap
+final class Call implements InstructsHowToMap
 {
     private $function;
 
