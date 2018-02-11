@@ -12,14 +12,16 @@ use Stratadox\Hydrator\Hydrates;
 use Stratadox\Hydrator\MappedHydrator;
 
 /**
- * Produces a mapping object.
+ * Builds a mapped hydrator, configured with mappings for the properties.
  *
  * @package Stratadox\Hydrate
  * @author Stratadox
  */
 final class Mapper implements MakesMap
 {
+    /** @var string */
     private $name;
+    /** @var InstructsHowToMap[] */
     private $properties;
 
     private function __construct(string $name, array $properties = [])
@@ -28,6 +30,14 @@ final class Mapper implements MakesMap
         $this->properties = $properties;
     }
 
+    /**
+     * Create a builder that produces a mapped hydrator for a class.
+     *
+     * @see MappedHydrator
+     * @param string $className The fully qualified name of the class to produce
+     *                          a mapped hydrator for.
+     * @return Mapper           The builder for the mapped hydrator.
+     */
     public static function forThe(string $className) : self
     {
         return new self($className);
