@@ -19,8 +19,7 @@ final class Call implements InstructsHowToMap
 {
     private $function;
 
-    // @todo make private
-    public function __construct(Closure $function)
+    private function __construct(Closure $function)
     {
         $this->function = $function;
     }
