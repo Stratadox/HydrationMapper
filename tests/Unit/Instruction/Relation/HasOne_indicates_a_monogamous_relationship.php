@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Stratadox\Hydration\Mapper\Test\Unit\Instruction;
+namespace Stratadox\Hydration\Mapper\Test\Unit\Instruction\Relation;
 
 use PHPUnit\Framework\TestCase;
 use Stratadox\Hydration\Mapper\Instruction\In;
