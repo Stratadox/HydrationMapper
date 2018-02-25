@@ -23,7 +23,7 @@ abstract class Relationship implements DefinesRelationships
 {
     /** @var string */
     protected $class;
-    /** @var FindsKeys */
+    /** @var FindsKeys|null */
     protected $key;
     /** @var string|null */
     protected $container;
@@ -31,7 +31,7 @@ abstract class Relationship implements DefinesRelationships
     protected $loader;
     /** @var bool */
     protected $shouldNest = false;
-    /** @var InstructsHowToMap[] */
+    /** @var (InstructsHowToMap|null)[] */
     protected $properties = [];
     /** @var string|null */
     protected $decisionKey;
@@ -132,6 +132,7 @@ abstract class Relationship implements DefinesRelationships
 
     private function choiceHydrator() : Hydrates
     {
+        assert(isset($this->decisionKey));
         return OneOfTheseHydrators::decideBasedOnThe(
             $this->decisionKey,
             array_map(function (RepresentsChoice $choice) {
