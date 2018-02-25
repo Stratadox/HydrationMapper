@@ -54,7 +54,9 @@ final class HasMany extends Relationship
 
     private function manyProxiesInThe(string $property) : MapsProperty
     {
-        $this->needsALoader();
+        if (!isset($this->loader)) {
+            throw NoLoaderAvailable::whilstRequiredFor($this->class);
+        }
         return HasManyProxies::inPropertyWithDifferentKey($property,
             $this->keyOr($property),
             $this->container(),
@@ -68,8 +70,12 @@ final class HasMany extends Relationship
 
     private function oneProxyInThe(string $property) : MapsProperty
     {
-        $this->needsALoader();
-        $this->needsAContainer();
+        if (!isset($this->loader)) {
+            throw NoLoaderAvailable::whilstRequiredFor($this->class);
+        }
+        if (!isset($this->container)) {
+            throw NoContainerAvailable::whilstRequiredFor($this->class);
+        }
         return HasOneProxy::inProperty($property,
             ProxyFactory::fromThis(
                 SimpleHydrator::forThe($this->container),
@@ -98,19 +104,5 @@ final class HasMany extends Relationship
     private function isImplementingThe(string $interface, ?string $class) : bool
     {
         return isset($class) && in_array($interface, class_implements($class));
-    }
-
-    private function needsALoader() : void
-    {
-        if (!isset($this->loader)) {
-            throw NoLoaderAvailable::whilstRequiredFor($this->class);
-        }
-    }
-
-    private function needsAContainer() : void
-    {
-        if (!isset($this->container)) {
-            throw NoContainerAvailable::whilstRequiredFor($this->class);
-        }
     }
 }
