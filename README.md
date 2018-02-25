@@ -1,14 +1,17 @@
 # Hydration Mapper
 
-[![Implements](https://img.shields.io/badge/contracts-github-blue.svg)](https://github.com/Stratadox/HydrationMapperContracts)
 [![Build Status](https://travis-ci.org/Stratadox/HydrationMapper.svg?branch=master)](https://travis-ci.org/Stratadox/HydrationMapper)
 [![Coverage Status](https://coveralls.io/repos/github/Stratadox/HydrationMapper/badge.svg?branch=master)](https://coveralls.io/github/Stratadox/HydrationMapper?branch=master)
-[![Infection Minimum](https://img.shields.io/badge/msi-100-brightgreen.svg)](https://travis-ci.org/Stratadox/HydrationMapping)
-[![PhpStan Level](https://img.shields.io/badge/phpstan-7-brightgreen.svg)](https://travis-ci.org/Stratadox/HydrationMapping)
+[![Infection Minimum](https://img.shields.io/badge/msi-100-brightgreen.svg)](https://travis-ci.org/Stratadox/HydrationMapper)
+[![PhpStan Level](https://img.shields.io/badge/phpstan-7-brightgreen.svg)](https://travis-ci.org/Stratadox/HydrationMapper)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Stratadox/HydrationMapper/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Stratadox/HydrationMapper/?branch=master)
 [![Maintainability](https://api.codeclimate.com/v1/badges/6370c294ff33dec95c25/maintainability)](https://codeclimate.com/github/Stratadox/HydrationMapper/maintainability)
 [![Latest Stable Version](https://poser.pugx.org/stratadox/hydration-mapper/v/stable)](https://packagist.org/packages/stratadox/hydration-mapper)
 [![License](https://poser.pugx.org/stratadox/hydration-mapper/license)](https://packagist.org/packages/stratadox/hydration-mapper)
+
+[![Implements](https://img.shields.io/badge/inferfaces-github-blue.svg)](https://github.com/Stratadox/HydrationMapperContracts)
+[![Latest Stable Version](https://poser.pugx.org/stratadox/hydration-mapper-contracts/v/stable)](https://packagist.org/packages/stratadox/hydration-mapper-contracts)
+[![License](https://poser.pugx.org/stratadox/hydration-mapper-contracts/license)](https://packagist.org/packages/stratadox/hydration-mapper-contracts)
 
 Mapping builder for hydration purposes; maps array or array-like data structures to 
 object properties, in order to assemble the objects that model a business domain.
