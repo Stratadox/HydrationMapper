@@ -12,10 +12,6 @@ class ChaptersProxy extends Chapters implements Proxy
 {
     use Proxying;
 
-    public function __construct()
-    {
-    }
-
     public function items() : array
     {
         return $this->__load()->items();
