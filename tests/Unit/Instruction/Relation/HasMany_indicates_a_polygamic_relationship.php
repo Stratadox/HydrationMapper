@@ -36,6 +36,7 @@ use Stratadox\Proxy\ProxyFactory;
 /**
  * @covers \Stratadox\Hydration\Mapper\Instruction\Relation\HasMany
  * @covers \Stratadox\Hydration\Mapper\Instruction\Relation\Relationship
+ *
  * @covers \Stratadox\Hydration\Mapper\NoLoaderAvailable
  * @covers \Stratadox\Hydration\Mapper\NoContainerAvailable
  * @covers \Stratadox\Hydration\Mapper\NoSuchClass
@@ -229,6 +230,21 @@ class HasMany_indicates_a_polygamic_relationship extends TestCase
         );
         HasMany::ofThe('Stratadox\Not\An\Actual\Class')
             ->nested()
+            ->followFor('foo');
+    }
+
+    /** @test */
+    function cannot_map_lazy_collections_if_the_container_does_not_exist()
+    {
+        $this->expectException(InvalidMapperConfiguration::class);
+        $this->expectExceptionCode(0);
+        $this->expectExceptionMessage(
+            'Could not produce mapping for non-existing container class ' .
+            '`Stratadox\Not\An\Actual\Class`'
+        );
+        HasMany::ofThe(Chapter::class)
+            ->loadedBy(new ChapterLoaderFactory)
+            ->containedInA('Stratadox\Not\An\Actual\Class')
             ->followFor('foo');
     }
 }
