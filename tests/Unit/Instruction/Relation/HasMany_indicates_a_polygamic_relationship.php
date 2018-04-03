@@ -38,6 +38,7 @@ use Stratadox\Proxy\ProxyFactory;
  * @covers \Stratadox\Hydration\Mapper\Instruction\Relation\Relationship
  * @covers \Stratadox\Hydration\Mapper\NoLoaderAvailable
  * @covers \Stratadox\Hydration\Mapper\NoContainerAvailable
+ * @covers \Stratadox\Hydration\Mapper\NoSuchClass
  */
 class HasMany_indicates_a_polygamic_relationship extends TestCase
 {

@@ -3,11 +3,14 @@ declare(strict_types=1);
 
 namespace Stratadox\Hydration\Mapper\Instruction\Relation;
 
+use function class_exists;
 use function class_implements;
 use function in_array;
+use ReflectionException;
 use Stratadox\Collection\Alterable;
 use Stratadox\Hydration\Mapper\NoContainerAvailable;
 use Stratadox\Hydration\Mapper\NoLoaderAvailable;
+use Stratadox\Hydration\Mapper\NoSuchClass;
 use Stratadox\Hydration\Mapping\Property\Relationship\HasManyNested;
 use Stratadox\Hydration\Mapping\Property\Relationship\HasManyProxies;
 use Stratadox\Hydration\Mapping\Property\Relationship\HasOneProxy;
@@ -33,13 +36,17 @@ final class HasMany extends Relationship
 {
     public function followFor(string $property): MapsProperty
     {
-        if ($this->shouldNest) {
-            return $this->manyNestedInThe($property);
+        try {
+            if ($this->shouldNest) {
+                return $this->manyNestedInThe($property);
+            }
+            if ($this->isImplementingThe(Proxy::class, $this->class)) {
+                return $this->manyProxiesInThe($property);
+            }
+            return $this->oneProxyInThe($property);
+        } catch (ReflectionException $encounteredException) {
+            throw NoSuchClass::couldNotLoad($this->class);
         }
-        if ($this->isImplementingThe(Proxy::class, $this->class)) {
-            return $this->manyProxiesInThe($property);
-        }
-        return $this->oneProxyInThe($property);
     }
 
     private function manyNestedInThe(string $property): MapsProperty
@@ -102,6 +109,6 @@ final class HasMany extends Relationship
 
     private function isImplementingThe(string $interface, ?string $class): bool
     {
-        return isset($class) && in_array($interface, class_implements($class));
+        return isset($class) && class_exists($class) && in_array($interface, class_implements($class));
     }
 }
