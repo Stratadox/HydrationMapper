@@ -1409,16 +1409,16 @@
         },
         {
             "name": "stratadox/hydration-mapper-contracts",
-            "version": "v0.1",
+            "version": "v0.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Stratadox/HydrationMapperContracts.git",
-                "reference": "37bd7aefe99f0caaa11edc7bac8afc92e4d15267"
+                "reference": "053c6ba2c5a5e03deedda7c008002284f45d4038"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Stratadox/HydrationMapperContracts/zipball/37bd7aefe99f0caaa11edc7bac8afc92e4d15267",
-                "reference": "37bd7aefe99f0caaa11edc7bac8afc92e4d15267",
+                "url": "https://api.github.com/repos/Stratadox/HydrationMapperContracts/zipball/053c6ba2c5a5e03deedda7c008002284f45d4038",
+                "reference": "053c6ba2c5a5e03deedda7c008002284f45d4038",
                 "shasum": ""
             },
             "require": {
@@ -1443,7 +1443,7 @@
                     "homepage": "http://www.stratadox.com/"
                 }
             ],
-            "time": "2018-02-10T16:55:17+00:00"
+            "time": "2018-04-03T22:07:20+00:00"
         },
         {
             "name": "stratadox/hydration-mapping",
