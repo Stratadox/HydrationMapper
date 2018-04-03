@@ -14,6 +14,6 @@ class ChapterLoaderFactory implements ProducesProxyLoaders
         string $ofTheProperty,
         $atPosition = null
     ): LoadsProxiedObjects {
-        return new ChapterLoader(null, '');
+        return new ChapterLoader($theOwner, $ofTheProperty);
     }
 }
