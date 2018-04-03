@@ -7,6 +7,7 @@ use Stratadox\Hydration\Mapper\Mapper;
 use Stratadox\HydrationMapper\DefinesRelationships;
 use Stratadox\HydrationMapper\FindsKeys;
 use Stratadox\HydrationMapper\InstructsHowToMap;
+use Stratadox\HydrationMapper\InvalidMapperConfiguration;
 use Stratadox\HydrationMapper\RepresentsChoice;
 use Stratadox\Hydrator\Hydrates;
 use Stratadox\Hydrator\OneOfTheseHydrators;
@@ -51,7 +52,7 @@ abstract class Relationship implements DefinesRelationships
     }
 
     /**
-     * Define a new relationship with another class.
+     * Defines a new relationship with another class.
      *
      * @param string         $class The fully qualified class name.
      * @param FindsKeys|null $key   The input array offset (optional)
@@ -64,6 +65,7 @@ abstract class Relationship implements DefinesRelationships
         return new static($class, $key);
     }
 
+    /** @inheritdoc */
     public function containedInA(string $container): DefinesRelationships
     {
         $inst = clone $this;
@@ -71,6 +73,7 @@ abstract class Relationship implements DefinesRelationships
         return $inst;
     }
 
+    /** @inheritdoc */
     public function loadedBy(ProducesProxyLoaders $loader): DefinesRelationships
     {
         $inst = clone $this;
@@ -78,6 +81,7 @@ abstract class Relationship implements DefinesRelationships
         return $inst;
     }
 
+    /** @inheritdoc */
     public function nested(): DefinesRelationships
     {
         $inst = clone $this;
@@ -85,6 +89,7 @@ abstract class Relationship implements DefinesRelationships
         return $inst;
     }
 
+    /** @inheritdoc */
     public function with(
         string $property,
         InstructsHowToMap $instruction = null
@@ -94,6 +99,7 @@ abstract class Relationship implements DefinesRelationships
         return $inst;
     }
 
+    /** @inheritdoc */
     public function selectBy(
         string $decisionKey,
         array $choices
@@ -119,6 +125,7 @@ abstract class Relationship implements DefinesRelationships
      * Produces a mapped hydrator according to the relationship configuration.
      *
      * @return Hydrates The hydrator for the relationship mapping.
+     * @throws InvalidMapperConfiguration
      */
     protected function hydrator(): Hydrates
     {
@@ -133,12 +140,18 @@ abstract class Relationship implements DefinesRelationships
         }
     }
 
+    /**
+     * Produces a multiple-choice hydrator.
+     *
+     * @return Hydrates The adapter that selects the hydrator.
+     * @throws InvalidMapperConfiguration
+     */
     private function choiceHydrator(): Hydrates
     {
         assert(isset($this->decisionKey));
         return OneOfTheseHydrators::decideBasedOnThe(
             $this->decisionKey,
-            array_map(function (RepresentsChoice $choice) {
+            array_map(function (RepresentsChoice $choice): Hydrates {
                 return $choice->finish();
             }, $this->choices)
         );
