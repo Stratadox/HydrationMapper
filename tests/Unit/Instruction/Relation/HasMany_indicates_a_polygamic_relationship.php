@@ -183,6 +183,7 @@ class HasMany_indicates_a_polygamic_relationship extends TestCase
     function lazy_collections_need_to_get_a_loader()
     {
         $this->expectException(InvalidMapperConfiguration::class);
+        $this->expectExceptionCode(0);
         $this->expectExceptionMessage(sprintf(
             'Could not produce mapping due to a missing loader for class `%s`',
             Chapter::class
@@ -194,6 +195,7 @@ class HasMany_indicates_a_polygamic_relationship extends TestCase
     function extra_lazy_collections_need_to_get_a_loader()
     {
         $this->expectException(InvalidMapperConfiguration::class);
+        $this->expectExceptionCode(0);
         $this->expectExceptionMessage(sprintf(
             'Could not produce mapping due to a missing loader for class `%s`',
             ChapterProxy::class
@@ -205,6 +207,7 @@ class HasMany_indicates_a_polygamic_relationship extends TestCase
     function lazy_collections_need_to_get_a_container()
     {
         $this->expectException(InvalidMapperConfiguration::class);
+        $this->expectExceptionCode(0);
         $this->expectExceptionMessage(sprintf(
             'Could not produce mapping due to a missing container for class `%s`',
             Chapter::class
@@ -212,5 +215,19 @@ class HasMany_indicates_a_polygamic_relationship extends TestCase
         HasMany::ofThe(Chapter::class)
             ->loadedBy(new ChapterLoaderFactory)
             ->followFor('chapter');
+    }
+
+    /** @test */
+    function cannot_map_nested_classes_that_do_not_exist()
+    {
+        $this->expectException(InvalidMapperConfiguration::class);
+        $this->expectExceptionCode(0);
+        $this->expectExceptionMessage(
+            'Could not produce mapping for non-existing class ' .
+            '`Stratadox\Not\An\Actual\Class`'
+        );
+        HasMany::ofThe('Stratadox\Not\An\Actual\Class')
+            ->nested()
+            ->followFor('foo');
     }
 }
