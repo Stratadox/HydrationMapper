@@ -23,18 +23,25 @@ abstract class Relationship implements DefinesRelationships
 {
     /** @var string */
     protected $class;
+
     /** @var FindsKeys|null */
     protected $key;
+
     /** @var string|null */
     protected $container;
+
     /** @var ProducesProxyLoaders|null */
     protected $loader;
+
     /** @var bool */
     protected $shouldNest = false;
+
     /** @var (InstructsHowToMap|null)[] */
     protected $properties = [];
+
     /** @var string|null */
     protected $decisionKey;
+
     /** @var RepresentsChoice[] */
     protected $choices = [];
 
@@ -104,9 +111,9 @@ abstract class Relationship implements DefinesRelationships
      * @param string $property  The property name to use as fallback.
      * @return string           The key to use as offset for the input data.
      */
-    protected function keyOr(string $property):string
+    protected function keyOr(string $property): string
     {
-        return $this->key ? $this->key->find():$property;
+        return $this->key ? $this->key->find() : $property;
     }
 
     /**
