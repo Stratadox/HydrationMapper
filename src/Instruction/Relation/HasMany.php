@@ -56,6 +56,9 @@ final class HasMany extends Relationship
      */
     private function manyNestedInThe(string $property): MapsProperty
     {
+        if (isset($this->container) && !class_exists($this->container)) {
+            throw NoSuchClass::couldNotLoadCollection($this->container);
+        }
         try {
             return HasManyNested::inPropertyWithDifferentKey(
                 $property,
