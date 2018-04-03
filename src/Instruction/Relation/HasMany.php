@@ -38,17 +38,13 @@ final class HasMany extends Relationship
     /** @inheritdoc */
     public function followFor(string $property): MapsProperty
     {
-        try {
-            if ($this->shouldNest) {
-                return $this->manyNestedInThe($property);
-            }
-            if ($this->isImplementingThe(Proxy::class, $this->class)) {
-                return $this->manyProxiesInThe($property);
-            }
-            return $this->oneProxyInThe($property);
-        } catch (ReflectionException $encounteredException) {
-            throw NoSuchClass::couldNotLoad($this->class);
+        if ($this->shouldNest) {
+            return $this->manyNestedInThe($property);
         }
+        if ($this->isImplementingThe(Proxy::class, $this->class)) {
+            return $this->manyProxiesInThe($property);
+        }
+        return $this->oneProxyInThe($property);
     }
 
     /**
@@ -60,12 +56,16 @@ final class HasMany extends Relationship
      */
     private function manyNestedInThe(string $property): MapsProperty
     {
-        return HasManyNested::inPropertyWithDifferentKey(
-            $property,
-            $this->keyOr($property),
-            $this->container(),
-            $this->hydrator()
-        );
+        try {
+            return HasManyNested::inPropertyWithDifferentKey(
+                $property,
+                $this->keyOr($property),
+                $this->container(),
+                $this->hydrator()
+            );
+        } catch (ReflectionException $encounteredException) {
+            throw NoSuchClass::couldNotLoad($this->class);
+        }
     }
 
     /**
@@ -97,7 +97,7 @@ final class HasMany extends Relationship
      *
      * @param string $property      The property that gets a lazy relationship.
      * @return MapsProperty         The resulting property mapping.
-     * @throws ReflectionException  When the class does not exist.
+     * @throws InvalidMapperConfiguration
      */
     private function oneProxyInThe(string $property): MapsProperty
     {
@@ -107,13 +107,17 @@ final class HasMany extends Relationship
         if (!isset($this->container)) {
             throw NoContainerAvailable::whilstRequiredFor($this->class);
         }
-        return HasOneProxy::inProperty($property,
-            ProxyFactory::fromThis(
-                SimpleHydrator::forThe($this->container),
-                $this->loader,
-                new PropertyUpdaterFactory
-            )
-        );
+        try {
+            return HasOneProxy::inProperty($property,
+                ProxyFactory::fromThis(
+                    SimpleHydrator::forThe($this->container),
+                    $this->loader,
+                    new PropertyUpdaterFactory
+                )
+            );
+        } catch (ReflectionException $encounteredException) {
+            throw NoSuchClass::couldNotLoadCollection($this->container);
+        }
     }
 
     /**
