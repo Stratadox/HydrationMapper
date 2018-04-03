@@ -220,7 +220,7 @@ class HasMany_indicates_a_polygamic_relationship extends TestCase
     }
 
     /** @test */
-    function cannot_map_nested_classes_that_do_not_exist()
+    function cannot_map_nested_collections_if_the_item_class_does_not_exist()
     {
         $this->expectException(InvalidMapperConfiguration::class);
         $this->expectExceptionCode(0);
@@ -230,6 +230,21 @@ class HasMany_indicates_a_polygamic_relationship extends TestCase
         );
         HasMany::ofThe('Stratadox\Not\An\Actual\Class')
             ->nested()
+            ->followFor('foo');
+    }
+
+    /** @test */
+    function cannot_map_nested_collections_if_the_collection_class_does_not_exist()
+    {
+        $this->expectException(InvalidMapperConfiguration::class);
+        $this->expectExceptionCode(0);
+        $this->expectExceptionMessage(
+            'Could not produce mapping for non-existing container class ' .
+            '`Stratadox\Not\An\Actual\Class`'
+        );
+        HasMany::ofThe(Chapter::class)
+            ->nested()
+            ->containedInA('Stratadox\Not\An\Actual\Class')
             ->followFor('foo');
     }
 
