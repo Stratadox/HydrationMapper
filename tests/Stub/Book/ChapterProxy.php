@@ -12,17 +12,17 @@ class ChapterProxy extends Chapter implements Proxy
 {
     use Proxying;
 
-    public function title() : Title
+    public function title(): Title
     {
         return $this->__load()->title();
     }
 
-    public function text() : Text
+    public function text(): Text
     {
         return $this->__load()->text();
     }
 
-    public function __toString() : string
+    public function __toString(): string
     {
         return $this->__load()->__toString();
     }

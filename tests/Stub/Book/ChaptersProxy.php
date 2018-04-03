@@ -12,17 +12,17 @@ class ChaptersProxy extends Chapters implements Proxy
 {
     use Proxying;
 
-    public function items() : array
+    public function items(): array
     {
         return $this->__load()->items();
     }
 
-    public function change(int $index, $newItem) : Alterable
+    public function change(int $index, $newItem): Alterable
     {
         return $this->__load()->change($index, $newItem);
     }
 
-    public function current() : Chapter
+    public function current(): Chapter
     {
         return $this->__load()->current();
     }
@@ -42,37 +42,37 @@ class ChaptersProxy extends Chapters implements Proxy
         return $this->__load()->valid();
     }
 
-    public function rewind()
+    public function rewind(): void
     {
-        return $this->__load()->rewind();
+        $this->__load()->rewind();
     }
 
-    public function __toString() : string
+    public function __toString(): string
     {
         return $this->__load()->__toString();
     }
 
-    public function count()
+    public function count(): int
     {
         return $this->__load()->count();
     }
 
-    public function toArray()
+    public function toArray(): array
     {
         return $this->__load()->toArray();
     }
 
-    public function getSize()
+    public function getSize(): int
     {
         return $this->__load()->getSize();
     }
 
-    public function offsetExists($index)
+    public function offsetExists($index): bool
     {
         return $this->__load()->offsetExists($index);
     }
 
-    public function offsetGet($index)
+    public function offsetGet($index): Chapter
     {
         return $this->__load()->offsetGet($index);
     }

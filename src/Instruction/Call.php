@@ -31,12 +31,12 @@ final class Call implements InstructsHowToMap
      *                          this property.
      * @return Call             The instruction object.
      */
-    public static function the(Closure $function) : Call
+    public static function the(Closure $function): Call
     {
         return new Call($function);
     }
 
-    public function followFor(string $property) : MapsProperty
+    public function followFor(string $property): MapsProperty
     {
         return ClosureResult::inProperty($property, $this->function);
     }

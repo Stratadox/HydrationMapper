@@ -32,7 +32,7 @@ use Stratadox\Proxy\ProxyFactory;
  */
 final class HasMany extends Relationship
 {
-    public function followFor(string $property) : MapsProperty
+    public function followFor(string $property): MapsProperty
     {
         if ($this->shouldNest) {
             return $this->manyNestedInThe($property);
@@ -43,7 +43,7 @@ final class HasMany extends Relationship
         return $this->oneProxyInThe($property);
     }
 
-    private function manyNestedInThe(string $property) : MapsProperty
+    private function manyNestedInThe(string $property): MapsProperty
     {
         return HasManyNested::inPropertyWithDifferentKey($property,
             $this->keyOr($property),
@@ -52,7 +52,7 @@ final class HasMany extends Relationship
         );
     }
 
-    private function manyProxiesInThe(string $property) : MapsProperty
+    private function manyProxiesInThe(string $property): MapsProperty
     {
         if (!isset($this->loader)) {
             throw NoLoaderAvailable::whilstRequiredFor($this->class);
@@ -68,7 +68,7 @@ final class HasMany extends Relationship
         );
     }
 
-    private function oneProxyInThe(string $property) : MapsProperty
+    private function oneProxyInThe(string $property): MapsProperty
     {
         if (!isset($this->loader)) {
             throw NoLoaderAvailable::whilstRequiredFor($this->class);
@@ -85,7 +85,7 @@ final class HasMany extends Relationship
         );
     }
 
-    private function container() : Hydrates
+    private function container(): Hydrates
     {
         if (isset($this->container)) {
             return VariadicConstructor::forThe($this->container);
@@ -93,7 +93,7 @@ final class HasMany extends Relationship
         return ArrayHydrator::create();
     }
 
-    private function updaterFactory() : ProducesOwnerUpdaters
+    private function updaterFactory(): ProducesOwnerUpdaters
     {
         if ($this->isImplementingThe(Alterable::class, $this->container)) {
             return new AlterableCollectionEntryUpdaterFactory;
@@ -101,7 +101,7 @@ final class HasMany extends Relationship
         return new ArrayEntryUpdaterFactory;
     }
 
-    private function isImplementingThe(string $interface, ?string $class) : bool
+    private function isImplementingThe(string $interface, ?string $class): bool
     {
         return isset($class) && in_array($interface, class_implements($class));
     }

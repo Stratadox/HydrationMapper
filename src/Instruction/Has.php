@@ -29,8 +29,7 @@ final class Has
     public static function one(
         string $class,
         FindsKeys $key = null
-    ) : DefinesRelationships
-    {
+    ): DefinesRelationships {
         return HasOne::ofThe($class, $key);
     }
 
@@ -44,8 +43,7 @@ final class Has
     public static function many(
         string $class,
         FindsKeys $key = null
-    ) : DefinesRelationships
-    {
+    ): DefinesRelationships {
         return HasMany::ofThe($class, $key);
     }
 }

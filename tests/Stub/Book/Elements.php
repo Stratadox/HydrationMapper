@@ -17,8 +17,13 @@ class Elements extends ImmutableCollection implements Alterable
         parent::__construct(...$elements);
     }
 
-    public function current() : Element
+    public function current(): Element
     {
         return parent::current();
+    }
+
+    public function offsetGet($index): Element
+    {
+        return parent::offsetGet($index);
     }
 }

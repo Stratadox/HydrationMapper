@@ -30,17 +30,17 @@ final class In implements FindsKeys, InstructsHowToMap
      * @param string $key The offset to use in the input array.
      * @return In         The instruction object.
      */
-    public static function key(string $key) : In
+    public static function key(string $key): In
     {
         return new In($key);
     }
 
-    public function find() : string
+    public function find(): string
     {
         return $this->key;
     }
 
-    public function followFor(string $property) : MapsProperty
+    public function followFor(string $property): MapsProperty
     {
         return StringValue::inPropertyWithDifferentKey($property, $this->key);
     }

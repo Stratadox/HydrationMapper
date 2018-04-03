@@ -38,42 +38,42 @@ final class Is implements InstructsHowToMap
         $this->key = $key;
     }
 
-    public static function bool() : InstructsHowToMap
+    public static function bool(): InstructsHowToMap
     {
         return Is::type(BooleanValue::class);
     }
 
-    public static function float() : InstructsHowToMap
+    public static function float(): InstructsHowToMap
     {
         return Is::type(FloatValue::class);
     }
 
-    public static function int() : InstructsHowToMap
+    public static function int(): InstructsHowToMap
     {
         return Is::type(IntegerValue::class);
     }
 
-    public static function string() : InstructsHowToMap
+    public static function string(): InstructsHowToMap
     {
         return Is::type(StringValue::class);
     }
 
-    public static function boolInKey(string $key) : InstructsHowToMap
+    public static function boolInKey(string $key): InstructsHowToMap
     {
         return Is::type(BooleanValue::class, self::USE_KEY, $key);
     }
 
-    public static function floatInKey(string $key) : InstructsHowToMap
+    public static function floatInKey(string $key): InstructsHowToMap
     {
         return Is::type(FloatValue::class, self::USE_KEY, $key);
     }
 
-    public static function intInKey(string $key) : InstructsHowToMap
+    public static function intInKey(string $key): InstructsHowToMap
     {
         return Is::type(IntegerValue::class, self::USE_KEY, $key);
     }
 
-    public static function stringInKey(string $key) : InstructsHowToMap
+    public static function stringInKey(string $key): InstructsHowToMap
     {
         return Is::type(StringValue::class, self::USE_KEY, $key);
     }
@@ -82,12 +82,11 @@ final class Is implements InstructsHowToMap
         string $className,
         string $constructor = self::SAME_KEY,
         string $key = null
-    ) : InstructsHowToMap
-    {
+    ): InstructsHowToMap {
         return new Is($className, $constructor, $key);
     }
 
-    public function followFor(string $property) : MapsProperty
+    public function followFor(string $property): MapsProperty
     {
         return call_user_func(
             sprintf('%s::%s', $this->className, $this->constructionMethod),

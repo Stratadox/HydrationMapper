@@ -32,18 +32,18 @@ final class Choose implements RepresentsChoice
      *                          be chosen.
      * @return RepresentsChoice The object representation of the choice.
      */
-    public static function the(string $class) : RepresentsChoice
+    public static function the(string $class): RepresentsChoice
     {
         return new Choose(Mapper::forThe($class));
     }
 
-    public function with(string $property, InstructsHowToMap $howToMap = null) : RepresentsChoice
+    public function with(string $property, InstructsHowToMap $howToMap = null): RepresentsChoice
     {
         $this->class = $this->class->property($property, $howToMap);
         return $this;
     }
 
-    public function finish() : Hydrates
+    public function finish(): Hydrates
     {
         return $this->class->finish();
     }

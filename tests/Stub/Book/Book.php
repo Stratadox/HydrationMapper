@@ -29,57 +29,57 @@ class Book
         $this->format = $format ?: "%s (by %s, ISBN %s)\n\n%s";
     }
 
-    public function wasWrittenByThe(Author $inQuestion)
+    public function wasWrittenByThe(Author $inQuestion): bool
     {
         return $this->author == $inQuestion;
     }
 
-    public function hasInItsTitle(string $searchText)
+    public function hasInItsTitle(string $searchText): bool
     {
         return strpos($this->title, $searchText) !== false;
     }
 
-    public function hasIsbnVersion10()
+    public function hasIsbnVersion10(): bool
     {
         return $this->isbn->isVersion10();
     }
 
-    public function hasIsbnVersion13()
+    public function hasIsbnVersion13(): bool
     {
         return $this->isbn->isVersion13();
     }
 
-    public function title() : Title
+    public function title(): Title
     {
         return $this->title;
     }
 
-    public function author() : Author
+    public function author(): Author
     {
         return $this->author;
     }
 
-    public function isbn() : Isbn
+    public function isbn(): Isbn
     {
         return $this->isbn;
     }
 
-    public function chapters() : Chapters
+    public function chapters(): Chapters
     {
         return $this->contents;
     }
 
-    public function format() : string
+    public function format(): string
     {
         return $this->format;
     }
 
-    public function textInChapter(int $number) : Text
+    public function textInChapter(int $number): Text
     {
         return $this->contents->textInChapter($number - 1);
     }
 
-    public function __toString() : string
+    public function __toString(): string
     {
         return sprintf($this->format,
             $this->title(),

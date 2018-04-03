@@ -21,6 +21,7 @@ final class Mapper implements MakesMap
 {
     /** @var string */
     private $name;
+
     /** @var InstructsHowToMap[] */
     private $properties;
 
@@ -38,7 +39,7 @@ final class Mapper implements MakesMap
      *                          a mapped hydrator for.
      * @return Mapper           The builder for the mapped hydrator.
      */
-    public static function forThe(string $className) : self
+    public static function forThe(string $className): self
     {
         return new self($className);
     }
@@ -46,12 +47,11 @@ final class Mapper implements MakesMap
     public function property(
         string $property,
         InstructsHowToMap $instruction = null
-    ) : MakesMap
-    {
+    ): MakesMap {
         return new self($this->name, $this->add($property, $instruction));
     }
 
-    public function finish() : Hydrates
+    public function finish(): Hydrates
     {
         $class = $this->name;
         $properties = [];
@@ -64,8 +64,7 @@ final class Mapper implements MakesMap
     private function add(
         string $property,
         InstructsHowToMap $instruction = null
-    ) : array
-    {
+    ): array {
         return $this->properties + [$property => $instruction ?: Is::string()];
     }
 }

@@ -16,7 +16,7 @@ use Stratadox\HydrationMapping\MapsProperty;
  */
 final class HasOne extends Relationship
 {
-    public function followFor(string $property) : MapsProperty
+    public function followFor(string $property): MapsProperty
     {
         if ($this->shouldNest) {
             return HasOneNested::inPropertyWithDifferentKey($property,

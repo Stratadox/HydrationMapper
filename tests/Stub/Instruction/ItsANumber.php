@@ -10,12 +10,12 @@ use Stratadox\HydrationMapping\MapsProperty;
 
 class ItsANumber implements InstructsHowToMap
 {
-    public static function allRight() : InstructsHowToMap
+    public static function allRight(): InstructsHowToMap
     {
         return new self;
     }
 
-    public function followFor(string $property) : MapsProperty
+    public function followFor(string $property): MapsProperty
     {
         return IntegerValue::inProperty($property);
     }

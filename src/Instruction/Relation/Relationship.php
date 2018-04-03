@@ -54,26 +54,25 @@ abstract class Relationship implements DefinesRelationships
     public static function ofThe(
         string $class,
         FindsKeys $key = null
-    ) : DefinesRelationships
-    {
+    ): DefinesRelationships {
         return new static($class, $key);
     }
 
-    public function containedInA(string $container) : DefinesRelationships
+    public function containedInA(string $container): DefinesRelationships
     {
         $inst = clone $this;
         $inst->container = $container;
         return $inst;
     }
 
-    public function loadedBy(ProducesProxyLoaders $loader) : DefinesRelationships
+    public function loadedBy(ProducesProxyLoaders $loader): DefinesRelationships
     {
         $inst = clone $this;
         $inst->loader = $loader;
         return $inst;
     }
 
-    public function nested() : DefinesRelationships
+    public function nested(): DefinesRelationships
     {
         $inst = clone $this;
         $inst->shouldNest = true;
@@ -83,8 +82,7 @@ abstract class Relationship implements DefinesRelationships
     public function with(
         string $property,
         InstructsHowToMap $instruction = null
-    ) : DefinesRelationships
-    {
+    ): DefinesRelationships {
         $inst = clone $this;
         $inst->properties += [$property => $instruction];
         return $inst;
@@ -93,8 +91,7 @@ abstract class Relationship implements DefinesRelationships
     public function selectBy(
         string $decisionKey,
         array $choices
-    ) : DefinesRelationships
-    {
+    ): DefinesRelationships {
         $inst = clone $this;
         $inst->decisionKey = $decisionKey;
         $inst->choices = $choices;
@@ -107,9 +104,9 @@ abstract class Relationship implements DefinesRelationships
      * @param string $property  The property name to use as fallback.
      * @return string           The key to use as offset for the input data.
      */
-    protected function keyOr(string $property) : string
+    protected function keyOr(string $property):string
     {
-        return $this->key ? $this->key->find() : $property;
+        return $this->key ? $this->key->find():$property;
     }
 
     /**
@@ -117,7 +114,7 @@ abstract class Relationship implements DefinesRelationships
      *
      * @return Hydrates The hydrator for the relationship mapping.
      */
-    protected function hydrator() : Hydrates
+    protected function hydrator(): Hydrates
     {
         if (isset($this->decisionKey)) {
             return $this->choiceHydrator();
@@ -130,7 +127,7 @@ abstract class Relationship implements DefinesRelationships
         }
     }
 
-    private function choiceHydrator() : Hydrates
+    private function choiceHydrator(): Hydrates
     {
         assert(isset($this->decisionKey));
         return OneOfTheseHydrators::decideBasedOnThe(
