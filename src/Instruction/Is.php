@@ -27,7 +27,7 @@ final class Is implements InstructsHowToMap
     private $constructionMethod;
     private $key;
 
-    public function __construct(
+    private function __construct(
         string $className,
         string $constructionMethod,
         ?string $key
