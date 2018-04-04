@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Stratadox\Hydration\Mapper;
 
+use ReflectionException;
 use Stratadox\Hydration\Mapper\Instruction\Is;
 use Stratadox\Hydration\Mapping\Properties;
 use Stratadox\HydrationMapper\InstructsHowToMap;
@@ -57,7 +58,11 @@ final class Mapper implements MakesMap
         foreach ($this->properties as $name => $instruction) {
             $properties[] = $instruction->followFor($name);
         }
-        return MappedHydrator::forThe($class, Properties::map(...$properties));
+        try {
+            return MappedHydrator::forThe($class, Properties::map(...$properties));
+        } catch (ReflectionException $exception) {
+            throw NoSuchClass::couldNotLoad($class);
+        }
     }
 
     private function add(
