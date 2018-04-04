@@ -15,6 +15,7 @@ use Stratadox\HydrationMapping\MapsProperty;
  */
 final class HasOne extends Relationship
 {
+    /** @inheritdoc */
     public function followFor(string $property): MapsProperty
     {
         if ($this->shouldNest) {

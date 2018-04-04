@@ -32,7 +32,7 @@ final class Mapper implements MakesMap
     }
 
     /**
-     * Create a builder that produces a mapped hydrator for a class.
+     * Creates a builder that produces a mapped hydrator for a class.
      *
      * @see MappedHydrator
      * @param string $className The fully qualified name of the class to produce
@@ -44,6 +44,7 @@ final class Mapper implements MakesMap
         return new self($className);
     }
 
+    /** @inheritdoc */
     public function property(
         string $property,
         InstructsHowToMap $instruction = null
@@ -51,6 +52,7 @@ final class Mapper implements MakesMap
         return new self($this->name, $this->add($property, $instruction));
     }
 
+    /** @inheritdoc */
     public function finish(): Hydrates
     {
         $class = $this->name;
@@ -65,9 +67,16 @@ final class Mapper implements MakesMap
         }
     }
 
+    /**
+     * Adds a property to the mapper.
+     *
+     * @param string $property                    The name of the property.
+     * @param InstructsHowToMap|null $instruction The instruction to follow.
+     * @return InstructsHowToMap[] The map of properties to mapping instructions.
+     */
     private function add(
         string $property,
-        InstructsHowToMap $instruction = null
+        ?InstructsHowToMap $instruction
     ): array {
         return $this->properties + [$property => $instruction ?: Is::string()];
     }

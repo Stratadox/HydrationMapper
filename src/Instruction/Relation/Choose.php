@@ -36,12 +36,14 @@ final class Choose implements RepresentsChoice
         return new Choose(Mapper::forThe($class));
     }
 
+    /** @inheritdoc */
     public function with(string $property, InstructsHowToMap $howToMap = null): RepresentsChoice
     {
         $this->class = $this->class->property($property, $howToMap);
         return $this;
     }
 
+    /** @inheritdoc */
     public function finish(): Hydrates
     {
         return $this->class->finish();

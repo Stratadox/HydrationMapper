@@ -77,6 +77,14 @@ final class Is implements InstructsHowToMap
         return Is::type(StringValue::class, self::USE_KEY, $key);
     }
 
+    /**
+     * Declare that the property is of the type.
+     *
+     * @param string $className   Class name of the property mapping.
+     * @param string $constructor Constructor name to use.
+     * @param string|null $key    Data key to use.
+     * @return InstructsHowToMap  The mapping instruction.
+     */
     private static function type(
         string $className,
         string $constructor = self::SAME_KEY,
@@ -85,6 +93,7 @@ final class Is implements InstructsHowToMap
         return new Is($className, $constructor, $key);
     }
 
+    /** @inheritdoc */
     public function followFor(string $property): MapsProperty
     {
         return call_user_func(

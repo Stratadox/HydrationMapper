@@ -16,7 +16,7 @@ use Stratadox\HydrationMapper\InvalidMapperConfiguration as InvalidMapper;
 final class NoContainerAvailable extends BadMethodCall implements InvalidMapper
 {
     /**
-     * Produce an exception for when there is no container defined for a class.
+     * Produces an exception for when there is no container defined for a class.
      *.
      * @param string $class The class that is missing a container.
      * @return self         The exception object.

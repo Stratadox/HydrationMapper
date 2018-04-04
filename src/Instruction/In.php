@@ -34,11 +34,13 @@ final class In implements FindsKeys, InstructsHowToMap
         return new In($key);
     }
 
+    /** @inheritdoc */
     public function find(): string
     {
         return $this->key;
     }
 
+    /** @inheritdoc */
     public function followFor(string $property): MapsProperty
     {
         return StringValue::inPropertyWithDifferentKey($property, $this->key);

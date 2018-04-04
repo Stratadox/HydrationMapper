@@ -19,7 +19,7 @@ final class Has
     private function __construct() {}
 
     /**
-     * Define a has-one relationship with another class.
+     * Defines a has-one relationship with another class.
      *
      * @param string         $class The fully qualified class name.
      * @param FindsKeys|null $key   The input array offset (optional)
@@ -33,7 +33,7 @@ final class Has
     }
 
     /**
-     * Define a has-many relationship with another class.
+     * Defines a has-many relationship with another class.
      *
      * @param string         $class The fully qualified class name.
      * @param FindsKeys|null $key   The input array offset (optional)

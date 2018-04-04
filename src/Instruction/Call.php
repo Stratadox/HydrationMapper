@@ -24,7 +24,7 @@ final class Call implements InstructsHowToMap
     }
 
     /**
-     * Create a closure call instruction for the property.
+     * Creates a closure-call instruction for the property.
      *
      * @param Closure $function The anonymous function to call while hydrating
      *                          this property.
@@ -35,6 +35,7 @@ final class Call implements InstructsHowToMap
         return new Call($function);
     }
 
+    /** @inheritdoc */
     public function followFor(string $property): MapsProperty
     {
         return ClosureResult::inProperty($property, $this->function);
