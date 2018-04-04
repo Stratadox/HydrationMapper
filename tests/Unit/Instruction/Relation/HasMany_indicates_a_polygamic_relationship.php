@@ -220,7 +220,7 @@ class HasMany_indicates_a_polygamic_relationship extends TestCase
     }
 
     /** @test */
-    function cannot_map_nested_collections_if_the_item_class_does_not_exist()
+    function cannot_map_nested_collections_if_the_class_does_not_exist()
     {
         $this->expectException(InvalidMapperConfiguration::class);
         $this->expectExceptionCode(0);
@@ -234,7 +234,7 @@ class HasMany_indicates_a_polygamic_relationship extends TestCase
     }
 
     /** @test */
-    function cannot_map_nested_collections_if_the_collection_class_does_not_exist()
+    function cannot_map_nested_collections_if_the_container_does_not_exist()
     {
         $this->expectException(InvalidMapperConfiguration::class);
         $this->expectExceptionCode(0);
