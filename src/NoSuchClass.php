@@ -9,19 +9,19 @@ use Stratadox\HydrationMapper\InvalidMapperConfiguration;
 
 class NoSuchClass extends RuntimeException implements InvalidMapperConfiguration
 {
-    public static function couldNotLoad(string $property): self
+    public static function couldNotLoad(string $className): self
     {
         return new NoSuchClass(withMessage(
             'Could not produce mapping for non-existing class `%s`',
-            $property
+            $className
         ));
     }
 
-    public static function couldNotLoadCollection(string $property): self
+    public static function couldNotLoadCollection(string $className): self
     {
         return new NoSuchClass(withMessage(
             'Could not produce mapping for non-existing container class `%s`',
-            $property
+            $className
         ));
     }
 }
