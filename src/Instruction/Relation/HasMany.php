@@ -73,27 +73,22 @@ final class HasMany extends Relationship
      * @param string $property      The property that gets an extra lazy relationship.
      * @return MapsProperty         The resulting property mapping.
      * @throws InvalidMapperConfiguration
-     * @todo Due to context, this cannot actually throw. Decide on approach.
      */
     private function manyProxiesInThe(string $property): MapsProperty
     {
         if (!isset($this->loader)) {
             throw NoLoaderAvailable::whilstRequiredFor($this->class);
         }
-        try {
-            return HasManyProxies::inPropertyWithDifferentKey(
-                $property,
-                $this->keyOr($property),
-                $this->container(),
-                ProxyFactory::fromThis(
-                    SimpleHydrator::forThe($this->class),
-                    $this->loader,
-                    $this->updaterFactory()
-                )
-            );
-        } catch (ReflectionException $exception) {
-            throw NoSuchClass::couldNotLoad($this->class);
-        }
+        return HasManyProxies::inPropertyWithDifferentKey(
+            $property,
+            $this->keyOr($property),
+            $this->container(),
+            ProxyFactory::fromThis(
+                SimpleHydrator::forThe($this->class),
+                $this->loader,
+                $this->updaterFactory()
+            )
+        );
     }
 
     /**
