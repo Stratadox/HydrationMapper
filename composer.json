@@ -19,7 +19,7 @@
   },
   "require": {
     "php": ">=7.1",
-    "stratadox/hydrator": "^v3.0",
+    "stratadox/hydrator": "^v3.2",
     "stratadox/hydration-mapping": "^v2.1",
     "stratadox/proxy": "^0.1",
     "stratadox/hydration-mapper-contracts": "^0.1.0"

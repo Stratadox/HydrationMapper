@@ -3,13 +3,13 @@ declare(strict_types=1);
 
 namespace Stratadox\Hydration\Mapper;
 
-use ReflectionException;
 use Stratadox\Hydration\Mapper\Instruction\Is;
 use Stratadox\Hydration\Mapping\Properties;
 use Stratadox\HydrationMapper\InstructsHowToMap;
 use Stratadox\HydrationMapper\MakesMap;
 use Stratadox\Hydrator\Hydrates;
 use Stratadox\Hydrator\MappedHydrator;
+use Stratadox\Instantiator\CannotInstantiateThis;
 
 /**
  * Builds a mapped hydrator, configured with mappings for the properties.
@@ -62,7 +62,7 @@ final class Mapper implements MakesMap
         }
         try {
             return MappedHydrator::forThe($class, Properties::map(...$properties));
-        } catch (ReflectionException $exception) {
+        } catch (CannotInstantiateThis $problem) {
             throw NoSuchClass::couldNotLoad($class);
         }
     }

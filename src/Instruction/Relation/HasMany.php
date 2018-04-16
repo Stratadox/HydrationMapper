@@ -6,7 +6,6 @@ namespace Stratadox\Hydration\Mapper\Instruction\Relation;
 use function class_exists;
 use function class_implements;
 use function in_array;
-use ReflectionException;
 use Stratadox\Collection\Alterable;
 use Stratadox\Hydration\Mapper\NoContainerAvailable;
 use Stratadox\Hydration\Mapper\NoLoaderAvailable;
@@ -20,6 +19,7 @@ use Stratadox\Hydrator\ArrayHydrator;
 use Stratadox\Hydrator\Hydrates;
 use Stratadox\Hydrator\SimpleHydrator;
 use Stratadox\Hydrator\VariadicConstructor;
+use Stratadox\Instantiator\CannotInstantiateThis;
 use Stratadox\Proxy\AlterableCollectionEntryUpdaterFactory;
 use Stratadox\Proxy\ArrayEntryUpdaterFactory;
 use Stratadox\Proxy\ProducesOwnerUpdaters;
@@ -56,7 +56,7 @@ final class HasMany extends Relationship
      */
     private function manyNestedInThe(string $property): MapsProperty
     {
-        if (isset($this->container) && !class_exists($this->container)) {
+        if (null !== $this->container && !class_exists($this->container)) {
             throw NoSuchClass::couldNotLoadCollection($this->container);
         }
         return HasManyNested::inPropertyWithDifferentKey(
@@ -76,7 +76,7 @@ final class HasMany extends Relationship
      */
     private function manyProxiesInThe(string $property): MapsProperty
     {
-        if (!isset($this->loader)) {
+        if (null === $this->loader) {
             throw NoLoaderAvailable::whilstRequiredFor($this->class);
         }
         return HasManyProxies::inPropertyWithDifferentKey(
@@ -100,10 +100,10 @@ final class HasMany extends Relationship
      */
     private function oneProxyInThe(string $property): MapsProperty
     {
-        if (!isset($this->loader)) {
+        if (null === $this->loader) {
             throw NoLoaderAvailable::whilstRequiredFor($this->class);
         }
-        if (!isset($this->container)) {
+        if (null === $this->container) {
             throw NoContainerAvailable::whilstRequiredFor($this->class);
         }
         try {
@@ -114,7 +114,7 @@ final class HasMany extends Relationship
                     new PropertyUpdaterFactory
                 )
             );
-        } catch (ReflectionException $encounteredException) {
+        } catch (CannotInstantiateThis $problem) {
             throw NoSuchClass::couldNotLoadCollection($this->container);
         }
     }
@@ -124,7 +124,7 @@ final class HasMany extends Relationship
      */
     private function container(): Hydrates
     {
-        if (isset($this->container)) {
+        if (null !== $this->container) {
             return VariadicConstructor::forThe($this->container);
         }
         return ArrayHydrator::create();
@@ -148,6 +148,8 @@ final class HasMany extends Relationship
      */
     private function isImplementingThe(string $interface, ?string $class): bool
     {
-        return isset($class) && class_exists($class) && in_array($interface, class_implements($class));
+        return null !== $class
+            && class_exists($class)
+            && in_array($interface, class_implements($class));
     }
 }
