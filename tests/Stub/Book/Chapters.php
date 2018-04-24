@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Stratadox\Hydration\Mapper\Test\Stub\Book;
 
-use function implode;
 use Stratadox\Collection\Alterable;
 use Stratadox\ImmutableCollection\Altering;
 use Stratadox\ImmutableCollection\ImmutableCollection;
+use function implode;
 
 class Chapters extends ImmutableCollection implements Alterable
 {

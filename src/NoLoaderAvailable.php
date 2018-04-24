@@ -11,13 +11,13 @@ use Stratadox\HydrationMapper\InvalidMapperConfiguration as InvalidMapper;
  * Indicates that a loader was necessary but not available.
  *
  * @package Stratadox\Hydrate
- * @author Stratadox
+ * @author  Stratadox
  */
 final class NoLoaderAvailable extends BadMethodCall implements InvalidMapper
 {
     /**
      * Produces an exception for when there is no loader defined for a class.
-     *.
+     *
      * @param string $class  The class that is missing a loader.
      * @return InvalidMapper The exception object.
      */

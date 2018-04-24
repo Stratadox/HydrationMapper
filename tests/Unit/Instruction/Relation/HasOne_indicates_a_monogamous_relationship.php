@@ -82,7 +82,7 @@ class HasOne_indicates_a_monogamous_relationship extends TestCase
         self::assertEquals(
             HasOneEmbedded::inProperty('element',
                 OneOfTheseHydrators::decideBasedOnThe('type', [
-                    'text' => MappedHydrator::forThe(Text::class, Properties::map(
+                    'text'  => MappedHydrator::forThe(Text::class, Properties::map(
                         StringValue::inProperty('text')
                     )),
                     'image' => MappedHydrator::forThe(Image::class, Properties::map(
@@ -93,7 +93,7 @@ class HasOne_indicates_a_monogamous_relationship extends TestCase
             ),
             HasOne::ofThe(Element::class)
                 ->selectBy('type', [
-                    'text' => Choose::the(Text::class)->with('text'),
+                    'text'  => Choose::the(Text::class)->with('text'),
                     'image' => Choose::the(Image::class)->with('src')->with('alt'),
                 ])
                 ->followFor('element')
@@ -106,7 +106,7 @@ class HasOne_indicates_a_monogamous_relationship extends TestCase
         self::assertEquals(
             HasOneNested::inProperty('element',
                 OneOfTheseHydrators::decideBasedOnThe('type', [
-                    'text' => MappedHydrator::forThe(Text::class, Properties::map(
+                    'text'  => MappedHydrator::forThe(Text::class, Properties::map(
                         StringValue::inProperty('text')
                     )),
                     'image' => MappedHydrator::forThe(Image::class, Properties::map(
@@ -117,7 +117,7 @@ class HasOne_indicates_a_monogamous_relationship extends TestCase
             ),
             HasOne::ofThe(Element::class)
                 ->selectBy('type', [
-                    'text' => Choose::the(Text::class)->with('text'),
+                    'text'  => Choose::the(Text::class)->with('text'),
                     'image' => Choose::the(Image::class)->with('src')->with('alt'),
                 ])
                 ->nested()

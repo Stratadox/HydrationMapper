@@ -4,10 +4,10 @@ declare(strict_types=1);
 namespace Stratadox\Hydration\Mapper\Test\Integration;
 
 use PHPUnit\Framework\TestCase;
-use Stratadox\Hydration\Mapper\Mapper;
 use Stratadox\Hydration\Mapper\Instruction\Call;
 use Stratadox\Hydration\Mapper\Instruction\Has;
 use Stratadox\Hydration\Mapper\Instruction\In;
+use Stratadox\Hydration\Mapper\Mapper;
 use Stratadox\Hydration\Mapper\Test\Stub\Book\Author;
 use Stratadox\Hydration\Mapper\Test\Stub\Book\Book;
 use Stratadox\Hydration\Mapper\Test\Stub\Book\ChapterLoaderFactory;

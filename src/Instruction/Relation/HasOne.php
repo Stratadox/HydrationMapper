@@ -11,7 +11,7 @@ use Stratadox\HydrationMapping\MapsProperty;
  * Indicates a monogamous relationship in the property.
  *
  * @package Stratadox\Hydrate
- * @author Stratadox
+ * @author  Stratadox
  */
 final class HasOne extends Relationship
 {

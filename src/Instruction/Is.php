@@ -3,20 +3,20 @@ declare(strict_types=1);
 
 namespace Stratadox\Hydration\Mapper\Instruction;
 
-use function call_user_func;
-use function sprintf;
 use Stratadox\Hydration\Mapping\Property\Scalar\BooleanValue;
 use Stratadox\Hydration\Mapping\Property\Scalar\FloatValue;
 use Stratadox\Hydration\Mapping\Property\Scalar\IntegerValue;
 use Stratadox\Hydration\Mapping\Property\Scalar\StringValue;
 use Stratadox\HydrationMapper\InstructsHowToMap;
 use Stratadox\HydrationMapping\MapsProperty;
+use function call_user_func;
+use function sprintf;
 
 /**
  * Indicates the type of a property, optionally changing the data key.
  *
  * @package Stratadox\Hydrate
- * @author Stratadox
+ * @author  Stratadox
  */
 final class Is implements InstructsHowToMap
 {
@@ -80,10 +80,10 @@ final class Is implements InstructsHowToMap
     /**
      * Declare that the property is of the type.
      *
-     * @param string $className   Class name of the property mapping.
-     * @param string $constructor Constructor name to use.
-     * @param string|null $key    Data key to use.
-     * @return InstructsHowToMap  The mapping instruction.
+     * @param string      $className   Class name of the property mapping.
+     * @param string      $constructor Constructor name to use.
+     * @param string|null $key         Data key to use.
+     * @return InstructsHowToMap       The mapping instruction.
      */
     private static function type(
         string $className,

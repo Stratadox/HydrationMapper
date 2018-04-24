@@ -86,7 +86,7 @@ class HasMany_indicates_a_polygamic_relationship extends TestCase
             HasManyNested::inProperty('elements',
                 VariadicConstructor::forThe(Elements::class),
                 OneOfTheseHydrators::decideBasedOnThe('type', [
-                    'text' => MappedHydrator::forThe(Text::class, Properties::map(
+                    'text'  => MappedHydrator::forThe(Text::class, Properties::map(
                         StringValue::inProperty('text')
                     )),
                     'image' => MappedHydrator::forThe(Image::class, Properties::map(
@@ -97,7 +97,7 @@ class HasMany_indicates_a_polygamic_relationship extends TestCase
             ),
             HasMany::ofThe(Element::class)
                 ->selectBy('type', [
-                    'text' => Choose::the(Text::class)->with('text'),
+                    'text'  => Choose::the(Text::class)->with('text'),
                     'image' => Choose::the(Image::class)->with('src')->with('alt'),
                 ])
                 ->nested()

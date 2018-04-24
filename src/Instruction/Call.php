@@ -12,7 +12,7 @@ use Stratadox\HydrationMapping\MapsProperty;
  * Indicates that a closure should be called to hydrate this property.
  *
  * @package Stratadox\Hydrate
- * @author Stratadox
+ * @author  Stratadox
  */
 final class Call implements InstructsHowToMap
 {

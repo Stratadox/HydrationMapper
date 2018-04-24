@@ -13,7 +13,7 @@ use Stratadox\Hydrator\Hydrates;
  * Indicates a choice for one of several concrete types.
  *
  * @package Stratadox\Hydrate
- * @author Stratadox
+ * @author  Stratadox
  */
 final class Choose implements RepresentsChoice
 {

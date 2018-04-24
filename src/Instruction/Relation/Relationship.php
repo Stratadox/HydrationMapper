@@ -12,12 +12,13 @@ use Stratadox\HydrationMapper\RepresentsChoice;
 use Stratadox\Hydrator\Hydrates;
 use Stratadox\Hydrator\OneOfTheseHydrators;
 use Stratadox\Proxy\ProducesProxyLoaders;
+use function assert;
 
 /**
  * Defines a relationship with another class.
  *
  * @package Stratadox\Hydrate
- * @author Stratadox
+ * @author  Stratadox
  */
 abstract class Relationship implements DefinesRelationships
 {
@@ -113,8 +114,8 @@ abstract class Relationship implements DefinesRelationships
     /**
      * Returns the key if one was provided, defaulting to the property name.
      *
-     * @param string $property  The property name to use as fallback.
-     * @return string           The key to use as offset for the input data.
+     * @param string $property The property name to use as fallback.
+     * @return string          The key to use as offset for the input data.
      */
     protected function keyOr(string $property): string
     {
@@ -131,13 +132,12 @@ abstract class Relationship implements DefinesRelationships
     {
         if (isset($this->decisionKey)) {
             return $this->choiceHydrator();
-        } else {
-            $mapped = Mapper::forThe($this->class);
-            foreach ($this->properties as $property => $instruction) {
-                $mapped = $mapped->property($property, $instruction);
-            }
-            return $mapped->finish();
         }
+        $mapped = Mapper::forThe($this->class);
+        foreach ($this->properties as $property => $instruction) {
+            $mapped = $mapped->property($property, $instruction);
+        }
+        return $mapped->finish();
     }
 
     /**

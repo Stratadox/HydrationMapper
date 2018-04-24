@@ -31,7 +31,7 @@ use Stratadox\Proxy\ProxyFactory;
  * Indicates a polygamic relationship in the property.
  *
  * @package Stratadox\Hydrate
- * @author Stratadox
+ * @author  Stratadox
  */
 final class HasMany extends Relationship
 {
@@ -70,8 +70,8 @@ final class HasMany extends Relationship
     /**
      * Maps an extra lazily loaded collection as list of proxies.
      *
-     * @param string $property      The property that gets an extra lazy relationship.
-     * @return MapsProperty         The resulting property mapping.
+     * @param string $property The property that gets an extra lazy relationship.
+     * @return MapsProperty    The resulting property mapping.
      * @throws InvalidMapperConfiguration
      */
     private function manyProxiesInThe(string $property): MapsProperty
@@ -94,7 +94,7 @@ final class HasMany extends Relationship
     /**
      * Maps a lazily loaded collection as a single proxy.
      *
-     * @param string $property      The property that gets a lazy relationship.
+     * @param string $property The property that gets a lazy relationship.
      * @return MapsProperty         The resulting property mapping.
      * @throws InvalidMapperConfiguration
      */
@@ -142,8 +142,8 @@ final class HasMany extends Relationship
     }
 
     /**
-     * @param string $interface  The interface name.
-     * @param null|string $class The class name.
+     * @param string      $interface The interface name.
+     * @param null|string $class     The class name.
      * @return bool              Whether the class implements the interface.
      */
     private function isImplementingThe(string $interface, ?string $class): bool

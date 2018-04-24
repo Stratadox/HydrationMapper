@@ -12,7 +12,7 @@ use Stratadox\HydrationMapping\MapsProperty;
  * Indicates a change in data key.
  *
  * @package Stratadox\Hydrate
- * @author Stratadox
+ * @author  Stratadox
  */
 final class In implements FindsKeys, InstructsHowToMap
 {

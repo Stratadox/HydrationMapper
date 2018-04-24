@@ -11,7 +11,7 @@ use Stratadox\HydrationMapper\InvalidMapperConfiguration as InvalidMapper;
  * Indicates that a class was not found.
  *
  * @package Stratadox\Hydrate
- * @author Stratadox
+ * @author  Stratadox
  */
 class NoSuchClass extends RuntimeException implements InvalidMapper
 {

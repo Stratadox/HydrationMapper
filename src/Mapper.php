@@ -15,7 +15,7 @@ use Stratadox\Instantiator\CannotInstantiateThis;
  * Builds a mapped hydrator, configured with mappings for the properties.
  *
  * @package Stratadox\Hydrate
- * @author Stratadox
+ * @author  Stratadox
  */
 final class Mapper implements MakesMap
 {
@@ -70,9 +70,10 @@ final class Mapper implements MakesMap
     /**
      * Adds a property to the mapper.
      *
-     * @param string $property                    The name of the property.
+     * @param string                 $property    The name of the property.
      * @param InstructsHowToMap|null $instruction The instruction to follow.
-     * @return InstructsHowToMap[] The map of properties to mapping instructions.
+     * @return InstructsHowToMap[]                The map of properties to
+     *                                            mapping instructions.
      */
     private function add(
         string $property,
