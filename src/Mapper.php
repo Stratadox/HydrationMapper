@@ -37,9 +37,9 @@ final class Mapper implements MakesMap
      * @see MappedHydrator
      * @param string $className The fully qualified name of the class to produce
      *                          a mapped hydrator for.
-     * @return Mapper           The builder for the mapped hydrator.
+     * @return MakesMap         The builder for the mapped hydrator.
      */
-    public static function forThe(string $className): self
+    public static function forThe(string $className): MakesMap
     {
         return new self($className);
     }

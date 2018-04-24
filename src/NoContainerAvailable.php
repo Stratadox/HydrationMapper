@@ -18,10 +18,10 @@ final class NoContainerAvailable extends BadMethodCall implements InvalidMapper
     /**
      * Produces an exception for when there is no container defined for a class.
      *.
-     * @param string $class The class that is missing a container.
-     * @return self         The exception object.
+     * @param string $class  The class that is missing a container.
+     * @return InvalidMapper The exception object.
      */
-    public static function whilstRequiredFor(string $class): NoContainerAvailable
+    public static function whilstRequiredFor(string $class): InvalidMapper
     {
         return new NoContainerAvailable(withMessage(
             'Could not produce mapping due to a missing container for class `%s`',

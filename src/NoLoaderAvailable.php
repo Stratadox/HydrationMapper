@@ -18,10 +18,10 @@ final class NoLoaderAvailable extends BadMethodCall implements InvalidMapper
     /**
      * Produces an exception for when there is no loader defined for a class.
      *.
-     * @param string $class The class that is missing a loader.
-     * @return self         The exception object.
+     * @param string $class  The class that is missing a loader.
+     * @return InvalidMapper The exception object.
      */
-    public static function whilstRequiredFor(string $class): NoLoaderAvailable
+    public static function whilstRequiredFor(string $class): InvalidMapper
     {
         return new NoLoaderAvailable(withMessage(
             'Could not produce mapping due to a missing loader for class `%s`',
