@@ -7,9 +7,12 @@ use Stratadox\Hydration\Mapper\Instruction\Is;
 use Stratadox\Hydration\Mapping\Properties;
 use Stratadox\HydrationMapper\InstructsHowToMap;
 use Stratadox\HydrationMapper\MakesMap;
+use Stratadox\HydrationMapper\RepresentsChoice;
 use Stratadox\Hydrator\Hydrates;
 use Stratadox\Hydrator\MappedHydrator;
+use Stratadox\Hydrator\OneOfTheseHydrators;
 use Stratadox\Instantiator\CannotInstantiateThis;
+use function array_map;
 
 /**
  * Builds a mapped hydrator, configured with mappings for the properties.
@@ -25,10 +28,22 @@ final class Mapper implements MakesMap
     /** @var InstructsHowToMap[] */
     private $properties;
 
-    private function __construct(string $name, array $properties = [])
-    {
+    /** @var string|null */
+    private $decisionKey;
+
+    /** @var RepresentsChoice[] */
+    private $choices;
+
+    private function __construct(
+        string $name,
+        array $properties = [],
+        string $decisionKey = null,
+        array $choices = []
+    ) {
         $this->name = $name;
         $this->properties = $properties;
+        $this->decisionKey = $decisionKey;
+        $this->choices = $choices;
     }
 
     /**
@@ -53,8 +68,24 @@ final class Mapper implements MakesMap
     }
 
     /** @inheritdoc */
+    public function selectBy(
+        string $decisionKey,
+        array $choices
+    ): MakesMap {
+        return new self('', [], $decisionKey, $choices);
+    }
+
+    /** @inheritdoc */
     public function finish(): Hydrates
     {
+        if (isset($this->decisionKey)) {
+            return OneOfTheseHydrators::decideBasedOnThe(
+                $this->decisionKey,
+                array_map(function (RepresentsChoice $choice): Hydrates {
+                    return $choice->finish();
+                }, $this->choices)
+            );
+        }
         $class = $this->name;
         $properties = [];
         foreach ($this->properties as $name => $instruction) {

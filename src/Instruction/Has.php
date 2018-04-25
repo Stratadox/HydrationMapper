@@ -16,9 +16,7 @@ use Stratadox\HydrationMapper\FindsKeys;
  */
 final class Has
 {
-    private function __construct()
-    {
-    }
+    private function __construct() {}
 
     /**
      * Defines a has-one relationship with another class.
