@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Stratadox\Hydration\Mapper\Instruction;
 
-use Stratadox\Hydration\Mapping\Property\Scalar\StringValue;
+use Stratadox\Hydration\Mapping\Property\Scalar\OriginalValue;
 use Stratadox\HydrationMapper\FindsKeys;
 use Stratadox\HydrationMapper\InstructsHowToMap;
 use Stratadox\HydrationMapping\MapsProperty;
@@ -43,6 +43,6 @@ final class In implements FindsKeys, InstructsHowToMap
     /** @inheritdoc */
     public function followFor(string $property): MapsProperty
     {
-        return StringValue::inPropertyWithDifferentKey($property, $this->key);
+        return OriginalValue::inPropertyWithDifferentKey($property, $this->key);
     }
 }
