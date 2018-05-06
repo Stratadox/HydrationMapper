@@ -150,6 +150,6 @@ final class HasMany extends Relationship
     {
         return null !== $class
             && class_exists($class)
-            && in_array($interface, class_implements($class), true);
+            && in_array($interface, class_implements($class));
     }
 }
