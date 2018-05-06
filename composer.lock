@@ -4,24 +4,25 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d856f76b5ee14840c3d35e17e1ebdb82",
+    "content-hash": "ea9281e632cba098ec4843a897da8a14",
     "packages": [
         {
             "name": "stratadox/collection-contracts",
-            "version": "v1.1",
+            "version": "v2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Stratadox/CollectionContracts.git",
-                "reference": "3b84ba39925779cedee322f5595912e0894bd1bb"
+                "reference": "b44d564fb8a05c427699c6d90b0e1c47fd23a508"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Stratadox/CollectionContracts/zipball/3b84ba39925779cedee322f5595912e0894bd1bb",
-                "reference": "3b84ba39925779cedee322f5595912e0894bd1bb",
+                "url": "https://api.github.com/repos/Stratadox/CollectionContracts/zipball/b44d564fb8a05c427699c6d90b0e1c47fd23a508",
+                "reference": "b44d564fb8a05c427699c6d90b0e1c47fd23a508",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.0",
+                "php": ">=7.1",
+                "stratadox/sorting-contracts": "^0.1.0",
                 "stratadox/specification-interfaces": "^1.0"
             },
             "type": "library",
@@ -41,7 +42,7 @@
                 }
             ],
             "description": "Interfaces for the collection classes.",
-            "time": "2018-01-30T20:31:12+00:00"
+            "time": "2018-04-12T22:25:29+00:00"
         },
         {
             "name": "stratadox/hydration-mapper-contracts",
@@ -83,29 +84,37 @@
         },
         {
             "name": "stratadox/hydration-mapping",
-            "version": "v2.1.2",
+            "version": "v2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Stratadox/HydrationMapping.git",
-                "reference": "487e81da6f272ef18f509fca2024864007b810b2"
+                "reference": "05aed663793e87604f8e02a2a0b80492fd72b2eb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Stratadox/HydrationMapping/zipball/487e81da6f272ef18f509fca2024864007b810b2",
-                "reference": "487e81da6f272ef18f509fca2024864007b810b2",
+                "url": "https://api.github.com/repos/Stratadox/HydrationMapping/zipball/05aed663793e87604f8e02a2a0b80492fd72b2eb",
+                "reference": "05aed663793e87604f8e02a2a0b80492fd72b2eb",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.1",
-                "stratadox/hydration-mapping-contracts": "^0.1.0",
-                "stratadox/immutable-collection": "^1.0",
-                "stratadox/proxy-contracts": "^0.1.0"
+                "stratadox/hydration-mapping-contracts": "^0.1.3",
+                "stratadox/hydrator-contracts": "^0.2",
+                "stratadox/immutable-collection": "^1.1",
+                "stratadox/proxy-contracts": "^0.1.0",
+                "stratadox/specification-interfaces": "^1.0"
             },
             "require-dev": {
                 "phpstan/phpstan": "^0.9.2",
                 "phpunit/phpunit": "^7.0",
                 "satooshi/php-coveralls": "^2.0",
-                "stratadox/hydrator": "^3.0"
+                "stratadox/hydrator": "^3.0",
+                "stratadox/specification": "^1.0"
+            },
+            "suggest": {
+                "stratadox/hydrator": "For hydrating the objects",
+                "stratadox/proxy": "For lazy loading relationships",
+                "stratadox/specification": "For advanced input validation"
             },
             "type": "library",
             "autoload": {
@@ -123,25 +132,25 @@
                     "homepage": "http://www.stratadox.com/"
                 }
             ],
-            "time": "2018-04-04T22:50:42+00:00"
+            "time": "2018-05-05T17:02:22+00:00"
         },
         {
             "name": "stratadox/hydration-mapping-contracts",
-            "version": "v0.1.2",
+            "version": "v0.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Stratadox/HydrationMappingContracts.git",
-                "reference": "37b506fc86bb8b585e614b676f94b1c862b86914"
+                "reference": "b221e9d6e50fa9d95f8efa68942d451aab5ecc85"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Stratadox/HydrationMappingContracts/zipball/37b506fc86bb8b585e614b676f94b1c862b86914",
-                "reference": "37b506fc86bb8b585e614b676f94b1c862b86914",
+                "url": "https://api.github.com/repos/Stratadox/HydrationMappingContracts/zipball/b221e9d6e50fa9d95f8efa68942d451aab5ecc85",
+                "reference": "b221e9d6e50fa9d95f8efa68942d451aab5ecc85",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.1",
-                "stratadox/collection-contracts": "^1.0"
+                "stratadox/collection-contracts": "^2.0"
             },
             "type": "library",
             "autoload": {
@@ -159,7 +168,7 @@
                     "homepage": "http://www.stratadox.com/"
                 }
             ],
-            "time": "2018-02-01T22:12:56+00:00"
+            "time": "2018-04-28T17:27:27+00:00"
         },
         {
             "name": "stratadox/hydrator",
@@ -248,21 +257,21 @@
         },
         {
             "name": "stratadox/immutable-collection",
-            "version": "v1.1.1",
+            "version": "v1.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Stratadox/ImmutableCollection.git",
-                "reference": "0f66f7da3f2f022a01c745492e6f9f5f33b9f26b"
+                "reference": "c10a0d96ec0cc4f5738a638b2a0e353ba819df29"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Stratadox/ImmutableCollection/zipball/0f66f7da3f2f022a01c745492e6f9f5f33b9f26b",
-                "reference": "0f66f7da3f2f022a01c745492e6f9f5f33b9f26b",
+                "url": "https://api.github.com/repos/Stratadox/ImmutableCollection/zipball/c10a0d96ec0cc4f5738a638b2a0e353ba819df29",
+                "reference": "c10a0d96ec0cc4f5738a638b2a0e353ba819df29",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.1",
-                "stratadox/collection-contracts": "^1.0",
+                "stratadox/collection-contracts": "^2.0",
                 "stratadox/specification-interfaces": "^1.0"
             },
             "require-dev": {
@@ -285,7 +294,7 @@
                     "homepage": "http://www.stratadox.com/"
                 }
             ],
-            "time": "2018-02-13T20:29:53+00:00"
+            "time": "2018-04-15T23:21:59+00:00"
         },
         {
             "name": "stratadox/instantiator",
@@ -408,6 +417,41 @@
                 }
             ],
             "time": "2018-02-01T20:26:25+00:00"
+        },
+        {
+            "name": "stratadox/sorting-contracts",
+            "version": "v0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Stratadox/SortingContracts.git",
+                "reference": "e575b6dc8d9f513d084df741bd0c15bccc9b3720"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Stratadox/SortingContracts/zipball/e575b6dc8d9f513d084df741bd0c15bccc9b3720",
+                "reference": "e575b6dc8d9f513d084df741bd0c15bccc9b3720",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Stratadox\\Sorting\\Contracts\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stratadox",
+                    "homepage": "http://www.stratadox.com/"
+                }
+            ],
+            "time": "2018-04-12T20:45:51+00:00"
         },
         {
             "name": "stratadox/specification-interfaces",
@@ -1059,16 +1103,16 @@
         },
         {
             "name": "nette/php-generator",
-            "version": "v3.0.3",
+            "version": "v3.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/php-generator.git",
-                "reference": "18a26e9c302ce98b7a573fae8c6032a6909339e5"
+                "reference": "b381ecacbf5a0b5f99cc0b303d5b0578d409f446"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/php-generator/zipball/18a26e9c302ce98b7a573fae8c6032a6909339e5",
-                "reference": "18a26e9c302ce98b7a573fae8c6032a6909339e5",
+                "url": "https://api.github.com/repos/nette/php-generator/zipball/b381ecacbf5a0b5f99cc0b303d5b0578d409f446",
+                "reference": "b381ecacbf5a0b5f99cc0b303d5b0578d409f446",
                 "shasum": ""
             },
             "require": {
@@ -1117,7 +1161,7 @@
                 "php",
                 "scaffolding"
             ],
-            "time": "2018-03-30T14:01:03+00:00"
+            "time": "2018-04-26T16:48:20+00:00"
         },
         {
             "name": "nette/robot-loader",
@@ -1186,16 +1230,16 @@
         },
         {
             "name": "nette/utils",
-            "version": "v2.5.1",
+            "version": "v2.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/utils.git",
-                "reference": "8a85ce76298c8a8941f912b8fa3ee93ca17d2ebc"
+                "reference": "183069866dc477fcfbac393ed486aaa6d93d19a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/utils/zipball/8a85ce76298c8a8941f912b8fa3ee93ca17d2ebc",
-                "reference": "8a85ce76298c8a8941f912b8fa3ee93ca17d2ebc",
+                "url": "https://api.github.com/repos/nette/utils/zipball/183069866dc477fcfbac393ed486aaa6d93d19a5",
+                "reference": "183069866dc477fcfbac393ed486aaa6d93d19a5",
                 "shasum": ""
             },
             "require": {
@@ -1264,7 +1308,7 @@
                 "utility",
                 "validation"
             ],
-            "time": "2018-02-19T14:42:42+00:00"
+            "time": "2018-05-02T17:16:08+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -1793,16 +1837,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "6.0.3",
+            "version": "6.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "774a82c0c5da4c1c7701790c262035d235ab7856"
+                "reference": "52187754b0eed0b8159f62a6fa30073327e8c2ca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/774a82c0c5da4c1c7701790c262035d235ab7856",
-                "reference": "774a82c0c5da4c1c7701790c262035d235ab7856",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/52187754b0eed0b8159f62a6fa30073327e8c2ca",
+                "reference": "52187754b0eed0b8159f62a6fa30073327e8c2ca",
                 "shasum": ""
             },
             "require": {
@@ -1852,7 +1896,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2018-04-06T15:39:20+00:00"
+            "time": "2018-04-29T14:59:09+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -2042,16 +2086,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "7.1.4",
+            "version": "7.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "6d51299e307dc510149e0b7cd1931dd11770e1cb"
+                "reference": "ca64dba53b88aba6af32aebc6b388068db95c435"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/6d51299e307dc510149e0b7cd1931dd11770e1cb",
-                "reference": "6d51299e307dc510149e0b7cd1931dd11770e1cb",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/ca64dba53b88aba6af32aebc6b388068db95c435",
+                "reference": "ca64dba53b88aba6af32aebc6b388068db95c435",
                 "shasum": ""
             },
             "require": {
@@ -2070,7 +2114,7 @@
                 "phpunit/php-text-template": "^1.2.1",
                 "phpunit/php-timer": "^2.0",
                 "phpunit/phpunit-mock-objects": "^6.1.1",
-                "sebastian/comparator": "^2.1 || ^3.0",
+                "sebastian/comparator": "^3.0",
                 "sebastian/diff": "^3.0",
                 "sebastian/environment": "^3.1",
                 "sebastian/exporter": "^3.1",
@@ -2118,7 +2162,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2018-04-18T13:41:53+00:00"
+            "time": "2018-04-29T15:09:19+00:00"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -2920,8 +2964,69 @@
             "time": "2016-10-03T07:35:21+00:00"
         },
         {
+            "name": "stratadox/specification",
+            "version": "v1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Stratadox/Specification.git",
+                "reference": "aed6e5c119064ecdf2038d97fca60e641e43988d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Stratadox/Specification/zipball/aed6e5c119064ecdf2038d97fca60e641e43988d",
+                "reference": "aed6e5c119064ecdf2038d97fca60e641e43988d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0",
+                "stratadox/specification-interfaces": "^1.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.2",
+                "satooshi/php-coveralls": "^1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Stratadox\\Specification\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stratadox",
+                    "homepage": "http://www.stratadox.com/"
+                }
+            ],
+            "description": "An implementation of the Specification Pattern for Php7",
+            "keywords": [
+                "PHP7",
+                "Specifications",
+                "condition",
+                "ddd",
+                "filter",
+                "filters",
+                "isSatisfiedBy",
+                "pattern",
+                "satisfiable",
+                "satisfied",
+                "satisfiedBy",
+                "satisfying",
+                "select",
+                "selector",
+                "specification",
+                "specifier",
+                "specifying",
+                "stratadox"
+            ],
+            "time": "2017-12-20T02:36:29+00:00"
+        },
+        {
             "name": "symfony/config",
-            "version": "v4.0.8",
+            "version": "v4.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
@@ -2983,16 +3088,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v4.0.8",
+            "version": "v4.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "aad9a6fe47319f22748fd764f52d3a7ca6fa6b64"
+                "reference": "3e820bc2c520a87ca209ad8fa961c97f42e0b4ae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/aad9a6fe47319f22748fd764f52d3a7ca6fa6b64",
-                "reference": "aad9a6fe47319f22748fd764f52d3a7ca6fa6b64",
+                "url": "https://api.github.com/repos/symfony/console/zipball/3e820bc2c520a87ca209ad8fa961c97f42e0b4ae",
+                "reference": "3e820bc2c520a87ca209ad8fa961c97f42e0b4ae",
                 "shasum": ""
             },
             "require": {
@@ -3012,7 +3117,7 @@
                 "symfony/process": "~3.4|~4.0"
             },
             "suggest": {
-                "psr/log": "For using the console logger",
+                "psr/log-implementation": "For using the console logger",
                 "symfony/event-dispatcher": "",
                 "symfony/lock": "",
                 "symfony/process": ""
@@ -3047,11 +3152,11 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2018-04-03T05:24:00+00:00"
+            "time": "2018-04-30T01:23:47+00:00"
         },
         {
             "name": "symfony/filesystem",
-            "version": "v4.0.8",
+            "version": "v4.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
@@ -3100,7 +3205,7 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v4.0.8",
+            "version": "v4.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
@@ -3149,16 +3254,16 @@
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.7.0",
+            "version": "v1.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "78be803ce01e55d3491c1397cf1c64beb9c1b63b"
+                "reference": "3296adf6a6454a050679cde90f95350ad604b171"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/78be803ce01e55d3491c1397cf1c64beb9c1b63b",
-                "reference": "78be803ce01e55d3491c1397cf1c64beb9c1b63b",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/3296adf6a6454a050679cde90f95350ad604b171",
+                "reference": "3296adf6a6454a050679cde90f95350ad604b171",
                 "shasum": ""
             },
             "require": {
@@ -3170,7 +3275,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.7-dev"
+                    "dev-master": "1.8-dev"
                 }
             },
             "autoload": {
@@ -3204,11 +3309,11 @@
                 "portable",
                 "shim"
             ],
-            "time": "2018-01-30T19:27:44+00:00"
+            "time": "2018-04-26T10:06:28+00:00"
         },
         {
             "name": "symfony/stopwatch",
-            "version": "v4.0.8",
+            "version": "v4.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/stopwatch.git",
@@ -3257,16 +3362,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v4.0.8",
+            "version": "v4.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "8b34ebb5989df61cbd77eff29a02c4db9ac1069c"
+                "reference": "275ad099e4cbe612a2acbca14a16dd1c5311324d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/8b34ebb5989df61cbd77eff29a02c4db9ac1069c",
-                "reference": "8b34ebb5989df61cbd77eff29a02c4db9ac1069c",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/275ad099e4cbe612a2acbca14a16dd1c5311324d",
+                "reference": "275ad099e4cbe612a2acbca14a16dd1c5311324d",
                 "shasum": ""
             },
             "require": {
@@ -3311,7 +3416,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2018-04-03T05:24:00+00:00"
+            "time": "2018-04-08T08:49:08+00:00"
         },
         {
             "name": "theseer/tokenizer",

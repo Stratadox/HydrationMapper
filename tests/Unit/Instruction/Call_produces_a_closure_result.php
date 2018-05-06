@@ -5,6 +5,8 @@ namespace Stratadox\Hydration\Mapper\Test\Unit\Instruction;
 
 use PHPUnit\Framework\TestCase;
 use Stratadox\Hydration\Mapper\Instruction\Call;
+use Stratadox\Hydration\Mapper\Test\Stub\Constraint\IsEither;
+use Stratadox\Hydration\Mapping\Property\Check;
 use Stratadox\Hydration\Mapping\Property\Dynamic\ClosureResult;
 use function strlen;
 use function var_export;
@@ -28,15 +30,18 @@ class Call_produces_a_closure_result extends TestCase
     }
 
     /** @test */
-    function producing_another_closure_mapping()
+    function producing_a_closure_mapping_with_constraint()
     {
         self::assertEquals(
-            ClosureResult::inProperty('data', function ($data) {
-                return var_export($data, true);
-            }),
+            Check::that(
+                IsEither::oneOf(10, 13),
+                ClosureResult::inProperty('version', function ($data) {
+                    return strlen($data['id']);
+                })
+            ),
             Call::the(function ($data) {
-                return var_export($data, true);
-            })->followFor('data')
+                return strlen($data['id']);
+            })->that(IsEither::oneOf(10, 13))->followFor('version')
         );
     }
 }

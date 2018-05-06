@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace Stratadox\Hydration\Mapper\Test\Stub\Book;
 
+use function str_replace;
+use function strlen;
+
 class Isbn
 {
     private const VERSION_10 = 10;

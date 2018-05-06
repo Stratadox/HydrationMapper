@@ -12,8 +12,11 @@ use Stratadox\Hydration\Mapper\Test\Stub\Book\Image;
 use Stratadox\Hydration\Mapper\Test\Stub\Book\Isbn;
 use Stratadox\Hydration\Mapper\Test\Stub\Book\Text;
 use Stratadox\Hydration\Mapper\Test\Stub\Book\Title;
+use Stratadox\Hydration\Mapper\Test\Stub\Constraint\HasIsbn;
+use Stratadox\Hydration\Mapper\Test\Stub\Constraint\IsNotEmpty;
 use Stratadox\Hydration\Mapper\Test\Stub\Instruction\ItsANumber;
 use Stratadox\Hydration\Mapping\Properties;
+use Stratadox\Hydration\Mapping\Property\Check;
 use Stratadox\Hydration\Mapping\Property\Relationship\HasOneEmbedded;
 use Stratadox\Hydration\Mapping\Property\Relationship\HasOneNested;
 use Stratadox\Hydration\Mapping\Property\Scalar\IntegerValue;
@@ -122,6 +125,47 @@ class HasOne_indicates_a_monogamous_relationship extends TestCase
                 ])
                 ->nested()
                 ->followFor('element')
+        );
+    }
+
+    /** @test */
+    function producing_an_embedded_hasOne_with_constraint()
+    {
+        self::assertEquals(
+            Check::that(
+                IsNotEmpty::text(),
+                HasOneEmbedded::inProperty('title',
+                    MappedHydrator::forThe(Title::class, Properties::map(
+                        StringValue::inProperty('title')
+                    ))
+                )
+            ),
+            HasOne::ofThe(Title::class)
+                ->with('title')
+                ->that(IsNotEmpty::text())
+                ->followFor('title')
+        );
+    }
+
+    /** @test */
+    function producing_a_nested_hasOne_with_constraint()
+    {
+        self::assertEquals(
+            Check::that(
+                HasIsbn::version(10)->or(HasIsbn::version(13)),
+                HasOneNested::inProperty('isbn',
+                    MappedHydrator::forThe(Isbn::class, Properties::map(
+                        StringValue::inProperty('code'),
+                        IntegerValue::inProperty('version')
+                    ))
+                )
+            ),
+            HasOne::ofThe(Isbn::class)
+                ->nested()
+                ->with('code')
+                ->with('version', ItsANumber::allRight())
+                ->that(HasIsbn::version(10)->or(HasIsbn::version(13)))
+                ->followFor('isbn')
         );
     }
 }

@@ -17,7 +17,13 @@ use Stratadox\Hydration\Mapper\Test\Stub\Book\Element;
 use Stratadox\Hydration\Mapper\Test\Stub\Book\Elements;
 use Stratadox\Hydration\Mapper\Test\Stub\Book\Image;
 use Stratadox\Hydration\Mapper\Test\Stub\Book\Text;
+use Stratadox\Hydration\Mapper\Test\Stub\Constraint\ContainsMore;
+use Stratadox\Hydration\Mapper\Test\Stub\Constraint\HasValidUrl;
+use Stratadox\Hydration\Mapper\Test\Stub\Constraint\IsNotAnEmpty;
+use Stratadox\Hydration\Mapper\Test\Stub\Constraint\IsNotEmpty;
+use Stratadox\Hydration\Mapper\Test\Stub\Constraint\OnlyHasElements;
 use Stratadox\Hydration\Mapping\Properties;
+use Stratadox\Hydration\Mapping\Property\Check;
 use Stratadox\Hydration\Mapping\Property\Relationship\HasManyNested;
 use Stratadox\Hydration\Mapping\Property\Relationship\HasManyProxies;
 use Stratadox\Hydration\Mapping\Property\Relationship\HasOneProxy;
@@ -177,6 +183,107 @@ class HasMany_indicates_a_polygamic_relationship extends TestCase
             ),
             HasMany::ofThe(ChapterProxy::class)
                 ->loadedBy(new ChapterLoaderFactory)
+                ->followFor('chapter')
+        );
+    }
+
+    /** @test */
+    function producing_a_nested_hasMany_with_constraint()
+    {
+        self::assertEquals(
+            Check::that(
+                ContainsMore::than(2),
+                HasManyNested::inProperty('contents',
+                    VariadicConstructor::forThe(Chapters::class),
+                    MappedHydrator::forThe(Chapter::class, Properties::map(
+                        StringValue::inProperty('title')
+                    ))
+                )
+            ),
+            HasMany::ofThe(Chapter::class)
+                ->nested()
+                ->with('title')
+                ->containedInA(Chapters::class)
+                ->that(ContainsMore::than(2))
+                ->followFor('contents')
+        );
+    }
+
+    /** @test */
+    function producing_a_nested_hasMany_with_constraint_and_different_key()
+    {
+        self::assertEquals(
+            Check::that(
+                IsNotAnEmpty::chapter(),
+                HasManyNested::inPropertyWithDifferentKey('chapter', 'data',
+                    VariadicConstructor::forThe(Chapter::class),
+                    MappedHydrator::forThe(Text::class, Properties::map(
+                        StringValue::inProperty('text')
+                    ))
+                )
+            ),
+            HasMany::ofThe(Text::class, In::key('data'))
+                ->nested()
+                ->with('text')
+                ->containedInA(Chapter::class)
+                ->that(IsNotAnEmpty::chapter())
+                ->followFor('chapter')
+        );
+    }
+
+    /** @test */
+    function producing_a_nested_hasMany_with_polymorphism_and_constraints()
+    {
+        self::assertEquals(
+            Check::that(
+                OnlyHasElements::that(IsNotEmpty::text()->or(HasValidUrl::property())),
+                HasManyNested::inProperty('elements',
+                    VariadicConstructor::forThe(Elements::class),
+                    OneOfTheseHydrators::decideBasedOnThe('type', [
+                        'text'  => MappedHydrator::forThe(Text::class, Properties::map(
+                            StringValue::inProperty('text')
+                        )),
+                        'image' => MappedHydrator::forThe(Image::class, Properties::map(
+                            StringValue::inProperty('url'),
+                            StringValue::inProperty('alt')
+                        )),
+                    ])
+                )
+            ),
+            HasMany::ofThe(Element::class)
+                ->selectBy('type', [
+                    'text'  => Choose::the(Text::class)->with('text'),
+                    'image' => Choose::the(Image::class)->with('url')->with('alt'),
+                ])
+                ->nested()
+                ->with('title')
+                ->containedInA(Elements::class)
+                ->that(OnlyHasElements::that(
+                    IsNotEmpty::text()->or(HasValidUrl::property())
+                ))
+                ->followFor('elements')
+        );
+    }
+
+    /** @test */
+    function producing_an_extra_lazy_hasMany_with_constraint_and_different_key()
+    {
+        self::assertEquals(
+            Check::that(
+                ContainsMore::than(2),
+                HasManyProxies::inPropertyWithDifferentKey('chapter', 'data',
+                    VariadicConstructor::forThe(ArrayObject::class),
+                    ProxyFactory::fromThis(
+                        SimpleHydrator::forThe(ChapterProxy::class),
+                        new ChapterLoaderFactory,
+                        new ArrayEntryUpdaterFactory
+                    )
+                )
+            ),
+            HasMany::ofThe(ChapterProxy::class, In::key('data'))
+                ->containedInA(ArrayObject::class)
+                ->loadedBy(new ChapterLoaderFactory)
+                ->that(ContainsMore::than(2))
                 ->followFor('chapter')
         );
     }
