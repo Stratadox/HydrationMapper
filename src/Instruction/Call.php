@@ -4,9 +4,11 @@ declare(strict_types=1);
 namespace Stratadox\Hydration\Mapper\Instruction;
 
 use Closure;
+use Stratadox\Hydration\Mapping\Property\Check;
 use Stratadox\Hydration\Mapping\Property\Dynamic\ClosureResult;
 use Stratadox\HydrationMapper\InstructsHowToMap;
 use Stratadox\HydrationMapping\MapsProperty;
+use Stratadox\Specification\Contract\Satisfiable;
 
 /**
  * Indicates that a closure should be called to hydrate this property.
@@ -17,10 +19,12 @@ use Stratadox\HydrationMapping\MapsProperty;
 final class Call implements InstructsHowToMap
 {
     private $function;
+    private $constraint;
 
-    private function __construct(Closure $function)
+    private function __construct(Closure $function, ?Satisfiable $constraint)
     {
         $this->function = $function;
+        $this->constraint = $constraint;
     }
 
     /**
@@ -32,12 +36,22 @@ final class Call implements InstructsHowToMap
      */
     public static function the(Closure $function): Call
     {
-        return new Call($function);
+        return new Call($function, null);
+    }
+
+    /** @inheritdoc */
+    public function that(Satisfiable $constraint): InstructsHowToMap
+    {
+        return new Call($this->function, $constraint);
     }
 
     /** @inheritdoc */
     public function followFor(string $property): MapsProperty
     {
-        return ClosureResult::inProperty($property, $this->function);
+        $mapping = ClosureResult::inProperty($property, $this->function);
+        if (isset($this->constraint)) {
+            $mapping = Check::that($this->constraint, $mapping);
+        }
+        return $mapping;
     }
 }

@@ -59,12 +59,12 @@ final class HasMany extends Relationship
         if (null !== $this->container && !class_exists($this->container)) {
             throw NoSuchClass::couldNotLoadCollection($this->container);
         }
-        return HasManyNested::inPropertyWithDifferentKey(
+        return $this->addConstraintTo(HasManyNested::inPropertyWithDifferentKey(
             $property,
             $this->keyOr($property),
             $this->container(),
             $this->hydrator()
-        );
+        ));
     }
 
     /**
@@ -79,7 +79,7 @@ final class HasMany extends Relationship
         if (null === $this->loader) {
             throw NoLoaderAvailable::whilstRequiredFor($this->class);
         }
-        return HasManyProxies::inPropertyWithDifferentKey(
+        return $this->addConstraintTo(HasManyProxies::inPropertyWithDifferentKey(
             $property,
             $this->keyOr($property),
             $this->container(),
@@ -88,14 +88,14 @@ final class HasMany extends Relationship
                 $this->loader,
                 $this->updaterFactory()
             )
-        );
+        ));
     }
 
     /**
      * Maps a lazily loaded collection as a single proxy.
      *
      * @param string $property The property that gets a lazy relationship.
-     * @return MapsProperty         The resulting property mapping.
+     * @return MapsProperty    The resulting property mapping.
      * @throws InvalidMapperConfiguration
      */
     private function oneProxyInThe(string $property): MapsProperty
@@ -144,12 +144,12 @@ final class HasMany extends Relationship
     /**
      * @param string      $interface The interface name.
      * @param null|string $class     The class name.
-     * @return bool              Whether the class implements the interface.
+     * @return bool                  Whether the class implements the interface.
      */
     private function isImplementingThe(string $interface, ?string $class): bool
     {
         return null !== $class
             && class_exists($class)
-            && in_array($interface, class_implements($class));
+            && in_array($interface, class_implements($class), true);
     }
 }

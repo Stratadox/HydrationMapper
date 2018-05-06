@@ -4,15 +4,18 @@ declare(strict_types=1);
 namespace Stratadox\Hydration\Mapper\Instruction\Relation;
 
 use Stratadox\Hydration\Mapper\Mapper;
+use Stratadox\Hydration\Mapping\Property\Check;
 use Stratadox\HydrationMapper\DefinesRelationships;
 use Stratadox\HydrationMapper\FindsKeys;
 use Stratadox\HydrationMapper\InstructsHowToMap;
 use Stratadox\HydrationMapper\InvalidMapperConfiguration;
 use Stratadox\HydrationMapper\RepresentsChoice;
+use Stratadox\HydrationMapping\MapsProperty;
 use Stratadox\Hydrator\Hydrates;
 use Stratadox\Hydrator\OneOfTheseHydrators;
 use Stratadox\Proxy\ProducesProxyLoaders;
 use function assert;
+use Stratadox\Specification\Contract\Satisfiable;
 
 /**
  * Defines a relationship with another class.
@@ -45,6 +48,9 @@ abstract class Relationship implements DefinesRelationships
 
     /** @var RepresentsChoice[] */
     protected $choices = [];
+
+    /** @var Satisfiable|null */
+    protected $constraint;
 
     private function __construct(string $class, FindsKeys $key = null)
     {
@@ -111,6 +117,13 @@ abstract class Relationship implements DefinesRelationships
         return $inst;
     }
 
+    public function that(Satisfiable $constraint): InstructsHowToMap
+    {
+        $inst = clone $this;
+        $inst->constraint = $constraint;
+        return $inst;
+    }
+
     /**
      * Returns the key if one was provided, defaulting to the property name.
      *
@@ -138,6 +151,14 @@ abstract class Relationship implements DefinesRelationships
             $mapped = $mapped->property($property, $instruction);
         }
         return $mapped->finish();
+    }
+
+    protected function addConstraintTo(MapsProperty $mapping): MapsProperty
+    {
+        if (isset($this->constraint)) {
+            $mapping = Check::that($this->constraint, $mapping);
+        }
+        return $mapping;
     }
 
     /**
